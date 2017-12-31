@@ -13,17 +13,17 @@ __status__ = "Development"
 """
 
 
-class _Matchable:
+class MatchField:
     def check(self, pattern):
         raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
-                                                                   _Matchable.check.__name__))
+                                                                   MatchField.check.__name__))
 
     def fill(self, matchObject):
         raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
-                                                                   _Matchable.fill.__name__))
+                                                                   MatchField.fill.__name__))
 
 
-class _Converter(_Matchable):
+class _Converter(MatchField):
 
     def __init__(self, delegate, valFunc):
         self.delegate = delegate
@@ -38,7 +38,7 @@ class _Converter(_Matchable):
         return self.valFunc(self.delegate.fill(string, matchObject))
 
 
-class _Group(_Matchable):
+class _Group(MatchField):
     def __init__(self, index):
         assert index >= 0, "Group requires non-negative index argument (got {})".format(index)
         self._index = index
@@ -47,8 +47,8 @@ class _Group(_Matchable):
 
     def check(self, pattern):
         assert pattern.groups >= self._index, "Pattern {} has {} group(s) (got group index {})".format(pattern,
-                                                                                                     pattern.groups,
-                                                                                                     self._index)
+                                                                                                       pattern.groups,
+                                                                                                       self._index)
 
     def fill(self, string, matchObject):
         # print("filling:", string, matchObject.groups())
