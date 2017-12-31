@@ -28,7 +28,7 @@ class ReClassTest(unittest.TestCase):
         cls = ReClassTest.MyPattern
 
         self.assertEqual(re.compile("[abc]+([0-9]+)xy"), cls._pattern)
-        self.assertTrue(isinstance(cls._create, types.FunctionType))
+        self.assertTrue(isinstance(cls._fill, types.FunctionType))
 
 
 if __name__ == '__main__':

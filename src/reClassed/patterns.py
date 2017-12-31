@@ -25,14 +25,14 @@ class _MetaReClass(type):
 
         pattern = re.compile(cls.match)
         setattr(cls, "_pattern", pattern)
-        setattr(cls, "_create", _MetaReClass._compile_create(cls, clsDict, pattern))
+        setattr(cls, "_fill", _MetaReClass._compile_create(cls, clsDict, pattern))
 
     @staticmethod
     def _compile_create(cls, clsDict, pattern):
         # print("> _compile_create", cls, pattern)
         fillers = set()
         for name, element in clsDict.items():
-            if isinstance(element, matched._Matchable):
+            if isinstance(element, matched.MatchField):
                 # print("## found", element, pattern)
                 element.check(pattern)
                 setattr(cls, name, element.fill)
@@ -47,13 +47,13 @@ class _MetaReClass(type):
 
 class ReClass(metaclass=_MetaReClass):
     _pattern = None
-    _create = None
+    _fill = None
 
     match = ""
 
     def __init__(self, string, mObj):
         # print("> __init__", self, string, mObj)
-        self._create(string, mObj)
+        self._fill(string, mObj)
 
     @classmethod
     def search(cls, string):
