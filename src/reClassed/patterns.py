@@ -20,40 +20,33 @@ from reClassed import matched
 class _MetaReClass(type):
 
     def __init__(cls, name, _bases, clsDict):
-        # print("> __init__", cls, name)
-        assert "match" in clsDict, "Pattern class {} requires field 'matchOn'".format(name)
+        assert "match" in clsDict, "Pattern class {} requires field 'match'".format(name)
 
         pattern = re.compile(cls.match)
         setattr(cls, "_pattern", pattern)
-        setattr(cls, "_fill", _MetaReClass._compile_create(cls, clsDict, pattern))
+        setattr(cls, "_fields", _MetaReClass._get_fields(cls, clsDict, pattern))
 
     @staticmethod
-    def _compile_create(cls, clsDict, pattern):
-        # print("> _compile_create", cls, pattern)
-        fillers = set()
+    def _get_fields(cls, clsDict, pattern):
+        fields = set()
         for name, element in clsDict.items():
             if isinstance(element, matched.MatchField):
                 # print("## found", element, pattern)
                 element.check(pattern)
-                setattr(cls, name, element.fill)
-                fillers.add((name, element.fill))
+                fields.add((name, element.fill))
 
-        def _do_create(self, string, mObj):
-            for n, e in fillers:
-                setattr(self, n, e(string, mObj))
-
-        return _do_create
+        return fields
 
 
 class ReClass(metaclass=_MetaReClass):
     _pattern = None
-    _fill = None
+    _fields = None
 
     match = ""
 
     def __init__(self, string, mObj):
-        # print("> __init__", self, string, mObj)
-        self._fill(string, mObj)
+        for n, e in self._fields:
+            setattr(self, n, e(string, mObj))
 
     @classmethod
     def search(cls, string):

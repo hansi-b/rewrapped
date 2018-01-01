@@ -14,6 +14,7 @@ __status__ = "Development"
 
 
 class MatchField:
+
     def check(self, pattern):
         raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
                                                                    MatchField.check.__name__))
@@ -29,16 +30,16 @@ class _Converter(MatchField):
         self.delegate = delegate
         self.valFunc = valFunc
 
-    def check(*args):
-        # print("___", args)
+    def check(self, pattern):
         pass
 
     def fill(self, string, matchObject):
-        # print(">>>", self, string, matchObject)
-        return self.valFunc(self.delegate.fill(string, matchObject))
+        v = self.delegate.fill(string, matchObject)
+        return self.valFunc(v) if v else v
 
 
 class _Group(MatchField):
+
     def __init__(self, index):
         assert index >= 0, "Group requires non-negative index argument (got {})".format(index)
         self._index = index
@@ -51,9 +52,7 @@ class _Group(MatchField):
                                                                                                        self._index)
 
     def fill(self, string, matchObject):
-        # print("filling:", string, matchObject.groups())
         return matchObject.group(self._index)
-
 
 def g(x: int):
     return _Group(x)
