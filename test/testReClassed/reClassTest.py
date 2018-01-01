@@ -12,23 +12,35 @@ __status__ = "Development"
 
 """
 import re
-import types
 import unittest
 
-from reClassed.patterns import ReClass
-from reClassed import matched
+from reClassed import matched, ReClass
 
 
-class ReClassTest(unittest.TestCase):
-    class MyPattern(ReClass):
-        match = "[abc]+([0-9]+)xy"
+class TestReClass(unittest.TestCase):
+
+    class MyRe(ReClass):
+        matchOn = "[abc]+([0-9]+)xy"
         no = matched.g1.asInt
+        stuff = matched.g0
 
     def testGeneratedElements(self):
-        cls = ReClassTest.MyPattern
+        cls = TestReClass.MyRe
 
         self.assertEqual(re.compile("[abc]+([0-9]+)xy"), cls._pattern)
-        self.assertTrue(isinstance(cls._fill, types.FunctionType))
+        fields = cls._fields
+        self.assertTrue(isinstance(fields, set))
+        self.assertEqual({("no", matched.g1.asInt), ("stuff", matched.g0)}, fields)
+
+
+class TestFieldsCheck(unittest.TestCase):
+
+    def testInvalidGroup(self):
+        with self.assertRaises(AssertionError):
+
+            class NoCompile(ReClass):
+                match = "my ([a-z]) is 1"
+                field = matched.g2
 
 
 if __name__ == '__main__':

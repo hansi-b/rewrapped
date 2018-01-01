@@ -45,14 +45,16 @@ class _Group(MatchField):
         self._index = index
 
         self.asInt = _Converter(self, int)
+        self.asFloat = _Converter(self, float)
 
     def check(self, pattern):
         assert pattern.groups >= self._index, "Pattern {} has {} group(s) (got group index {})".format(pattern,
                                                                                                        pattern.groups,
                                                                                                        self._index)
 
-    def fill(self, string, matchObject):
+    def fill(self, _string, matchObject):
         return matchObject.group(self._index)
+
 
 def g(x: int):
     return _Group(x)
@@ -68,3 +70,26 @@ g6 = _Group(6)
 g7 = _Group(7)
 g8 = _Group(8)
 g9 = _Group(9)
+
+
+class _After(MatchField):
+
+    def check(self, pattern):
+        pass
+    
+    def fill(self, string, matchObject):
+        return string[matchObject.end():]
+
+
+class _Before(MatchField):
+
+    def check(self, pattern):
+        pass
+    
+    def fill(self, string, matchObject):
+        return string[:matchObject.start()]
+
+
+after = _After()
+before = _Before()
+
