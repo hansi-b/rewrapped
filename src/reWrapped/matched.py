@@ -59,8 +59,8 @@ class _Group(MatchField):
         return matchObject.group(self._index)
 
 
-def g(x: int):
-    return _Group(x)
+def g(idx: int):
+    return _Group(idx)
 
 
 g0 = _Group(0)
@@ -102,3 +102,22 @@ class _Before(MatchField):
 after = _After()
 before = _Before()
 
+
+class _GroupTuple(MatchField):
+
+    def __init__(self, *indices):
+        super(_GroupTuple, self).__init__()
+
+        self._indices = tuple(indices)
+
+    def check(self, pattern):
+        assert pattern.groups >= max(self._indices), \
+            "Pattern {} has {} group(s) (got group indices {})".format(pattern,
+                                                                       pattern.groups,
+                                                                       self._indices)
+
+    def fill(self, _string, matchObject):
+        return tuple(matchObject.group(i) for i in self._indices)
+
+def gTuple(*indices):
+    return _GroupTuple(*indices)
