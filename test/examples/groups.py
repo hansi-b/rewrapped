@@ -14,9 +14,9 @@ __status__ = "Development"
 
 import unittest
 
-from reClassed import ReClass, matched
+from reWrapped import ReWrap, matched
 
-class SomeGroups(ReClass):
+class SomeGroups(ReWrap):
     matchOn = "(a)?,(b*),(c?),(d+)"
 
     all = matched.g0
@@ -49,7 +49,7 @@ class TestSomeGroups(unittest.TestCase):
         self.assertEqual('', res.perhapsC)
         self.assertEqual('ddd', res.someDs)
 
-class DateRe(ReClass):
+class DateRe(ReWrap):
     matchOn = "on ([0-9]{4})\-([0-9]{2})\-([0-9]{2})"
 
     year = matched.g1.asInt

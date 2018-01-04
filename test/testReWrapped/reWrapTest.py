@@ -14,12 +14,12 @@ __status__ = "Development"
 import re
 import unittest
 
-from reClassed import matched, ReClass
+from reWrapped import matched, ReWrap
 
 
 class TestReClass(unittest.TestCase):
 
-    class MyRe(ReClass):
+    class MyRe(ReWrap):
         matchOn = "[abc]+([0-9]+)xy"
         no = matched.g1.asInt
         stuff = matched.g0
@@ -38,7 +38,7 @@ class TestFieldsCheck(unittest.TestCase):
     def testInvalidGroup(self):
         with self.assertRaises(AssertionError):
 
-            class NoCompile(ReClass):
+            class NoCompile(ReWrap):
                 match = "my ([a-z]) is 1"
                 field = matched.g2
 

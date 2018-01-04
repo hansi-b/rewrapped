@@ -14,10 +14,10 @@ __status__ = "Development"
 
 import unittest
 
-from reClassed import ReClass, matched
+from reWrapped import ReWrap, matched
 
 
-class AnInt(ReClass):
+class AnInt(ReWrap):
     matchOn = "Number ([0-9]+)"
     no = matched.g1.asInt
 
@@ -34,7 +34,7 @@ class TestAsInt(unittest.TestCase):
         self.assertIsNone(res)
 
 
-class Floater(ReClass):
+class Floater(ReWrap):
     matchOn = "beyond ([+-]?[0-9]+\.[0-9]+)"
     limit = matched.g1.asFloat
 
