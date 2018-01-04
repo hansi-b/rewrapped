@@ -15,6 +15,10 @@ __status__ = "Development"
 
 class MatchField:
 
+    def __init__(self):
+        self.asInt = _Converter(self, int)
+        self.asFloat = _Converter(self, float)
+
     def check(self, pattern):
         raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
                                                                    MatchField.check.__name__))
@@ -41,16 +45,15 @@ class _Converter(MatchField):
 class _Group(MatchField):
 
     def __init__(self, index):
+        super(_Group, self).__init__()
         assert index >= 0, "Group requires non-negative index argument (got {})".format(index)
         self._index = index
 
-        self.asInt = _Converter(self, int)
-        self.asFloat = _Converter(self, float)
-
     def check(self, pattern):
-        assert pattern.groups >= self._index, "Pattern {} has {} group(s) (got group index {})".format(pattern,
-                                                                                                       pattern.groups,
-                                                                                                       self._index)
+        assert pattern.groups >= self._index, \
+            "Pattern {} has {} group(s) (got group index {})".format(pattern,
+                                                                     pattern.groups,
+                                                                     self._index)
 
     def fill(self, _string, matchObject):
         return matchObject.group(self._index)
@@ -74,6 +77,9 @@ g9 = _Group(9)
 
 class _After(MatchField):
 
+    def __init__(self):
+        super(_After, self).__init__()
+        
     def check(self, pattern):
         pass
     
@@ -82,6 +88,9 @@ class _After(MatchField):
 
 
 class _Before(MatchField):
+    
+    def __init__(self):
+        super(_Before, self).__init__()
 
     def check(self, pattern):
         pass
