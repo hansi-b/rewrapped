@@ -14,19 +14,19 @@ __status__ = "Development"
 
 import re
 
-from reClassed import matched
+from reWrapped import matched
 
 
 class _MetaReClass(type):
     """
-        The minimal factory for ReClass classes.
-        * Augments each ReClass with that class's compiled pattern,
+        The minimal factory for ReWrap classes.
+        * Augments each ReWrap with that class's compiled pattern,
         * lets the class fields check themselves against the pattern, and
         * collects the fields for filling on instantiation.
     """
 
     def __init__(cls, name, _bases, clsDict):
-        assert "matchOn" in clsDict, "ReClass {} requires field 'matchOn'".format(name)
+        assert "matchOn" in clsDict, "ReWrap {} requires field 'matchOn'".format(name)
 
         pattern = re.compile(cls.matchOn) if cls.matchOn is not None else None
         setattr(cls, "_pattern", pattern)
@@ -43,7 +43,7 @@ class _MetaReClass(type):
         return fields
 
 
-class ReClass(metaclass=_MetaReClass):
+class ReWrap(metaclass=_MetaReClass):
     _pattern = None
     _fields = None
 

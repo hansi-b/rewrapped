@@ -14,10 +14,10 @@ __status__ = "Development"
 
 import unittest
 
-from reClassed import ReClass, matched
+from reWrapped import ReWrap, matched
 
 
-class Parts(ReClass):
+class Parts(ReWrap):
     matchOn = "([a-z]+),"
 
     whole = matched.g0
