@@ -16,6 +16,7 @@ import unittest
 
 from reWrapped import ReWrap, matched
 
+
 class SomeGroups(ReWrap):
     matchOn = "(a)?,(b*),(c?),(d+)"
 
@@ -48,6 +49,37 @@ class TestSomeGroups(unittest.TestCase):
         self.assertEqual('', res.someBs)
         self.assertEqual('', res.perhapsC)
         self.assertEqual('ddd', res.someDs)
+
+
+class SimpleConvertRe(ReWrap):
+    matchOn = "(\w+)"
+
+    number = matched.g1.convert(lambda v:v + "x")
+
+
+class TestSimpleConvert(unittest.TestCase):
+
+    def testSearch(self):
+        res = SimpleConvertRe.search("123 house")
+
+        self.assertEqual("123x", res.number)
+
+
+class SimpleOptionalRe(ReWrap):
+    matchOn = "[a-z ]+([0-9]+)?"
+
+    number = matched.gOr(1, 42).asInt
+
+
+class TestSimpleOptional(unittest.TestCase):
+
+    def testSearch(self):
+        res = SimpleOptionalRe.search("house 123")
+        self.assertEqual(123, res.number)
+
+        res = SimpleOptionalRe.search("house")
+        self.assertEqual(42, res.number)
+
 
 class DateRe(ReWrap):
     matchOn = "on ([0-9]{4})\-([0-9]{2})\-([0-9]{2})"

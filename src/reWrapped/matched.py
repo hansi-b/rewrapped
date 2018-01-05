@@ -15,10 +15,6 @@ __status__ = "Development"
 
 class MatchField:
 
-    def __init__(self):
-        self.asInt = _Converter(self, int)
-        self.asFloat = _Converter(self, float)
-
     def check(self, pattern):
         raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
                                                                    MatchField.check.__name__))
@@ -31,6 +27,8 @@ class MatchField:
 class _Converter(MatchField):
 
     def __init__(self, delegate, valFunc):
+        super(_Converter, self).__init__()
+        
         self.delegate = delegate
         self.valFunc = valFunc
 
@@ -38,16 +36,26 @@ class _Converter(MatchField):
         pass
 
     def fill(self, string, matchObject):
-        v = self.delegate.fill(string, matchObject)
-        return self.valFunc(v) if v else v
+        return self.valFunc(self.delegate.fill(string, matchObject))
 
 
-class _Group(MatchField):
+class SingleValueField(MatchField):
+    
+    def __init__(self):
+        self.asInt = _Converter(self, int)
+        self.asFloat = _Converter(self, float)
 
-    def __init__(self, index):
+    def convert(self, valFunc):
+        return _Converter(self, valFunc)
+
+
+class _Group(SingleValueField):
+
+    def __init__(self, index, defaultValue=None):
         super(_Group, self).__init__()
         assert index >= 0, "Group requires non-negative index argument (got {})".format(index)
         self._index = index
+        self._defVal = defaultValue
 
     def check(self, pattern):
         assert pattern.groups >= self._index, \
@@ -56,11 +64,16 @@ class _Group(MatchField):
                                                                      self._index)
 
     def fill(self, _string, matchObject):
-        return matchObject.group(self._index)
+        v = matchObject.group(self._index)
+        return v if v is not None else self._defVal
 
 
 def g(idx: int):
     return _Group(idx)
+
+
+def gOr(idx: int, defaultValue):
+    return _Group(idx, defaultValue)
 
 
 g0 = _Group(0)
@@ -75,7 +88,7 @@ g8 = _Group(8)
 g9 = _Group(9)
 
 
-class _After(MatchField):
+class _After(SingleValueField):
 
     def __init__(self):
         super(_After, self).__init__()
@@ -87,7 +100,7 @@ class _After(MatchField):
         return string[matchObject.end():]
 
 
-class _Before(MatchField):
+class _Before(SingleValueField):
     
     def __init__(self):
         super(_Before, self).__init__()
@@ -103,21 +116,40 @@ after = _After()
 before = _Before()
 
 
-class _GroupTuple(MatchField):
+class TupleValueField(MatchField):
+    
+    def __init__(self):
+        self.asInts = _Converter(self, lambda vals: tuple(int(g) for g in vals))
+
+    def convert(self, tupleFunc):
+        return _Converter(self, lambda vals: tupleFunc(*vals))
+
+        
+class _GroupTuple(TupleValueField):
 
     def __init__(self, *indices):
         super(_GroupTuple, self).__init__()
+        assert len(indices) == 0 or min(indices) >= 0, \
+            "GroupTuple requires non-negative index argument (got {})".format(indices)
 
         self._indices = tuple(indices)
 
     def check(self, pattern):
-        assert pattern.groups >= max(self._indices), \
-            "Pattern {} has {} group(s) (got group indices {})".format(pattern,
-                                                                       pattern.groups,
-                                                                       self._indices)
+        if len(self._indices) > 0:
+            assert pattern.groups >= max(self._indices), \
+                "Pattern {} has {} group(s) (got group indices {})".format(pattern,
+                                                                           pattern.groups,
+                                                                           self._indices)
+        else:
+            assert pattern.groups > 1, \
+                "Pattern {} has {} group(s) (got empty group indices)".format(pattern,
+                                                                              pattern.groups,
+                                                                              self._indices)
 
     def fill(self, _string, matchObject):
+        if len(self._indices) == 0: return matchObject.groups()
         return tuple(matchObject.group(i) for i in self._indices)
+
 
 def gTuple(*indices):
     return _GroupTuple(*indices)
