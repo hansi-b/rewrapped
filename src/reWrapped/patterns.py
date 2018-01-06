@@ -19,7 +19,7 @@ from reWrapped import matched
 
 class _MetaReClass(type):
     """
-        The minimal factory for ReWrap classes.
+        The minimal factory class for ``ReWrap`` classes.
         * Augments each ReWrap with that class's compiled pattern,
         * lets the class fields check themselves against the pattern, and
         * collects the fields for filling on instantiation.
@@ -44,6 +44,14 @@ class _MetaReClass(type):
 
 
 class ReWrap(metaclass=_MetaReClass):
+    """
+    The base class from which to inherit your own pattern definition.
+    
+    Every such class must have a ``matchOn`` field (usually a string or
+    Pattern instance) defining the expression instances of the class
+    are to match.
+
+    """
     _pattern = None
     _fields = None
 
@@ -75,21 +83,38 @@ class ReWrap(metaclass=_MetaReClass):
     @classmethod
     def search(cls, string, *args, **kwargs):
         """
-            :see: https://docs.python.org/3.6/library/re.html#re.regex.search
+        A wrapper for ``re.regex.search``: Searches for a match in the argument string.
+        Takes optional parameters like ``re.regex.search``.     
+        :param string: the string in which to search
+        :return: an instance of this class, if a match was found; None otherwise
+    
+        :see: https://docs.python.org/3.6/library/re.html#re.regex.search
         """
         return cls._delegate(cls._pattern.search, string, *args, **kwargs)
 
     @classmethod
     def match(cls, string, *args, **kwargs):
         """
-            :see: https://docs.python.org/3.6/library/re.html#re.regex.match
+        A wrapper for ``re.regex.match``: Tries to match the argument string from the beginning.
+        Takes optional parameters like ``re.regex.match``.
+        
+        :param string: the string which to match from the beginning
+        :return: an instance of this class, if a match was found; None otherwise
+    
+        :see: https://docs.python.org/3.6/library/re.html#re.regex.match
         """
         return cls._delegate(cls._pattern.match, string, *args, **kwargs)
 
     @classmethod
     def fullmatch(cls, string, *args, **kwargs):
         """
-            :see: https://docs.python.org/3.6/library/re.html#re.regex.fullmatch
+        A wrapper for ``re.regex.fullmatch``: Tries to match the argument string completely.
+        Takes optional parameters like ``re.regex.fullmatch``.
+        
+        :param string: the string which to match
+        :return: an instance of this class, if the string is a match; None otherwise
+    
+        :see: https://docs.python.org/3.6/library/re.html#re.regex.fullmatch
         """
         return cls._delegate(cls._pattern.fullmatch, string, *args, **kwargs)
 
