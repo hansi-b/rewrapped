@@ -18,7 +18,7 @@ from reWrapped import ReWrap, matched
 
 
 class Parts(ReWrap):
-    matchOn = "([a-z]+),"
+    matchOn = "\s*([a-z]+),\s*"
 
     whole = matched.g0
     part = matched.g1
@@ -32,11 +32,11 @@ class TestBeforeAndAfter(unittest.TestCase):
     def testSearch(self):
         res = Parts.search("first oranges, then")
 
-        self.assertEqual("oranges,", res.whole)
+        self.assertEqual(" oranges, ", res.whole)
         self.assertEqual("oranges", res.part)
 
-        self.assertEqual("first ", res.before)
-        self.assertEqual(" then", res.after)
+        self.assertEqual("first", res.before)
+        self.assertEqual("then", res.after)
 
 
 if __name__ == '__main__':
