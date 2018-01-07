@@ -1,14 +1,7 @@
-# PyCharm stuff
-.idea/workspace.xml
-.idea/misc.xml
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
-*.so
 
 # Distribution / packaging
 .Python
@@ -54,17 +47,6 @@ coverage.xml
 *.mo
 *.pot
 
-# Django stuff:
-*.log
-local_settings.py
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
 # Sphinx documentation
 docs/_build/
 
@@ -77,12 +59,6 @@ target/
 # pyenv
 .python-version
 
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-*.sage.py
-
 # dotenv
 .env
 
@@ -91,15 +67,5 @@ celerybeat-schedule
 venv/
 ENV/
 
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
 # mkdocs documentation
 /site
-
-# mypy
-.mypy_cache/

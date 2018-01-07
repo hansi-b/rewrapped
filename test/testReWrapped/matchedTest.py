@@ -20,11 +20,12 @@ from reWrapped.patterns import ReWrap
 class TestIncompleteField(unittest.TestCase):
 
     def testMissingCheckMethod(self):
-        """
-        Already fails when a ReWrap class is constructed.
-        """
 
         class MissingCheckField(MatchField):
+            """
+            Causes a failure when used in a ReWrap class when
+            that class is constructed.
+            """
             pass
 
         with self.assertRaises(NotImplementedError) as errCtxt:
@@ -34,7 +35,6 @@ class TestIncompleteField(unittest.TestCase):
                 aField = MissingCheckField()
 
         self.assertEqual("MissingCheckField requires method 'check'", str(errCtxt.exception))
-
 
     def testMissingFillMethod(self):
         """
@@ -53,6 +53,7 @@ class TestIncompleteField(unittest.TestCase):
         with self.assertRaises(NotImplementedError) as errCtxt:
             AnotherNewPattern.search("Hello fill method")
         self.assertEqual("MissingFillField requires method 'fill'", str(errCtxt.exception))
+
  
 if __name__ == "__main__":
     unittest.main()
