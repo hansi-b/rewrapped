@@ -26,7 +26,6 @@ def read(fname):
 
 setup(
     name="reWrapped",
-    version="0.0.1",
     author="Hans Bering",
     author_email="hansi.b.github@moc.liamg",
     description=("Class wrappers for regular expressions "
@@ -38,8 +37,15 @@ setup(
     long_description=read('README.rst'),
     classifiers=[
         "Development Status :: 3 - Alpha",
-        "Topic :: Utilities",
-        "Topic :: Text Processing :: General",
+        'Intended Audience :: Developers',
         "License :: OSI Approved :: MIT License",
+        'Programming Language :: Python :: 3',
+        "Topic :: Text Processing :: General",
+        "Topic :: Utilities",
+    ],
+
+    use_scm_version=True,
+    setup_requires=[
+        "setuptools_scm >= 1.10"
     ],
 )
