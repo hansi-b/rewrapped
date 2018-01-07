@@ -34,13 +34,13 @@ class _MetaReClass(type):
 
     @staticmethod
     def _get_fields(cls, clsDict, pattern):
-        fields = set()
+        fields = []
         for name, element in clsDict.items():
             if isinstance(element, matched.MatchField):
                 element.check(pattern)
-                fields.add((name, element))
+                fields.append((name, element))
 
-        return fields
+        return tuple(fields)
 
 
 class ReWrap(metaclass=_MetaReClass):
@@ -71,6 +71,15 @@ class ReWrap(metaclass=_MetaReClass):
         assert mObj
         for name, field in self._fields:
             setattr(self, name, field.fill(string, mObj))
+
+    def __repr__(self):
+        valsStrings = []
+        for fieldName, _f in self._fields:
+            rawVal = getattr(self, fieldName, None)
+            strVal = '"{}"'.format(rawVal) if isinstance(rawVal, str) else rawVal
+            valsStrings.append("{}={}".format(fieldName, strVal))
+            
+        return "{}({})".format(self.__class__.__name__, ", ".join(valsStrings))
 
     @classmethod
     def _delegate(cls, pFunc, string, *args, **kwargs):
@@ -117,6 +126,32 @@ class ReWrap(metaclass=_MetaReClass):
         :see: https://docs.python.org/3.6/library/re.html#re.regex.fullmatch
         """
         return cls._delegate(cls._pattern.fullmatch, string, *args, **kwargs)
+
+    @classmethod
+    def finditer(cls, string, *args, **kwargs):
+        """
+        A wrapper for ``re.regex.finditer``: Returns an iterator over non-overlapping matches
+        in the argument string. Takes optional parameters like ``re.regex.finditer``.
+        
+        :param string: the string in which to search
+        :return: an iterator, possibly empty, over instances of this class
+
+        :see: https://docs.python.org/3.6/library/re.html#re.regex.finditer
+        
+        """
+        return (cls(string, mObj) for mObj in cls._pattern.finditer(string, *args, **kwargs))
+
+    @classmethod
+    def findall(cls, string, *args, **kwargs):
+        """
+        A wrapper for ``re.regex.findall``; just wraps a list around this class's finditer
+        
+        :param string: the string in which to search
+        :return: a list of all match instances on the argument string
+        
+        :see: https://docs.python.org/3.6/library/re.html#re.regex.findall
+        """
+        return list(cls.finditer(string, *args, **kwargs))
 
 
 if __name__ == "__main__":

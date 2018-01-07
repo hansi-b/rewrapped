@@ -80,7 +80,14 @@ class _Group(SingleValueField):
         v = matchObject.group(self._index)
         return v if v is not None else self._defVal
 
+    def __eq__(self, other):
+        if not isinstance(other, _Group): return False
+        return self._index == other._index and self._defVal == other._defVal
+    
+    def __hash__(self):
+        return hash((self._index, self._defVal))
 
+        
 def g(idx: int):
     return _Group(idx)
 
