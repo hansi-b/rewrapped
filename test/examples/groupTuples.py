@@ -54,7 +54,7 @@ import datetime
 class TupleConvert(ReWrap):
     matchOn = "started ([0-9]{4})-([0-9]{2})-([0-9]{2})"
 
-    started = matched.gTuple().convert(lambda y, m, d:datetime.datetime(int(y), int(m), int(d)))
+    started = matched.gTuple().asInts.convert(lambda y, m, d:datetime.datetime(y, m, d))
 
 
 class TestTupleConvert(unittest.TestCase):
@@ -62,7 +62,7 @@ class TestTupleConvert(unittest.TestCase):
     def testTuplesConvert(self):
         res = TupleConvert.search("started 1999-12-14")
     
-        self.assertEqual(datetime.datetime(1999,12,14), res.started)
+        self.assertEqual(datetime.datetime(1999, 12, 14), res.started)
 
 
 if __name__ == '__main__':

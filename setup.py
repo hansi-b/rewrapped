@@ -45,6 +45,7 @@ setup(
     ],
 
     use_scm_version=True,
+    python_requires='>=3',
     setup_requires=[
         "setuptools_scm >= 1.10"
     ],
