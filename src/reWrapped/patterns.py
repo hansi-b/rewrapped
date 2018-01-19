@@ -14,7 +14,29 @@ __status__ = "Development"
 
 import re
 
-from reWrapped import matched
+
+class MatchField:
+    """
+    The marker class for which fields in ``ReWrap`` classes are initialized.
+    Only defines the required behaviour: being able to check and fill a field.
+    """
+
+    def check(self, pattern):
+        """
+        Does an optional static check of this field against the argument ``Pattern`` object,
+        if applicable.
+        
+        :return: nothing; raise an Error on failure
+        """
+        raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
+                                                                   MatchField.check.__name__))
+
+    def fill(self, string, matchObject):
+        """
+        Evaluate this field with regard to a successful match on the argument string.
+        """
+        raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
+                                                                   MatchField.fill.__name__))
 
 
 class _MetaReClass(type):
@@ -36,7 +58,7 @@ class _MetaReClass(type):
     def _get_fields(cls, clsDict, pattern):
         fields = []
         for name, element in clsDict.items():
-            if isinstance(element, matched.MatchField):
+            if isinstance(element, MatchField):
                 element.check(pattern)
                 fields.append((name, element))
 

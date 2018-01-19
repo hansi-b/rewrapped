@@ -11,30 +11,7 @@ __email__ = "hansi.b.github@mgail.moc"
 __status__ = "Development"
 
 """
-
-
-class MatchField:
-    """
-    The marker class for which fields in ``ReWrap`` classes are initialized.
-    Only defines the required behaviour: being able to check and fill a field.
-    """
-
-    def check(self, pattern):
-        """
-        Does an optional static check of this field against the argument ``Pattern`` object,
-        if applicable.
-        
-        :return: nothing; raise an Error on failure
-        """
-        raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
-                                                                   MatchField.check.__name__))
-
-    def fill(self, string, matchObject):
-        """
-        Evaluate this field with regard to a successful match on the argument string.
-        """
-        raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
-                                                                   MatchField.fill.__name__))
+from reWrapped.patterns import MatchField
 
 
 class _Converter(MatchField):
