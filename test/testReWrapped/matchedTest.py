@@ -13,8 +13,7 @@ __status__ = "Development"
 """
 
 import unittest
-from reWrapped.matched import MatchField
-from reWrapped.patterns import ReWrap
+from reWrapped.patterns import ReWrap, MatchField
 
 
 class TestIncompleteField(unittest.TestCase):
