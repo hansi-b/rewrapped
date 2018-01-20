@@ -11,47 +11,7 @@ __email__ = "hansi.b.github@mgail.moc"
 __status__ = "Development"
 
 """
-from reWrapped.patterns import MatchField
-
-
-class _Converter(MatchField):
-
-    def __init__(self, delegate, valFunc):
-        super(_Converter, self).__init__()
-        
-        self.delegate = delegate
-        self.valFunc = valFunc
-
-    def check(self, pattern):
-        pass
-
-    def fill(self, string, matchObject):
-        return self.valFunc(self.delegate.fill(string, matchObject))
-
-    def __eq__(self, other):
-        if not isinstance(other, _Converter): return False
-        return self.delegate == other.delegate and self.valFunc == other.valFunc
-    
-    def __hash__(self):
-        return hash((self.delegate, self.valFunc))
-        
-    
-class SingleValueField(MatchField):
-    
-    @property
-    def asInt(self):
-        return _Converter(self, int)
-
-    @property
-    def asFloat(self):
-        return _Converter(self, float)
-
-    @property
-    def keepNone(self):
-        return _Converter(self, float)
-
-    def convert(self, valFunc):
-        return _Converter(self, valFunc)
+from reWrapped.modders import SingleValueField, TupleValueField
 
 
 class _Group(SingleValueField):
@@ -126,31 +86,6 @@ class _Before(SingleValueField):
 
 after = _After()
 before = _Before()
-    
-    
-class TupleValueField(MatchField):
-    
-    @property
-    def asInts(self):
-        return _MapConverter(self, int)
-
-    @property
-    def asFloats(self):
-        return _MapConverter(self, float)
-
-    def convert(self, tupleFunc):
-
-        return _Converter(self, lambda vals, fn=tupleFunc: fn(*vals))
-
-
-class _MapConverter(_Converter, TupleValueField):
-
-    @staticmethod
-    def __getMapper(fnc):
-        return lambda vals: tuple(fnc(v) for v in vals)
-    
-    def __init__(self, delegate, valsFunc):
-        super(_MapConverter, self).__init__(delegate, _MapConverter.__getMapper(valsFunc))
 
         
 class _GroupTuple(TupleValueField):
