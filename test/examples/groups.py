@@ -103,5 +103,18 @@ class TestDateRe(unittest.TestCase):
         self.assertEqual(dt, res.asDate())
 
 
+class StrippingRe(ReWrap):
+    matchOn = "(\s+\S+\s+)"
+
+    word = matched.g1.strip
+
+
+class TestStripping(unittest.TestCase):
+
+    def testSearch(self):
+        res = StrippingRe.search("first house 123")
+        self.assertEqual("house", res.word)
+
+
 if __name__ == '__main__':
     unittest.main()

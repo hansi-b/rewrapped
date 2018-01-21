@@ -33,6 +33,22 @@ class _Modder:
         return self.valFunc(val), _ModStatus.GoOn
 
 
+class _BreakingModder(_Modder):
+    
+    def __init__(self, breakVal=None):
+        self.breakVal = breakVal
+    
+    def modit(self, val):
+        status = _ModStatus.GoOn if val != self.breakVal else _ModStatus.Break 
+        return val, status
+    
+    def __eq__(self, other):
+        return isinstance(other, _BreakingModder) and self.breakVal == other.breakVal
+
+    def __hash__(self):
+        return tuple(self.breakVal,).__hash__()
+
+
 class _ModdableField(MatchField):
     
     def __init__(self, originField, modders=None):
@@ -52,7 +68,7 @@ class _ModdableField(MatchField):
     def __eq__(self, other):
         if not isinstance(other, _ModdableField):
             return False
-        
+        if self is other: return True
         return self._origin == other._origin and self._modders == other._modders
 
     def __hash__(self):
@@ -65,7 +81,8 @@ class SingleValueField(_ModdableField):
         super(SingleValueField, self).__init__(originField or self, modders)
      
     _asInt = _Modder(int)
-    _asFloat = _Modder(float)    
+    _asFloat = _Modder(float)
+    _strip = _Modder(lambda s:s.strip())
 
     @property
     def asInt(self):
@@ -75,11 +92,19 @@ class SingleValueField(_ModdableField):
     def asFloat(self):
         return self._build(SingleValueField._asFloat)
 
+    @property
+    def strip(self):
+        return self._build(SingleValueField._strip)
+
+    def breakOn(self, breakVal=None):
+        return self._build(_BreakingModder(breakVal))
+
+    breakOnNone = property(breakOn)
+
     def convert(self, valFunc):
-        return self._build(_Modder(valFunc)) 
+        return self._build(_Modder(valFunc))
 
     def _build(self, modder):
-        print("_build SingleValueField: {}".format(self.__class__))
         return SingleValueField(self._origin, self._modders + (modder,))
 
 
@@ -113,7 +138,6 @@ class TupleValueField(_ModdableField):
         return self._build(_Modder(lambda vals, fn=valsFunc: fn(*vals))) 
 
     def _build(self, modder):
-        print("_build TupleValueField: {}".format(self.__class__))
         return TupleValueField(self._origin, self._modders + (modder,))
 
 
