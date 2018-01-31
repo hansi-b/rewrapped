@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python3
 """
+"""
 
 __author__ = "Hans Bering"
 __copyright__ = "Copyright 2017"
@@ -9,8 +10,6 @@ __license__ = "MIT License"
 __maintainer__ = "Hans Bering"
 __email__ = "hansi.b.github@mgail.moc"
 __status__ = "Development"
-
-"""
 
 import unittest
 
@@ -82,7 +81,6 @@ class TestMatch(unittest.TestCase):
         self.assertEqual(78, res.no)
 
 
-
 class TestFullMatch(unittest.TestCase):
 
     def testNoMatch(self):
@@ -97,7 +95,7 @@ class TestFullMatch(unittest.TestCase):
         self.assertIsNone(NumberWithInt.fullmatch("and Number 11", pos=5))
 
     def testStartAndEndPosMatch(self):
-        s="and Number 144 came up"
+        s = "and Number 144 came up"
         assert "Number 144" == s[4:14]
         res = NumberWithInt.fullmatch(s, pos=4, endpos=14)
         self.assertEqual(144, res.no)
