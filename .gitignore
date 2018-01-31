@@ -69,3 +69,6 @@ ENV/
 
 # mkdocs documentation
 /site
+
+# Sphinx
+docs/build
