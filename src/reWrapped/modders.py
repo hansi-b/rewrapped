@@ -99,7 +99,9 @@ class SingleValueField(_ModdableField):
     def breakOn(self, breakVal=None):
         return self._build(_BreakingModder(breakVal))
 
-    breakOnNone = property(breakOn)
+    @property
+    def breakOnNone(self):
+        return self.breakOn()
 
     def convert(self, valFunc):
         return self._build(_Modder(valFunc))
