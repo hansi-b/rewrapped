@@ -10,7 +10,6 @@ Welcome to src's documentation!
    :maxdepth: 4
    :caption: Contents:
 
-   modChain
    reWrapped
 
 
