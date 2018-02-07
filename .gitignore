@@ -71,5 +71,6 @@ ENV/
 /site
 
 # Sphinx
-docs/build
+docs/docsbuilds/doctest
+docs/docsbuilds/doctrees
 venv
