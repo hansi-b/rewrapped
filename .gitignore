@@ -72,3 +72,4 @@ ENV/
 
 # Sphinx
 docs/build
+venv

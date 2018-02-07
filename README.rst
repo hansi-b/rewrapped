@@ -2,7 +2,9 @@ reWrapped
 =========
 
 reWrapped lets you write your regular expressions in a class-like
-syntax with match groups flexibly mapped to named fields.
+syntax with match groups flexibly mapped to named fields without
+having to resort to symbolic group names in your regular expressions
+(unless you are doing really fancy stuff).
 
 A simple example::
 
