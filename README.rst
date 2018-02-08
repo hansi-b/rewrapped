@@ -23,3 +23,6 @@ to the integer ``count``, and the second to the string field ``item``::
       >>> i.item
       'oranges'
       >>> 
+
+For the time being, more documentation is at
+`this project's github pages <https://hansib.github.io/reWrapped/docsbuilds/html/index.html>`_.
