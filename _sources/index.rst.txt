@@ -36,9 +36,15 @@ to the integer ``count``, and the second to the string field ``item``::
    reWrapped
 
 
+
 Indices and tables
 ==================
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+Kudos
+=====
+... go to https://daler.github.io/sphinxdoc-test/includeme.html and https://gist.github.com/brantfaircloth/791759
+for their detailed accounts on how to get the sphinx documentation into the `gh-pages` branch!
