@@ -11,7 +11,7 @@ syntax with match groups flexibly mapped to named fields without
 having to resort to symbolic group names in your regular expressions
 (unless you are doing really fancy stuff).
 
-A simple example::
+A simple example for a ReWrap class with two matched fields::
 
     from reWrapped import ReWrap, matched
     class Inventory(ReWrap):

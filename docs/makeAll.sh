@@ -1,4 +1,3 @@
-make clean
 . ../venv/bin/activate
-PYTHONPATH=../src make clean html doctest
+PYTHONPATH=../src make html doctest
 touch _build/html/.nojekyll
