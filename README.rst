@@ -2,7 +2,7 @@ reWrapped
 =========
 
 For the time being, more documentation is at
-`this project's github pages <https://hansi-b.github.io/reWrapped/docsbuilds/html/index.html>`_.
+`this project's github pages <https://hansi-b.github.io/reWrapped/>`_.
 
 reWrapped lets you write your regular expressions in a class-like
 syntax with match groups flexibly mapped to named fields without
