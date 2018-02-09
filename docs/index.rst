@@ -16,8 +16,8 @@ A simple example::
     from reWrapped import ReWrap, matched
     class Inventory(ReWrap):
         matchOn = "([0-9]+)\s+(\S+)"
-        count = match.g1.asInt
-        item = match.g2
+        count = matched.g1.asInt
+        item = matched.g2
 
 This will yield match results which map the first match field
 to the integer ``count``, and the second to the string field ``item``::
