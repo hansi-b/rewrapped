@@ -75,7 +75,7 @@
 syntax with match groups flexibly mapped to named fields without
 having to resort to symbolic group names in your regular expressions
 (unless you are doing really fancy stuff).</p>
-<p>A simple example:</p>
+<p>A simple example for a ReWrap class with two matched fields:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
 <span class="k">class</span> <span class="nc">Inventory</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
     <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;([0-9]+)\s+(\S+)&quot;</span>
