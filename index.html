@@ -1,0 +1,145 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to reWrapped’s documentation! &#8212; reWrapped  documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="reWrapped package" href="reWrapped.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="reWrapped.html" title="reWrapped package"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">reWrapped  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Next topic</h4>
+  <p class="topless"><a href="reWrapped.html"
+                        title="next chapter">reWrapped package</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-rewrapped-s-documentation">
+<h1>Welcome to reWrapped’s documentation!<a class="headerlink" href="#welcome-to-rewrapped-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>reWrapped lets you write your regular expressions in a class-like
+syntax with match groups flexibly mapped to named fields without
+having to resort to symbolic group names in your regular expressions
+(unless you are doing really fancy stuff).</p>
+<p>A simple example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="k">class</span> <span class="nc">Inventory</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;([0-9]+)\s+(\S+)&quot;</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">asInt</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g2</span>
+</pre></div>
+</div>
+<p>This will yield match results which map the first match field
+to the integer <code class="docutils literal"><span class="pre">count</span></code>, and the second to the string field <code class="docutils literal"><span class="pre">item</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">Inventory</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;there are 45 oranges left&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">.</span><span class="n">count</span>
+<span class="go">45</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">i</span><span class="o">.</span><span class="n">item</span>
+<span class="go">&#39;oranges&#39;</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reWrapped.html">reWrapped package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.matched">reWrapped.matched module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.modders">reWrapped.modders module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.patterns">reWrapped.patterns module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="reWrapped.html" title="reWrapped package"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">reWrapped  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Hans Bering.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>

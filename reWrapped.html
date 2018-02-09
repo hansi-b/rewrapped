@@ -1,0 +1,642 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>reWrapped package &#8212; reWrapped  documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to reWrapped’s documentation!" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to reWrapped’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">reWrapped  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to reWrapped’s documentation!</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="rewrapped-package">
+<h1>reWrapped package<a class="headerlink" href="#rewrapped-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-reWrapped.matched">
+<span id="rewrapped-matched-module"></span><h2>reWrapped.matched module<a class="headerlink" href="#module-reWrapped.matched" title="Permalink to this headline">¶</a></h2>
+<dl class="data">
+<dt id="reWrapped.matched.after">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">after</code><em class="property"> = &lt;reWrapped.matched._After object&gt;</em><a class="headerlink" href="#reWrapped.matched.after" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part behind the match of a searched string.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Word</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;(\w)+&quot;</span>
+<span class="gp">... </span>    <span class="n">rest</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">after</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Word</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;... coconuts! and more!&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">rest</span>
+<span class="go">&#39;! and more!&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.before">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">before</code><em class="property"> = &lt;reWrapped.matched._Before object&gt;</em><a class="headerlink" href="#reWrapped.matched.before" title="Permalink to this definition">¶</a></dt>
+<dd><p>The part in front of the match of a searched string.</p>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Word</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;(\w)+&quot;</span>
+<span class="gp">... </span>    <span class="n">inFront</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">before</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Word</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;... coconut! and more!&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">inFront</span>
+<span class="go">&#39;... &#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="reWrapped.matched.g">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g</code><span class="sig-paren">(</span><em>idx: int</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/matched.html#g"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.matched.g" title="Permalink to this definition">¶</a></dt>
+<dd><p>The basic match group as a field on a ReWrap class. In match instances
+of that class, the field is the content of the respective single capturing
+<a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">match group</a> content.
+For multiple groups, use <a class="reference internal" href="#reWrapped.matched.gTuple" title="reWrapped.matched.gTuple"><code class="xref py py-func docutils literal"><span class="pre">gTuple()</span></code></a></p>
+<p>For the whole match, you can use the abbreviation <a class="reference internal" href="#reWrapped.matched.g0" title="reWrapped.matched.g0"><code class="xref py py-data docutils literal"><span class="pre">g0</span></code></a>. Likewise, the first
+nine groups have the abbrevations <a class="reference internal" href="#reWrapped.matched.g1" title="reWrapped.matched.g1"><code class="xref py py-data docutils literal"><span class="pre">g1</span></code></a> to <a class="reference internal" href="#reWrapped.matched.g9" title="reWrapped.matched.g9"><code class="xref py py-data docutils literal"><span class="pre">g9</span></code></a>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>idx</strong> – the non-negative index of the desired match group, where zero is the whole match</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a match field for the group of the argument index</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">https://docs.python.org/3/library/re.html#re.match.group</a></td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">TwoWords</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;(\w+)\s+(\w+)&quot;</span>
+<span class="gp">... </span>    <span class="n">firstWord</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">secondWord</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">allOfIt</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">TwoWords</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">firstWord</span>
+<span class="go">&#39;hello&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">secondWord</span>
+<span class="go">&#39;world&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span><span class="o">.</span><span class="n">allOfIt</span>
+<span class="go">&#39;hello world&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g0">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g0</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g0" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(0)</span></code></a> - the whole match,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group() or matchobject.group(0)</a>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Word</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;(\w)+&quot;</span>
+<span class="gp">... </span>    <span class="n">txt</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g0</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Word</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;... coconut! &quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">txt</span>
+<span class="go">&#39;coconut&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g1">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g1</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g1" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(1)</span></code></a> - the content of the first capturing group,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group(1)</a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g2">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g2</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g2" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(2)</span></code></a> - the content of the second capturing group,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group(2)</a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g3">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g3</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g3" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(3)</span></code></a> - the content of the third capturing group,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group(3)</a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g4">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g4</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g4" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(4)</span></code></a> - the content of the fourth capturing group,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group(4)</a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g5">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g5</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g5" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(5)</span></code></a> - the content of the fifth capturing group,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group(5)</a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g6">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g6</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g6" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(6)</span></code></a> - the content of the sixth capturing group,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group(6)</a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g7">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g7</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g7" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(7)</span></code></a> - the content of the seventh capturing group,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group(7)</a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g8">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g8</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g8" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(8)</span></code></a> - the content of the eigth capturing group,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group(8)</a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="reWrapped.matched.g9">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">g9</code><em class="property"> = &lt;reWrapped.matched._Group object&gt;</em><a class="headerlink" href="#reWrapped.matched.g9" title="Permalink to this definition">¶</a></dt>
+<dd><p>An abbreviation for <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g(9)</span></code></a> - the content of the ninth capturing group,
+like <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">matchobject.group(9)</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reWrapped.matched.gOr">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">gOr</code><span class="sig-paren">(</span><em>idx: int</em>, <em>defaultValue</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/matched.html#gOr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.matched.gOr" title="Permalink to this definition">¶</a></dt>
+<dd><p>A match group like <a class="reference internal" href="#reWrapped.matched.g" title="reWrapped.matched.g"><code class="xref py py-func docutils literal"><span class="pre">g()</span></code></a>, but with a default value in case the group is not matched. Only
+makes sense for optional matches.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>idx</strong> – the non-negative index of the desired match group</li>
+<li><strong>defaultValue</strong> – the value to return in case the group is not matched</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">a matcher for the group of the argument index</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">OptionalYear</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;([0-9]</span><span class="si">{2}</span><span class="s2">)\.([0-9]</span><span class="si">{2}</span><span class="s2">)\.([0-9]</span><span class="si">{4}</span><span class="s2">)?&quot;</span>
+<span class="gp">... </span>    <span class="n">day</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">asInt</span>
+<span class="gp">... </span>    <span class="n">month</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g2</span><span class="o">.</span><span class="n">asInt</span>
+<span class="gp">... </span>    <span class="n">year</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">gOr</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2018</span><span class="p">)</span><span class="o">.</span><span class="n">asInt</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">OptionalYear</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;02.03.&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">year</span>
+<span class="go">(2, 3, 2018)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">OptionalYear</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;02.03.1999&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">year</span>
+<span class="go">(2, 3, 1999)</span>
+</pre></div>
+</div>
+<p>Note that the default only applies to unmatched groups (i.e., which have a value of <cite>None</cite>),
+not to zero-length groups, which are matched to the empty string. In the following example,
+the default value will apply on a missing <cite>numbers</cite> group:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">OptNumbers</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;([0-9])? ([a-z]+)&quot;</span>
+<span class="gp">... </span>    <span class="n">numbers</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">gOr</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">letters</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g2</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">OptNumbers</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot; abc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">numbers</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">letters</span>
+<span class="go">(-1, &#39;abc&#39;)</span>
+</pre></div>
+</div>
+<p>But if the number group can have a zero length, Python matches it as such, and consequently
+you get the empty string, not the default value:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">SomeNumbers</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;([0-9]*) ([a-z]+)&quot;</span>
+<span class="gp">... </span>    <span class="n">numbers</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">gOr</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">letters</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g2</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">SomeNumbers</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot; xyz&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">numbers</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">letters</span>
+<span class="go">(&#39;&#39;, &#39;xyz&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="reWrapped.matched.gTuple">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">gTuple</code><span class="sig-paren">(</span><em>*indices</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/matched.html#gTuple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.matched.gTuple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Blahblah</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-reWrapped.modders">
+<span id="rewrapped-modders-module"></span><h2>reWrapped.modders module<a class="headerlink" href="#module-reWrapped.modders" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="reWrapped.modders.SingleValueField">
+<em class="property">class </em><code class="descclassname">reWrapped.modders.</code><code class="descname">SingleValueField</code><span class="sig-paren">(</span><em>originField=None</em>, <em>modders=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/modders.html#SingleValueField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.modders.SingleValueField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">reWrapped.modders._ModdableField</span></code></p>
+<dl class="attribute">
+<dt id="reWrapped.modders.SingleValueField.asFloat">
+<code class="descname">asFloat</code><a class="headerlink" href="#reWrapped.modders.SingleValueField.asFloat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="reWrapped.modders.SingleValueField.asInt">
+<code class="descname">asInt</code><a class="headerlink" href="#reWrapped.modders.SingleValueField.asInt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="reWrapped.modders.SingleValueField.breakOn">
+<code class="descname">breakOn</code><span class="sig-paren">(</span><em>breakVal=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/modders.html#SingleValueField.breakOn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.modders.SingleValueField.breakOn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="reWrapped.modders.SingleValueField.breakOnNone">
+<code class="descname">breakOnNone</code><a class="headerlink" href="#reWrapped.modders.SingleValueField.breakOnNone" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="reWrapped.modders.SingleValueField.convert">
+<code class="descname">convert</code><span class="sig-paren">(</span><em>valFunc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/modders.html#SingleValueField.convert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.modders.SingleValueField.convert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="reWrapped.modders.SingleValueField.strip">
+<code class="descname">strip</code><a class="headerlink" href="#reWrapped.modders.SingleValueField.strip" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="reWrapped.modders.TupleValueField">
+<em class="property">class </em><code class="descclassname">reWrapped.modders.</code><code class="descname">TupleValueField</code><span class="sig-paren">(</span><em>originField=None</em>, <em>modders=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/modders.html#TupleValueField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.modders.TupleValueField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">reWrapped.modders._ModdableField</span></code></p>
+<dl class="attribute">
+<dt id="reWrapped.modders.TupleValueField.asFloats">
+<code class="descname">asFloats</code><a class="headerlink" href="#reWrapped.modders.TupleValueField.asFloats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="reWrapped.modders.TupleValueField.asInts">
+<code class="descname">asInts</code><a class="headerlink" href="#reWrapped.modders.TupleValueField.asInts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="reWrapped.modders.TupleValueField.convert">
+<code class="descname">convert</code><span class="sig-paren">(</span><em>valsFunc</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/modders.html#TupleValueField.convert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.modders.TupleValueField.convert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-reWrapped.patterns">
+<span id="rewrapped-patterns-module"></span><h2>reWrapped.patterns module<a class="headerlink" href="#module-reWrapped.patterns" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="reWrapped.patterns.MatchField">
+<em class="property">class </em><code class="descclassname">reWrapped.patterns.</code><code class="descname">MatchField</code><a class="reference internal" href="_modules/reWrapped/patterns.html#MatchField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.MatchField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The marker class for which fields in <code class="docutils literal"><span class="pre">ReWrap</span></code> classes are initialized.
+Only defines the required behaviour: being able to check and fill a field.</p>
+<dl class="method">
+<dt id="reWrapped.patterns.MatchField.check">
+<code class="descname">check</code><span class="sig-paren">(</span><em>pattern</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#MatchField.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.MatchField.check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does an optional static check of this field against the argument <code class="docutils literal"><span class="pre">Pattern</span></code> object,
+if applicable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nothing; raise an Error on failure</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="reWrapped.patterns.MatchField.fill">
+<code class="descname">fill</code><span class="sig-paren">(</span><em>string</em>, <em>matchObject</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#MatchField.fill"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.MatchField.fill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate this field with regard to a successful match on the argument string.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="reWrapped.patterns.ReWrap">
+<em class="property">class </em><code class="descclassname">reWrapped.patterns.</code><code class="descname">ReWrap</code><span class="sig-paren">(</span><em>string</em>, <em>mObj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.ReWrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The base class from which to inherit your own pattern definition.</p>
+<p>Every such class must have a <code class="docutils literal"><span class="pre">matchOn</span></code> field (usually a string or
+Pattern instance) defining the expression instances of the class
+are to match.</p>
+<dl class="classmethod">
+<dt id="reWrapped.patterns.ReWrap.findall">
+<em class="property">classmethod </em><code class="descname">findall</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.findall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.ReWrap.findall" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.findall</span></code>; just wraps a list around this class’s finditer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string in which to search</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of all match instances on the argument string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.findall">https://docs.python.org/3.6/library/re.html#re.regex.findall</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="reWrapped.patterns.ReWrap.finditer">
+<em class="property">classmethod </em><code class="descname">finditer</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.finditer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.ReWrap.finditer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.finditer</span></code>: Returns an iterator over non-overlapping matches
+in the argument string. Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.finditer</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string in which to search</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an iterator, possibly empty, over instances of this class</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.finditer">https://docs.python.org/3.6/library/re.html#re.regex.finditer</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="reWrapped.patterns.ReWrap.fullmatch">
+<em class="property">classmethod </em><code class="descname">fullmatch</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.fullmatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.ReWrap.fullmatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.fullmatch</span></code>: Tries to match the argument string completely.
+Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.fullmatch</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string which to match</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if the string is a match; None otherwise</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.fullmatch">https://docs.python.org/3.6/library/re.html#re.regex.fullmatch</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="reWrapped.patterns.ReWrap.match">
+<em class="property">classmethod </em><code class="descname">match</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.ReWrap.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.match</span></code>: Tries to match the argument string from the beginning.
+Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.match</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string which to match from the beginning</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if a match was found; None otherwise</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.match">https://docs.python.org/3.6/library/re.html#re.regex.match</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="reWrapped.patterns.ReWrap.matchOn">
+<code class="descname">matchOn</code><em class="property"> = None</em><a class="headerlink" href="#reWrapped.patterns.ReWrap.matchOn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="reWrapped.patterns.ReWrap.search">
+<em class="property">classmethod </em><code class="descname">search</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.ReWrap.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.search</span></code>: Searches for a match in the argument string.
+Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.search</span></code>.     
+:param string: the string in which to search
+:return: an instance of this class, if a match was found; None otherwise</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.search">https://docs.python.org/3.6/library/re.html#re.regex.search</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-reWrapped">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-reWrapped" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="reWrapped.ReWrap">
+<em class="property">class </em><code class="descclassname">reWrapped.</code><code class="descname">ReWrap</code><span class="sig-paren">(</span><em>string</em>, <em>mObj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.ReWrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>The base class from which to inherit your own pattern definition.</p>
+<p>Every such class must have a <code class="docutils literal"><span class="pre">matchOn</span></code> field (usually a string or
+Pattern instance) defining the expression instances of the class
+are to match.</p>
+<dl class="classmethod">
+<dt id="reWrapped.ReWrap.findall">
+<em class="property">classmethod </em><code class="descname">findall</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.findall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.ReWrap.findall" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.findall</span></code>; just wraps a list around this class’s finditer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string in which to search</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of all match instances on the argument string</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.findall">https://docs.python.org/3.6/library/re.html#re.regex.findall</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="reWrapped.ReWrap.finditer">
+<em class="property">classmethod </em><code class="descname">finditer</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.finditer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.ReWrap.finditer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.finditer</span></code>: Returns an iterator over non-overlapping matches
+in the argument string. Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.finditer</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string in which to search</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an iterator, possibly empty, over instances of this class</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.finditer">https://docs.python.org/3.6/library/re.html#re.regex.finditer</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="reWrapped.ReWrap.fullmatch">
+<em class="property">classmethod </em><code class="descname">fullmatch</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.fullmatch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.ReWrap.fullmatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.fullmatch</span></code>: Tries to match the argument string completely.
+Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.fullmatch</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string which to match</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if the string is a match; None otherwise</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.fullmatch">https://docs.python.org/3.6/library/re.html#re.regex.fullmatch</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="reWrapped.ReWrap.match">
+<em class="property">classmethod </em><code class="descname">match</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.match"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.ReWrap.match" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.match</span></code>: Tries to match the argument string from the beginning.
+Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.match</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string which to match from the beginning</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if a match was found; None otherwise</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.match">https://docs.python.org/3.6/library/re.html#re.regex.match</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="reWrapped.ReWrap.matchOn">
+<code class="descname">matchOn</code><em class="property"> = None</em><a class="headerlink" href="#reWrapped.ReWrap.matchOn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="reWrapped.ReWrap.search">
+<em class="property">classmethod </em><code class="descname">search</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.search"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.ReWrap.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.search</span></code>: Searches for a match in the argument string.
+Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.search</span></code>.     
+:param string: the string in which to search
+:return: an instance of this class, if a match was found; None otherwise</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.search">https://docs.python.org/3.6/library/re.html#re.regex.search</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to reWrapped’s documentation!"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">reWrapped  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Hans Bering.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.7.
+    </div>
+  </body>
+</html>
