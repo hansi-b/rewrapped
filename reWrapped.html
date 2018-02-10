@@ -103,9 +103,9 @@
 <span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;(\w)+&quot;</span>
 <span class="gp">... </span>    <span class="n">inFront</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">before</span>
 <span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Word</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;... coconut! and more!&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Word</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot; ... coconut! and more!&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">inFront</span>
-<span class="go">&#39;... &#39;</span>
+<span class="go">&#39; ... &#39;</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -298,7 +298,81 @@ you get the empty string, not the default value:</p>
 <dl class="function">
 <dt id="reWrapped.matched.gTuple">
 <code class="descclassname">reWrapped.matched.</code><code class="descname">gTuple</code><span class="sig-paren">(</span><em>*indices</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/matched.html#gTuple"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.matched.gTuple" title="Permalink to this definition">¶</a></dt>
-<dd><p>Blahblah</p>
+<dd><p>Multiple match groups with the argument indices.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>indices</strong> – the non-negative indices of the desired match groups; optional - if none
+are given, all groups of the match.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a matcher for the groups of the argument indices</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">FullName</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;(\w+)\s+(\w+)&quot;</span>
+<span class="gp">... </span>    <span class="n">lastFirst</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">gTuple</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">FullName</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;Isaac Newton, physicist&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">lastFirst</span>
+<span class="go">(&#39;Newton&#39;, &#39;Isaac&#39;)</span>
+</pre></div>
+</div>
+<p>Note the difference to <a class="reference internal" href="#reWrapped.matched.group" title="reWrapped.matched.group"><code class="xref py py-func docutils literal"><span class="pre">group()</span></code></a> when calling without arguments: <a class="reference internal" href="#reWrapped.matched.gTuple" title="reWrapped.matched.gTuple"><code class="xref py py-func docutils literal"><span class="pre">gTuple()</span></code></a> returns all groups in this case,
+whereas <a class="reference internal" href="#reWrapped.matched.group" title="reWrapped.matched.group"><code class="xref py py-func docutils literal"><span class="pre">group()</span></code></a> does the same as <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">Python’s match group method</a>
+and returns the match (i.e., as if called as <a class="reference internal" href="#reWrapped.matched.group" title="reWrapped.matched.group"><code class="xref py py-func docutils literal"><span class="pre">group(0)</span></code></a>):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Address</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;([0-9]+)\s+(\w+)\s*(\w*)&quot;</span>
+<span class="gp">... </span>    <span class="n">street</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">gTuple</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">line</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Address</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;123 newton avenue&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">street</span>
+<span class="go">(&#39;123&#39;, &#39;newton&#39;, &#39;avenue&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">line</span>
+<span class="go">&#39;123 newton avenue&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Address</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;123 pappelallee&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">street</span>
+<span class="go">(&#39;123&#39;, &#39;pappelallee&#39;, &#39;&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">line</span>
+<span class="go">&#39;123 pappelallee&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="reWrapped.matched.group">
+<code class="descclassname">reWrapped.matched.</code><code class="descname">group</code><span class="sig-paren">(</span><em>*indices</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/matched.html#group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.matched.group" title="Permalink to this definition">¶</a></dt>
+<dd><p>One or more match groups with the argument index or indices. Mirrors
+<a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">Python’s match group method</a></p>
+<p>Note that, in difference to Python’s method, this does not support named groups (yet).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>indices</strong> – the non-negative indices of the desired match groups; optional - if none
+are given, the whole match, as if called with zero</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a matcher for the group or groups of the argument index or indices</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">FullName</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;(\w+)\s+(\w+)&quot;</span>
+<span class="gp">... </span>    <span class="n">first</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">last</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">FullName</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;Isaac Newton, physicist&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">last</span>
+<span class="go">(&#39;Isaac&#39;, &#39;Newton&#39;)</span>
+</pre></div>
+</div>
 </dd></dl>
 
 </div>

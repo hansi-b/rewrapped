@@ -106,6 +106,65 @@
         <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_defVal</span><span class="p">))</span>
 
 
+<span class="k">class</span> <span class="nc">_After</span><span class="p">(</span><span class="n">SingleValueField</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_After</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">string</span><span class="p">[</span><span class="n">matchObject</span><span class="o">.</span><span class="n">end</span><span class="p">():]</span>
+
+
+<span class="k">class</span> <span class="nc">_Before</span><span class="p">(</span><span class="n">SingleValueField</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_Before</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">string</span><span class="p">[:</span><span class="n">matchObject</span><span class="o">.</span><span class="n">start</span><span class="p">()]</span>
+
+
+<span class="n">after</span> <span class="o">=</span> <span class="n">_After</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The part behind the match of a searched string.</span>
+
+<span class="sd">Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">    ...     matchOn = &quot;(\w)+&quot;</span>
+<span class="sd">    ...     rest = matched.after</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; m = Word.search(&quot;... coconuts! and more!&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; m.rest</span>
+<span class="sd">    &#39;! and more!&#39;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
+
+<span class="n">before</span> <span class="o">=</span> <span class="n">_Before</span><span class="p">()</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The part in front of the match of a searched string.</span>
+
+<span class="sd">Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">    ...     matchOn = &quot;(\w)+&quot;</span>
+<span class="sd">    ...     inFront = matched.before</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; m = Word.search(&quot; ... coconut! and more!&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; m.inFront</span>
+<span class="sd">    &#39; ... &#39;</span>
+
+<span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
+
+
 <div class="viewcode-block" id="g"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.matched.g">[docs]</a><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The basic match group as a field on a ReWrap class. In match instances</span>
@@ -152,8 +211,6 @@
 
 <span class="sd">    Example:</span>
 
-<span class="sd">    .. doctest::</span>
-
 <span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class OptionalYear(ReWrap):</span>
 <span class="sd">        ...     matchOn = &quot;([0-9]{2})\.([0-9]{2})\.([0-9]{4})?&quot;</span>
@@ -172,8 +229,6 @@
 <span class="sd">    not to zero-length groups, which are matched to the empty string. In the following example,</span>
 <span class="sd">    the default value will apply on a missing `numbers` group:</span>
 
-<span class="sd">    .. doctest::</span>
-
 <span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class OptNumbers(ReWrap):</span>
 <span class="sd">        ...     matchOn = &quot;([0-9])? ([a-z]+)&quot;</span>
@@ -186,8 +241,6 @@
 
 <span class="sd">    But if the number group can have a zero length, Python matches it as such, and consequently</span>
 <span class="sd">    you get the empty string, not the default value:</span>
-
-<span class="sd">    .. doctest::</span>
 
 <span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class SomeNumbers(ReWrap):</span>
@@ -207,8 +260,6 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(0) &lt;g&gt;` - the whole match,</span>
 <span class="sd">like `matchobject.group() or matchobject.group(0) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_:</span>
-
-<span class="sd">.. doctest::</span>
 
 <span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
 <span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
@@ -269,68 +320,6 @@
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
 
 
-<span class="k">class</span> <span class="nc">_After</span><span class="p">(</span><span class="n">SingleValueField</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_After</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">string</span><span class="p">[</span><span class="n">matchObject</span><span class="o">.</span><span class="n">end</span><span class="p">():]</span>
-
-
-<span class="k">class</span> <span class="nc">_Before</span><span class="p">(</span><span class="n">SingleValueField</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_Before</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">string</span><span class="p">[:</span><span class="n">matchObject</span><span class="o">.</span><span class="n">start</span><span class="p">()]</span>
-
-
-<span class="n">after</span> <span class="o">=</span> <span class="n">_After</span><span class="p">()</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The part behind the match of a searched string.</span>
-
-<span class="sd">Example:</span>
-
-<span class="sd">.. doctest::</span>
-
-<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
-<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
-<span class="sd">    ...     matchOn = &quot;(\w)+&quot;</span>
-<span class="sd">    ...     rest = matched.after</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; m = Word.search(&quot;... coconuts! and more!&quot;)</span>
-<span class="sd">    &gt;&gt;&gt; m.rest</span>
-<span class="sd">    &#39;! and more!&#39;</span>
-
-<span class="sd">&quot;&quot;&quot;</span> <span class="c1"># pylint: disable=W0105</span>
-
-<span class="n">before</span> <span class="o">=</span> <span class="n">_Before</span><span class="p">()</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The part in front of the match of a searched string.</span>
-
-<span class="sd">Example:</span>
-
-<span class="sd">.. doctest::</span>
-
-<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
-<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
-<span class="sd">    ...     matchOn = &quot;(\w)+&quot;</span>
-<span class="sd">    ...     inFront = matched.before</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; m = Word.search(&quot;... coconut! and more!&quot;)</span>
-<span class="sd">    &gt;&gt;&gt; m.inFront</span>
-<span class="sd">    &#39;... &#39;</span>
-
-<span class="sd">&quot;&quot;&quot;</span> <span class="c1"># pylint: disable=W0105</span>
-
 <span class="k">class</span> <span class="nc">_GroupTuple</span><span class="p">(</span><span class="n">TupleValueField</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">indices</span><span class="p">):</span>
@@ -359,9 +348,75 @@
 
 <div class="viewcode-block" id="gTuple"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.matched.gTuple">[docs]</a><span class="k">def</span> <span class="nf">gTuple</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Blahblah</span>
+<span class="sd">    Multiple match groups with the argument indices.</span>
+
+<span class="sd">    :param indices: the non-negative indices of the desired match groups; optional - if none</span>
+<span class="sd">        are given, all groups of the match.</span>
+<span class="sd">    :return: a matcher for the groups of the argument indices</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; class FullName(ReWrap):</span>
+<span class="sd">        ...     matchOn = &quot;(\w+)\s+(\w+)&quot;</span>
+<span class="sd">        ...     lastFirst = matched.gTuple(2, 1)</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; m = FullName.search(&quot;Isaac Newton, physicist&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; m.lastFirst</span>
+<span class="sd">        (&#39;Newton&#39;, &#39;Isaac&#39;)</span>
+<span class="sd">    </span>
+<span class="sd">    Note the difference to :func:`group` when calling without arguments: :func:`gTuple` returns all groups in this case,</span>
+<span class="sd">    whereas :func:`group` does the same as `Python&#39;s match group method &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
+<span class="sd">    and returns the match (i.e., as if called as :func:`group(0) &lt;group&gt;`):</span>
+<span class="sd">    </span>
+<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; class Address(ReWrap):</span>
+<span class="sd">        ...     matchOn = &quot;([0-9]+)\s+(\w+)\s*(\w*)&quot;</span>
+<span class="sd">        ...     street = matched.gTuple()</span>
+<span class="sd">        ...     line = matched.group()</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; m = Address.search(&quot;123 newton avenue&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; m.street</span>
+<span class="sd">        (&#39;123&#39;, &#39;newton&#39;, &#39;avenue&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; m.line</span>
+<span class="sd">        &#39;123 newton avenue&#39;</span>
+<span class="sd">        &gt;&gt;&gt; m = Address.search(&quot;123 pappelallee&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; m.street</span>
+<span class="sd">        (&#39;123&#39;, &#39;pappelallee&#39;, &#39;&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; m.line</span>
+<span class="sd">        &#39;123 pappelallee&#39;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_GroupTuple</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="group"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.matched.group">[docs]</a><span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    One or more match groups with the argument index or indices. Mirrors</span>
+<span class="sd">    `Python&#39;s match group method &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
+
+<span class="sd">    Note that, in difference to Python&#39;s method, this does not support named groups (yet).</span>
+
+<span class="sd">    :param indices: the non-negative indices of the desired match groups; optional - if none</span>
+<span class="sd">        are given, the whole match, as if called with zero</span>
+<span class="sd">    :return: a matcher for the group or groups of the argument index or indices</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; class FullName(ReWrap):</span>
+<span class="sd">        ...     matchOn = &quot;(\w+)\s+(\w+)&quot;</span>
+<span class="sd">        ...     first = matched.group(1)</span>
+<span class="sd">        ...     last = matched.group(2)</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; m = FullName.search(&quot;Isaac Newton, physicist&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; m.first, m.last</span>
+<span class="sd">        (&#39;Isaac&#39;, &#39;Newton&#39;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">g0</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">g</span><span class="p">(</span><span class="n">indices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">gTuple</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">)</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
