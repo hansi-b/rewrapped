@@ -40,6 +40,69 @@ class _Group(SingleValueField):
         return hash((self._index, self._defVal))
 
 
+class _After(SingleValueField):
+
+    def __init__(self):
+        super(_After, self).__init__()
+
+    def check(self, pattern):
+        pass
+
+    def fill(self, string, matchObject):
+        return string[matchObject.end():]
+
+
+class _Before(SingleValueField):
+
+    def __init__(self):
+        super(_Before, self).__init__()
+
+    def check(self, pattern):
+        pass
+
+    def fill(self, string, matchObject):
+        return string[:matchObject.start()]
+
+
+after = _After()
+"""
+The part behind the match of a searched string.
+
+Example:
+
+.. doctest::
+
+    >>> from reWrapped import ReWrap, matched
+    >>> class Word(ReWrap):
+    ...     matchOn = "(\w)+"
+    ...     rest = matched.after
+    ...
+    >>> m = Word.search("... coconuts! and more!")
+    >>> m.rest
+    '! and more!'
+
+"""  # pylint: disable=W0105
+
+before = _Before()
+"""
+The part in front of the match of a searched string.
+
+Example:
+
+.. doctest::
+
+    >>> from reWrapped import ReWrap, matched
+    >>> class Word(ReWrap):
+    ...     matchOn = "(\w)+"
+    ...     inFront = matched.before
+    ...
+    >>> m = Word.search("... coconut! and more!")
+    >>> m.inFront
+    '... '
+
+"""  # pylint: disable=W0105
+
+
 def g(idx: int):
     """
     The basic match group as a field on a ReWrap class. In match instances
@@ -202,68 +265,6 @@ An abbreviation for :func:`g(9) <g>` - the content of the ninth capturing group,
 like `matchobject.group(9) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
 
-
-class _After(SingleValueField):
-
-    def __init__(self):
-        super(_After, self).__init__()
-
-    def check(self, pattern):
-        pass
-
-    def fill(self, string, matchObject):
-        return string[matchObject.end():]
-
-
-class _Before(SingleValueField):
-
-    def __init__(self):
-        super(_Before, self).__init__()
-
-    def check(self, pattern):
-        pass
-
-    def fill(self, string, matchObject):
-        return string[:matchObject.start()]
-
-
-after = _After()
-"""
-The part behind the match of a searched string.
-
-Example:
-
-.. doctest::
-
-    >>> from reWrapped import ReWrap, matched
-    >>> class Word(ReWrap):
-    ...     matchOn = "(\w)+"
-    ...     rest = matched.after
-    ...
-    >>> m = Word.search("... coconuts! and more!")
-    >>> m.rest
-    '! and more!'
-
-""" # pylint: disable=W0105
-
-before = _Before()
-"""
-The part in front of the match of a searched string.
-
-Example:
-
-.. doctest::
-
-    >>> from reWrapped import ReWrap, matched
-    >>> class Word(ReWrap):
-    ...     matchOn = "(\w)+"
-    ...     inFront = matched.before
-    ...
-    >>> m = Word.search("... coconut! and more!")
-    >>> m.inFront
-    '... '
-
-""" # pylint: disable=W0105
 
 class _GroupTuple(TupleValueField):
 
