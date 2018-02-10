@@ -9,7 +9,7 @@ syntax with match groups flexibly mapped to named fields without
 having to resort to symbolic group names in your regular expressions
 (unless you are doing really fancy stuff).
 
-A simple example::
+A simple example:
 
 .. code:: python
 
@@ -20,7 +20,7 @@ A simple example::
         item = matched.g2
 
 This will yield match results which map the first match field
-to the integer ``count``, and the second to the string field ``item``::
+to the integer ``count``, and the second to the string field ``item``:
 
 .. code:: python
 
