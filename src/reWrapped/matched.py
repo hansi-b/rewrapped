@@ -70,8 +70,6 @@ The part behind the match of a searched string.
 
 Example:
 
-.. doctest::
-
     >>> from reWrapped import ReWrap, matched
     >>> class Word(ReWrap):
     ...     matchOn = "(\w)+"
@@ -89,16 +87,14 @@ The part in front of the match of a searched string.
 
 Example:
 
-.. doctest::
-
     >>> from reWrapped import ReWrap, matched
     >>> class Word(ReWrap):
     ...     matchOn = "(\w)+"
     ...     inFront = matched.before
     ...
-    >>> m = Word.search("... coconut! and more!")
+    >>> m = Word.search(" ... coconut! and more!")
     >>> m.inFront
-    '... '
+    ' ... '
 
 """  # pylint: disable=W0105
 
@@ -149,8 +145,6 @@ def gOr(idx: int, defaultValue):
 
     Example:
 
-    .. doctest::
-
         >>> from reWrapped import ReWrap, matched
         >>> class OptionalYear(ReWrap):
         ...     matchOn = "([0-9]{2})\.([0-9]{2})\.([0-9]{4})?"
@@ -169,8 +163,6 @@ def gOr(idx: int, defaultValue):
     not to zero-length groups, which are matched to the empty string. In the following example,
     the default value will apply on a missing `numbers` group:
 
-    .. doctest::
-
         >>> from reWrapped import ReWrap, matched
         >>> class OptNumbers(ReWrap):
         ...     matchOn = "([0-9])? ([a-z]+)"
@@ -183,8 +175,6 @@ def gOr(idx: int, defaultValue):
 
     But if the number group can have a zero length, Python matches it as such, and consequently
     you get the empty string, not the default value:
-
-    .. doctest::
 
         >>> from reWrapped import ReWrap, matched
         >>> class SomeNumbers(ReWrap):
@@ -204,8 +194,6 @@ g0 = _Group(0)
 """
 An abbreviation for :func:`g(0) <g>` - the whole match,
 like `matchobject.group() or matchobject.group(0) <https://docs.python.org/3/library/re.html#re.match.group>`_:
-
-.. doctest::
 
     >>> from reWrapped import ReWrap, matched
     >>> class Word(ReWrap):
@@ -294,9 +282,75 @@ class _GroupTuple(TupleValueField):
 
 def gTuple(*indices):
     """
-    Blahblah
+    Multiple match groups with the argument indices.
+
+    :param indices: the non-negative indices of the desired match groups; optional - if none
+        are given, all groups of the match.
+    :return: a matcher for the groups of the argument indices
+
+    Example:
+
+        >>> from reWrapped import ReWrap, matched
+        >>> class FullName(ReWrap):
+        ...     matchOn = "(\w+)\s+(\w+)"
+        ...     lastFirst = matched.gTuple(2, 1)
+        ...
+        >>> m = FullName.search("Isaac Newton, physicist")
+        >>> m.lastFirst
+        ('Newton', 'Isaac')
+    
+    Note the difference to :func:`group` when calling without arguments: :func:`gTuple` returns all groups in this case,
+    whereas :func:`group` does the same as `Python's match group method <https://docs.python.org/3/library/re.html#re.match.group>`_
+    and returns the match (i.e., as if called as :func:`group(0) <group>`):
+    
+        >>> from reWrapped import ReWrap, matched
+        >>> class Address(ReWrap):
+        ...     matchOn = "([0-9]+)\s+(\w+)\s*(\w*)"
+        ...     street = matched.gTuple()
+        ...     line = matched.group()
+        ...
+        >>> m = Address.search("123 newton avenue")
+        >>> m.street
+        ('123', 'newton', 'avenue')
+        >>> m.line
+        '123 newton avenue'
+        >>> m = Address.search("123 pappelallee")
+        >>> m.street
+        ('123', 'pappelallee', '')
+        >>> m.line
+        '123 pappelallee'
     """
     return _GroupTuple(*indices)
+
+
+def group(*indices):
+    """
+    One or more match groups with the argument index or indices. Mirrors
+    `Python's match group method <https://docs.python.org/3/library/re.html#re.match.group>`_
+
+    Note that, in difference to Python's method, this does not support named groups (yet).
+
+    :param indices: the non-negative indices of the desired match groups; optional - if none
+        are given, the whole match, as if called with zero
+    :return: a matcher for the group or groups of the argument index or indices
+
+    Example:
+
+        >>> from reWrapped import ReWrap, matched
+        >>> class FullName(ReWrap):
+        ...     matchOn = "(\w+)\s+(\w+)"
+        ...     first = matched.group(1)
+        ...     last = matched.group(2)
+        ...
+        >>> m = FullName.search("Isaac Newton, physicist")
+        >>> m.first, m.last
+        ('Isaac', 'Newton')
+    """
+    if len(indices) == 0:
+        return g0
+    if len(indices) == 1:
+        return g(indices[0])
+    return gTuple(*indices)
 
 
 if __name__ == "__main__":
