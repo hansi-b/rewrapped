@@ -11,6 +11,8 @@ having to resort to symbolic group names in your regular expressions
 
 A simple example::
 
+.. code:: python
+
     from reWrapped import ReWrap, matched
     class Inventory(ReWrap):
         matchOn = "([0-9]+)\s+(\S+)"
@@ -19,6 +21,8 @@ A simple example::
 
 This will yield match results which map the first match field
 to the integer ``count``, and the second to the string field ``item``::
+
+.. code:: python
 
       >>> i = Inventory.search("there are 45 oranges left")
       >>> i.count
