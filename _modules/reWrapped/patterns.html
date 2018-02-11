@@ -111,7 +111,7 @@
 <span class="sd">        * lets the class fields check themselves against the pattern, and</span>
 <span class="sd">        * collects the fields for filling on instantiation.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
+    
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">_bases</span><span class="p">,</span> <span class="n">clsDict</span><span class="p">):</span>
         <span class="k">assert</span> <span class="s2">&quot;matchOn&quot;</span> <span class="ow">in</span> <span class="n">clsDict</span><span class="p">,</span> <span class="s2">&quot;ReWrap </span><span class="si">{}</span><span class="s2"> requires field &#39;matchOn&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
@@ -134,15 +134,41 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The base class from which to inherit your own pattern definition.</span>
 <span class="sd">    </span>
-<span class="sd">    Every such class must have a ``matchOn`` field (usually a string or</span>
-<span class="sd">    Pattern instance) defining the expression instances of the class</span>
-<span class="sd">    are to match.</span>
-
+<span class="sd">    Every such class must have a :attr:`~reWrapped.patterns.ReWrap.matchOn` field (usually a string or</span>
+<span class="sd">    `pattern object &lt;https://docs.python.org/3/library/re.html#regular-expression-objects&gt;`_) </span>
+<span class="sd">    defining what instances of the class are to match.</span>
+<span class="sd">    </span>
+<span class="sd">    In order to be useful, the class also has to contain</span>
+<span class="sd">    match fields :mod:`match fields &lt;reWrapped.matched&gt;` .</span>
+<span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_pattern</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">_fields</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="n">matchOn</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The pattern on which this class should match. Every ``ReWrap`` subclass</span>
+<span class="sd">        has to define this field. It can be anything that can passed to</span>
+<span class="sd">        `re.compile &lt;https://docs.python.org/3/library/re.html#re.compile&gt;`_, e.g.:</span>
+<span class="sd">                </span>
+<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap</span>
+<span class="sd">        &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">        ...     matchOn = &quot;\w+&quot;</span>
+<span class="sd">        ...     </span>
+<span class="sd">        &gt;&gt;&gt; </span>
+
+<span class="sd">        If the argument is a string, is is compiled to a pattern object at class compile time,</span>
+<span class="sd">        so any error is detected at that point:</span>
+<span class="sd">        </span>
+<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap</span>
+<span class="sd">        &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">        ...     matchOn = &quot;(\w+]&quot;</span>
+<span class="sd">        ... </span>
+<span class="sd">        Traceback (most recent call last):</span>
+<span class="sd">         ...</span>
+<span class="sd">        sre_constants.error: missing ), unterminated subpattern at position 0</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">mObj</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -158,7 +184,7 @@
         <span class="k">assert</span> <span class="n">mObj</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">:</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">mObj</span><span class="p">))</span>
-
+        
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">valsStrings</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">fieldName</span><span class="p">,</span> <span class="n">_f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">:</span>

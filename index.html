@@ -75,7 +75,9 @@
 syntax with match groups flexibly mapped to named fields without
 having to resort to symbolic group names in your regular expressions
 (unless you are doing really fancy stuff).</p>
-<p>A simple example for a ReWrap class with two matched fields:</p>
+<p>To do so, you subclass from <a class="reference internal" href="reWrapped.html#reWrapped.patterns.ReWrap" title="reWrapped.patterns.ReWrap"><code class="xref py py-class docutils literal"><span class="pre">ReWrap</span></code></a> and put your regular expression
+in the special <code class="docutils literal"><span class="pre">matchOn</span></code> class field.</p>
+<p>A simple example for a <code class="docutils literal"><span class="pre">ReWrap</span></code> class with two match fields:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
 <span class="k">class</span> <span class="nc">Inventory</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
     <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;([0-9]+)\s+(\S+)&quot;</span>
@@ -98,9 +100,9 @@ to the integer <code class="docutils literal"><span class="pre">count</span></co
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="reWrapped.html">reWrapped package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="reWrapped.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.patterns">reWrapped.patterns module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.matched">reWrapped.matched module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.modders">reWrapped.modders module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.patterns">reWrapped.patterns module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped">Module contents</a></li>
 </ul>
 </li>
