@@ -170,7 +170,7 @@
 <span class="sd">    The basic match group as a field on a ReWrap class. In match instances</span>
 <span class="sd">    of that class, the field is the content of the respective single capturing</span>
 <span class="sd">    `match group &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_ content.</span>
-<span class="sd">    For multiple groups, use :func:`gTuple`</span>
+<span class="sd">    For multiple groups, use :func:`gTuple` or :func:`group`.</span>
 
 <span class="sd">    For the whole match, you can use the abbreviation :data:`g0`. Likewise, the first</span>
 <span class="sd">    nine groups have the abbrevations :data:`g1` to :data:`g9`.</span>
@@ -365,7 +365,7 @@
 <span class="sd">        &gt;&gt;&gt; m.lastFirst</span>
 <span class="sd">        (&#39;Newton&#39;, &#39;Isaac&#39;)</span>
 <span class="sd">    </span>
-<span class="sd">    Note the difference to :func:`group` when calling without arguments: :func:`gTuple` returns all groups in this case,</span>
+<span class="sd">    Note the difference to :func:`group` when called without arguments: :func:`gTuple` returns all groups in this case,</span>
 <span class="sd">    whereas :func:`group` does the same as `Python&#39;s match group method &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">    and returns the match (i.e., as if called as :func:`group(0) &lt;group&gt;`):</span>
 <span class="sd">    </span>
@@ -394,7 +394,7 @@
 <span class="sd">    One or more match groups with the argument index or indices. Mirrors</span>
 <span class="sd">    `Python&#39;s match group method &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 
-<span class="sd">    Note that, in difference to Python&#39;s method, this does not support named groups (yet).</span>
+<span class="sd">    Note that, in difference to the Python ``group`` method, this does not support named groups (yet).</span>
 
 <span class="sd">    :param indices: the non-negative indices of the desired match groups; optional - if none</span>
 <span class="sd">        are given, the whole match, as if called with zero</span>

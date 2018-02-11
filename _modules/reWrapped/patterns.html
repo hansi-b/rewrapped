@@ -139,7 +139,7 @@
 <span class="sd">    defining what instances of the class are to match.</span>
 <span class="sd">    </span>
 <span class="sd">    In order to be useful, the class also has to contain</span>
-<span class="sd">    match fields :mod:`match fields &lt;reWrapped.matched&gt;` .</span>
+<span class="sd">    :mod:`match fields &lt;reWrapped.matched&gt;` to refer to match contents.</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_pattern</span> <span class="o">=</span> <span class="kc">None</span>
@@ -179,7 +179,7 @@
 <span class="sd">            having matched against the argument string.</span>
 <span class="sd">            </span>
 <span class="sd">            :param string: the string against which this instance matched</span>
-<span class="sd">            :param mObj: the resulting not-None match object</span>
+<span class="sd">            :param mObj: the resulting not-``None`` match object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="n">mObj</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">:</span>
@@ -208,7 +208,7 @@
 <span class="sd">        A wrapper for ``re.regex.search``: Searches for a match in the argument string.</span>
 <span class="sd">        Takes optional parameters like ``re.regex.search``.     </span>
 <span class="sd">        :param string: the string in which to search</span>
-<span class="sd">        :return: an instance of this class, if a match was found; None otherwise</span>
+<span class="sd">        :return: an instance of this class, if a match was found; ``None`` otherwise</span>
 <span class="sd">    </span>
 <span class="sd">        :see: https://docs.python.org/3.6/library/re.html#re.regex.search</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -221,7 +221,7 @@
 <span class="sd">        Takes optional parameters like ``re.regex.match``.</span>
 <span class="sd">        </span>
 <span class="sd">        :param string: the string which to match from the beginning</span>
-<span class="sd">        :return: an instance of this class, if a match was found; None otherwise</span>
+<span class="sd">        :return: an instance of this class, if a match was found; ``None`` otherwise</span>
 <span class="sd">    </span>
 <span class="sd">        :see: https://docs.python.org/3.6/library/re.html#re.regex.match</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -234,7 +234,7 @@
 <span class="sd">        Takes optional parameters like ``re.regex.fullmatch``.</span>
 <span class="sd">        </span>
 <span class="sd">        :param string: the string which to match</span>
-<span class="sd">        :return: an instance of this class, if the string is a match; None otherwise</span>
+<span class="sd">        :return: an instance of this class, if the string is a match; ``None`` otherwise</span>
 <span class="sd">    </span>
 <span class="sd">        :see: https://docs.python.org/3.6/library/re.html#re.regex.fullmatch</span>
 <span class="sd">        &quot;&quot;&quot;</span>

@@ -85,7 +85,7 @@
 <a class="reference external" href="https://docs.python.org/3/library/re.html#regular-expression-objects">pattern object</a>) 
 defining what instances of the class are to match.</p>
 <p>In order to be useful, the class also has to contain
-match fields <a class="reference internal" href="#module-reWrapped.matched" title="reWrapped.matched"><code class="xref py py-mod docutils literal"><span class="pre">match</span> <span class="pre">fields</span></code></a> .</p>
+<a class="reference internal" href="#module-reWrapped.matched" title="reWrapped.matched"><code class="xref py py-mod docutils literal"><span class="pre">match</span> <span class="pre">fields</span></code></a> to refer to match contents.</p>
 <dl class="classmethod">
 <dt id="reWrapped.patterns.ReWrap.findall">
 <em class="property">classmethod </em><code class="descname">findall</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.findall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.patterns.ReWrap.findall" title="Permalink to this definition">¶</a></dt>
@@ -134,7 +134,7 @@ Takes optional parameters like <code class="docutils literal"><span class="pre">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string which to match</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if the string is a match; None otherwise</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if the string is a match; <code class="docutils literal"><span class="pre">None</span></code> otherwise</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.fullmatch">https://docs.python.org/3.6/library/re.html#re.regex.fullmatch</a></td>
 </tr>
@@ -153,7 +153,7 @@ Takes optional parameters like <code class="docutils literal"><span class="pre">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string which to match from the beginning</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if a match was found; None otherwise</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if a match was found; <code class="docutils literal"><span class="pre">None</span></code> otherwise</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.match">https://docs.python.org/3.6/library/re.html#re.regex.match</a></td>
 </tr>
@@ -193,7 +193,7 @@ so any error is detected at that point:</p>
 <dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.search</span></code>: Searches for a match in the argument string.
 Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.search</span></code>.     
 :param string: the string in which to search
-:return: an instance of this class, if a match was found; None otherwise</p>
+:return: an instance of this class, if a match was found; <code class="docutils literal"><span class="pre">None</span></code> otherwise</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -278,7 +278,7 @@ if applicable.</p>
 <dd><p>The basic match group as a field on a ReWrap class. In match instances
 of that class, the field is the content of the respective single capturing
 <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">match group</a> content.
-For multiple groups, use <a class="reference internal" href="#reWrapped.matched.gTuple" title="reWrapped.matched.gTuple"><code class="xref py py-func docutils literal"><span class="pre">gTuple()</span></code></a></p>
+For multiple groups, use <a class="reference internal" href="#reWrapped.matched.gTuple" title="reWrapped.matched.gTuple"><code class="xref py py-func docutils literal"><span class="pre">gTuple()</span></code></a> or <a class="reference internal" href="#reWrapped.matched.group" title="reWrapped.matched.group"><code class="xref py py-func docutils literal"><span class="pre">group()</span></code></a>.</p>
 <p>For the whole match, you can use the abbreviation <a class="reference internal" href="#reWrapped.matched.g0" title="reWrapped.matched.g0"><code class="xref py py-data docutils literal"><span class="pre">g0</span></code></a>. Likewise, the first
 nine groups have the abbrevations <a class="reference internal" href="#reWrapped.matched.g1" title="reWrapped.matched.g1"><code class="xref py py-data docutils literal"><span class="pre">g1</span></code></a> to <a class="reference internal" href="#reWrapped.matched.g9" title="reWrapped.matched.g9"><code class="xref py py-data docutils literal"><span class="pre">g9</span></code></a>.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -483,7 +483,7 @@ are given, all groups of the match.</td>
 <span class="go">(&#39;Newton&#39;, &#39;Isaac&#39;)</span>
 </pre></div>
 </div>
-<p>Note the difference to <a class="reference internal" href="#reWrapped.matched.group" title="reWrapped.matched.group"><code class="xref py py-func docutils literal"><span class="pre">group()</span></code></a> when calling without arguments: <a class="reference internal" href="#reWrapped.matched.gTuple" title="reWrapped.matched.gTuple"><code class="xref py py-func docutils literal"><span class="pre">gTuple()</span></code></a> returns all groups in this case,
+<p>Note the difference to <a class="reference internal" href="#reWrapped.matched.group" title="reWrapped.matched.group"><code class="xref py py-func docutils literal"><span class="pre">group()</span></code></a> when called without arguments: <a class="reference internal" href="#reWrapped.matched.gTuple" title="reWrapped.matched.gTuple"><code class="xref py py-func docutils literal"><span class="pre">gTuple()</span></code></a> returns all groups in this case,
 whereas <a class="reference internal" href="#reWrapped.matched.group" title="reWrapped.matched.group"><code class="xref py py-func docutils literal"><span class="pre">group()</span></code></a> does the same as <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">Python’s match group method</a>
 and returns the match (i.e., as if called as <a class="reference internal" href="#reWrapped.matched.group" title="reWrapped.matched.group"><code class="xref py py-func docutils literal"><span class="pre">group(0)</span></code></a>):</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
@@ -511,7 +511,7 @@ and returns the match (i.e., as if called as <a class="reference internal" href=
 <code class="descclassname">reWrapped.matched.</code><code class="descname">group</code><span class="sig-paren">(</span><em>*indices</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/matched.html#group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.matched.group" title="Permalink to this definition">¶</a></dt>
 <dd><p>One or more match groups with the argument index or indices. Mirrors
 <a class="reference external" href="https://docs.python.org/3/library/re.html#re.match.group">Python’s match group method</a></p>
-<p>Note that, in difference to Python’s method, this does not support named groups (yet).</p>
+<p>Note that, in difference to the Python <code class="docutils literal"><span class="pre">group</span></code> method, this does not support named groups (yet).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -609,7 +609,7 @@ are given, the whole match, as if called with zero</td>
 <a class="reference external" href="https://docs.python.org/3/library/re.html#regular-expression-objects">pattern object</a>) 
 defining what instances of the class are to match.</p>
 <p>In order to be useful, the class also has to contain
-match fields <a class="reference internal" href="#module-reWrapped.matched" title="reWrapped.matched"><code class="xref py py-mod docutils literal"><span class="pre">match</span> <span class="pre">fields</span></code></a> .</p>
+<a class="reference internal" href="#module-reWrapped.matched" title="reWrapped.matched"><code class="xref py py-mod docutils literal"><span class="pre">match</span> <span class="pre">fields</span></code></a> to refer to match contents.</p>
 <dl class="classmethod">
 <dt id="reWrapped.ReWrap.findall">
 <em class="property">classmethod </em><code class="descname">findall</code><span class="sig-paren">(</span><em>string</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/reWrapped/patterns.html#ReWrap.findall"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#reWrapped.ReWrap.findall" title="Permalink to this definition">¶</a></dt>
@@ -658,7 +658,7 @@ Takes optional parameters like <code class="docutils literal"><span class="pre">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string which to match</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if the string is a match; None otherwise</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if the string is a match; <code class="docutils literal"><span class="pre">None</span></code> otherwise</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.fullmatch">https://docs.python.org/3.6/library/re.html#re.regex.fullmatch</a></td>
 </tr>
@@ -677,7 +677,7 @@ Takes optional parameters like <code class="docutils literal"><span class="pre">
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> – the string which to match from the beginning</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if a match was found; None otherwise</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">an instance of this class, if a match was found; <code class="docutils literal"><span class="pre">None</span></code> otherwise</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">See:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.regex.match">https://docs.python.org/3.6/library/re.html#re.regex.match</a></td>
 </tr>
@@ -717,7 +717,7 @@ so any error is detected at that point:</p>
 <dd><p>A wrapper for <code class="docutils literal"><span class="pre">re.regex.search</span></code>: Searches for a match in the argument string.
 Takes optional parameters like <code class="docutils literal"><span class="pre">re.regex.search</span></code>.     
 :param string: the string in which to search
-:return: an instance of this class, if a match was found; None otherwise</p>
+:return: an instance of this class, if a match was found; <code class="docutils literal"><span class="pre">None</span></code> otherwise</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />

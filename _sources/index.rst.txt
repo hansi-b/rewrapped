@@ -11,8 +11,11 @@ syntax with match groups flexibly mapped to named fields without
 having to resort to symbolic group names in your regular expressions
 (unless you are doing really fancy stuff).
 
-To do so, you subclass from :class:`~reWrapped.patterns.ReWrap` and put your regular expression
-in the special ``matchOn`` class field.
+To do so,
+
+#. subclass from :class:`~reWrapped.patterns.ReWrap`,
+#. put the regular expression in the special ``matchOn`` class field, and
+#. add :mod:`match fields <reWrapped.matched>` to refer to match results.
 
 A simple example for a ``ReWrap`` class with two match fields::
 
@@ -22,17 +25,30 @@ A simple example for a ``ReWrap`` class with two match fields::
         count = matched.g1.asInt
         item = matched.g2
 
+Such a ``ReWrap`` class statically provides the usual bag of search methods
+(:func:`search <reWrapped.patterns.ReWrap.search>`, :func:`match <reWrapped.patterns.ReWrap.match>`, etc.),
+and returns instances of the class which evaluate the match fields from matched results.
+E.g., the ``Inventory`` defined above would map the first match field
+to the integer ``count``, and the second to the string field ``item``:
 
+  .. testsetup::
 
-This will yield match results which map the first match field
-to the integer ``count``, and the second to the string field ``item``::
+    from reWrapped import ReWrap, matched
+    class Inventory(ReWrap):
+        matchOn = "([0-9]+)\s+(\S+)"
+        count = matched.g1.asInt
+        item = matched.g2
 
-      >>> i = Inventory.search("there are 45 oranges left")
-      >>> i.count
-      45
-      >>> i.item
-      'oranges'
-      >>> 
+  .. doctest::
+
+   >>> i = Inventory.search("there are 45 oranges left")
+   >>> type(i)
+   <class 'Inventory'>
+   >>> i.count
+   45
+   >>> i.item
+   'oranges'
+   >>> 
 
 .. toctree::
    :maxdepth: 4
