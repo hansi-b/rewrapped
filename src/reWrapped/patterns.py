@@ -45,7 +45,7 @@ class _MetaReClass(type):
         * lets the class fields check themselves against the pattern, and
         * collects the fields for filling on instantiation.
     """
-
+    
     def __init__(cls, name, _bases, clsDict):
         assert "matchOn" in clsDict, "ReWrap {} requires field 'matchOn'".format(name)
 
@@ -68,15 +68,41 @@ class ReWrap(metaclass=_MetaReClass):
     """
     The base class from which to inherit your own pattern definition.
     
-    Every such class must have a ``matchOn`` field (usually a string or
-    Pattern instance) defining the expression instances of the class
-    are to match.
-
+    Every such class must have a :attr:`~reWrapped.patterns.ReWrap.matchOn` field (usually a string or
+    `pattern object <https://docs.python.org/3/library/re.html#regular-expression-objects>`_) 
+    defining what instances of the class are to match.
+    
+    In order to be useful, the class also has to contain
+    match fields :mod:`match fields <reWrapped.matched>` .
+    
     """
     _pattern = None
     _fields = None
 
     matchOn = None
+    """
+        The pattern on which this class should match. Every ``ReWrap`` subclass
+        has to define this field. It can be anything that can passed to
+        `re.compile <https://docs.python.org/3/library/re.html#re.compile>`_, e.g.:
+                
+        >>> from reWrapped import ReWrap
+        >>> class Word(ReWrap):
+        ...     matchOn = "\w+"
+        ...     
+        >>> 
+
+        If the argument is a string, is is compiled to a pattern object at class compile time,
+        so any error is detected at that point:
+        
+        >>> from reWrapped import ReWrap
+        >>> class Word(ReWrap):
+        ...     matchOn = "(\w+]"
+        ... 
+        Traceback (most recent call last):
+         ...
+        sre_constants.error: missing ), unterminated subpattern at position 0
+        
+    """
 
     def __init__(self, string, mObj):
         """
@@ -92,7 +118,7 @@ class ReWrap(metaclass=_MetaReClass):
         assert mObj
         for name, field in self._fields:
             setattr(self, name, field.fill(string, mObj))
-
+        
     def __repr__(self):
         valsStrings = []
         for fieldName, _f in self._fields:
