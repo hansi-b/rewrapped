@@ -4,6 +4,14 @@ reWrapped package
 Submodules
 ----------
 
+reWrapped\.patterns module
+--------------------------
+
+.. automodule:: reWrapped.patterns
+    :members: ReWrap, MatchField
+    :undoc-members:
+    :show-inheritance:
+
 reWrapped\.matched module
 -------------------------
 
@@ -16,14 +24,6 @@ reWrapped\.modders module
 -------------------------
 
 .. automodule:: reWrapped.modders
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-reWrapped\.patterns module
---------------------------
-
-.. automodule:: reWrapped.patterns
     :members:
     :undoc-members:
     :show-inheritance:
