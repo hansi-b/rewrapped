@@ -104,7 +104,7 @@ def g(idx: int):
     The basic match group as a field on a ReWrap class. In match instances
     of that class, the field is the content of the respective single capturing
     `match group <https://docs.python.org/3/library/re.html#re.match.group>`_ content.
-    For multiple groups, use :func:`gTuple`
+    For multiple groups, use :func:`gTuple` or :func:`group`.
 
     For the whole match, you can use the abbreviation :data:`g0`. Likewise, the first
     nine groups have the abbrevations :data:`g1` to :data:`g9`.
@@ -299,7 +299,7 @@ def gTuple(*indices):
         >>> m.lastFirst
         ('Newton', 'Isaac')
     
-    Note the difference to :func:`group` when calling without arguments: :func:`gTuple` returns all groups in this case,
+    Note the difference to :func:`group` when called without arguments: :func:`gTuple` returns all groups in this case,
     whereas :func:`group` does the same as `Python's match group method <https://docs.python.org/3/library/re.html#re.match.group>`_
     and returns the match (i.e., as if called as :func:`group(0) <group>`):
     
@@ -328,7 +328,7 @@ def group(*indices):
     One or more match groups with the argument index or indices. Mirrors
     `Python's match group method <https://docs.python.org/3/library/re.html#re.match.group>`_
 
-    Note that, in difference to Python's method, this does not support named groups (yet).
+    Note that, in difference to the Python ``group`` method, this does not support named groups (yet).
 
     :param indices: the non-negative indices of the desired match groups; optional - if none
         are given, the whole match, as if called with zero

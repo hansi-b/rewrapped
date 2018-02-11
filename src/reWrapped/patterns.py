@@ -73,7 +73,7 @@ class ReWrap(metaclass=_MetaReClass):
     defining what instances of the class are to match.
     
     In order to be useful, the class also has to contain
-    match fields :mod:`match fields <reWrapped.matched>` .
+    :mod:`match fields <reWrapped.matched>` to refer to match contents.
     
     """
     _pattern = None
@@ -113,7 +113,7 @@ class ReWrap(metaclass=_MetaReClass):
             having matched against the argument string.
             
             :param string: the string against which this instance matched
-            :param mObj: the resulting not-None match object
+            :param mObj: the resulting not-``None`` match object
         """
         assert mObj
         for name, field in self._fields:
@@ -142,7 +142,7 @@ class ReWrap(metaclass=_MetaReClass):
         A wrapper for ``re.regex.search``: Searches for a match in the argument string.
         Takes optional parameters like ``re.regex.search``.     
         :param string: the string in which to search
-        :return: an instance of this class, if a match was found; None otherwise
+        :return: an instance of this class, if a match was found; ``None`` otherwise
     
         :see: https://docs.python.org/3.6/library/re.html#re.regex.search
         """
@@ -155,7 +155,7 @@ class ReWrap(metaclass=_MetaReClass):
         Takes optional parameters like ``re.regex.match``.
         
         :param string: the string which to match from the beginning
-        :return: an instance of this class, if a match was found; None otherwise
+        :return: an instance of this class, if a match was found; ``None`` otherwise
     
         :see: https://docs.python.org/3.6/library/re.html#re.regex.match
         """
@@ -168,7 +168,7 @@ class ReWrap(metaclass=_MetaReClass):
         Takes optional parameters like ``re.regex.fullmatch``.
         
         :param string: the string which to match
-        :return: an instance of this class, if the string is a match; None otherwise
+        :return: an instance of this class, if the string is a match; ``None`` otherwise
     
         :see: https://docs.python.org/3.6/library/re.html#re.regex.fullmatch
         """
