@@ -49,9 +49,17 @@ class _MetaReClass(type):
     def __init__(cls, name, _bases, clsDict):
         assert "matchOn" in clsDict, "ReWrap {} requires field 'matchOn'".format(name)
 
-        pattern = re.compile(cls.matchOn) if cls.matchOn is not None else None
+        pattern = _MetaReClass.__compile(cls.matchOn)
         setattr(cls, "_pattern", pattern)
         setattr(cls, "_fields", _MetaReClass._get_fields(cls, clsDict, pattern))
+
+    @staticmethod
+    def __compile(matchOn):
+        if matchOn is None: return None
+        if isinstance(matchOn, tuple):
+            assert len(matchOn) == 2, "Invalid tuple argument %s of len %d (require len 2)".format(matchOn, len(matchOn))
+            return re.compile(*matchOn)
+        return re.compile(matchOn)
 
     @staticmethod
     def _get_fields(cls, clsDict, pattern):
@@ -81,39 +89,53 @@ class ReWrap(metaclass=_MetaReClass):
 
     matchOn = None
     """
-        The pattern on which this class should match. Every ``ReWrap`` subclass
-        has to define this field. It can be anything that can passed to
-        `re.compile <https://docs.python.org/3/library/re.html#re.compile>`_, e.g.:
-                
-        >>> from reWrapped import ReWrap
-        >>> class Word(ReWrap):
-        ...     matchOn = "\w+"
-        ...     
-        >>> 
+    The pattern on which this class should match. Every ``ReWrap`` subclass
+    has to define this field. It can be anything that can passed to
+    `re.compile <https://docs.python.org/3/library/re.html#re.compile>`_, e.g.:
+            
+    >>> from reWrapped import ReWrap
+    >>> class Word(ReWrap):
+    ...     matchOn = "\w+"
+    ...     
+    >>> 
 
-        If the argument is a string, is is compiled to a pattern object at class compile time,
-        so any error is detected at that point:
-        
-        >>> from reWrapped import ReWrap
-        >>> class Word(ReWrap):
-        ...     matchOn = "(\w+]"
-        ... 
-        Traceback (most recent call last):
-         ...
-        sre_constants.error: missing ), unterminated subpattern at position 0
-        
+    If the argument is a string, is is compiled to a pattern object at class compile time,
+    so any error is detected at that point:
+    
+    >>> from reWrapped import ReWrap
+    >>> class Word(ReWrap):
+    ...     matchOn = "(\w+]"
+    ... 
+    Traceback (most recent call last):
+     ...
+    sre_constants.error: missing ), unterminated subpattern at position 0
+
+
+    The string can optionally be followed by match flags
+    in the manner one would pass them to ``re.compile``:
+
+    >>> from re import IGNORECASE, MULTILINE    
+    >>> from reWrapped import ReWrap,matched
+    >>> class Word(ReWrap):
+    ...     matchOn = "^abc", IGNORECASE | MULTILINE
+    ...     abc = matched.g0
+    ...     
+    >>> m = Word.search("123\\nABC")
+    >>> m.abc
+    'ABC'
+
     """
 
     def __init__(self, string, mObj):
         """
-            Should not be called directly, but is done through the class
-            methods.
+        Should not be called directly, but is done through the class
+        methods.
 
-            Fills an instance of this class with the match information of
-            having matched against the argument string.
-            
-            :param string: the string against which this instance matched
-            :param mObj: the resulting not-``None`` match object
+        Fills an instance of this class with the match information of
+        having matched against the argument string.
+        
+        :param string: the string against which this instance matched
+        :param mObj: the resulting not-``None`` match object
         """
         assert mObj
         for name, field in self._fields:

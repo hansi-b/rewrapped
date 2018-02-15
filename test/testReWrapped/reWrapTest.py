@@ -53,6 +53,25 @@ class TestFieldsCheck(unittest.TestCase):
                 field = matched.g2
 
 
+class TestMatchOnTupleCheck(unittest.TestCase):
+
+    def testMatchWithFlags(self):
+
+        class IgnoreCase(ReWrap):
+            matchOn = "\w+", re.IGNORECASE | re.MULTILINE  # @UndefinedVariable
+            word = matched.g0
+        
+        self.assertEquals(re.compile('\\w+', re.IGNORECASE | re.MULTILINE),  # @UndefinedVariable
+                          IgnoreCase._pattern)
+
+    def testInvalidTuple(self):
+        with self.assertRaises(AssertionError):
+
+            class IgnoreCase(ReWrap):
+                matchOn = "\w+", re.IGNORECASE, re.MULTILINE  # @UndefinedVariable
+                word = matched.g0
+
+
 class TestRepr(unittest.TestCase):
 
     class SomeMatchFields(ReWrap):
