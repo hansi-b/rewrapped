@@ -115,9 +115,17 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">_bases</span><span class="p">,</span> <span class="n">clsDict</span><span class="p">):</span>
         <span class="k">assert</span> <span class="s2">&quot;matchOn&quot;</span> <span class="ow">in</span> <span class="n">clsDict</span><span class="p">,</span> <span class="s2">&quot;ReWrap </span><span class="si">{}</span><span class="s2"> requires field &#39;matchOn&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
-        <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">matchOn</span><span class="p">)</span> <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">matchOn</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="n">_MetaReClass</span><span class="o">.</span><span class="n">__compile</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">matchOn</span><span class="p">)</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;_pattern&quot;</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
         <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s2">&quot;_fields&quot;</span><span class="p">,</span> <span class="n">_MetaReClass</span><span class="o">.</span><span class="n">_get_fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">clsDict</span><span class="p">,</span> <span class="n">pattern</span><span class="p">))</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">__compile</span><span class="p">(</span><span class="n">matchOn</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">matchOn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">matchOn</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">matchOn</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Invalid tuple argument </span><span class="si">%s</span><span class="s2"> of len </span><span class="si">%d</span><span class="s2"> (require len 2)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">matchOn</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">matchOn</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="o">*</span><span class="n">matchOn</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">matchOn</span><span class="p">)</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_get_fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">clsDict</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
@@ -147,39 +155,53 @@
 
     <span class="n">matchOn</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The pattern on which this class should match. Every ``ReWrap`` subclass</span>
-<span class="sd">        has to define this field. It can be anything that can passed to</span>
-<span class="sd">        `re.compile &lt;https://docs.python.org/3/library/re.html#re.compile&gt;`_, e.g.:</span>
-<span class="sd">                </span>
-<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap</span>
-<span class="sd">        &gt;&gt;&gt; class Word(ReWrap):</span>
-<span class="sd">        ...     matchOn = &quot;\w+&quot;</span>
-<span class="sd">        ...     </span>
-<span class="sd">        &gt;&gt;&gt; </span>
+<span class="sd">    The pattern on which this class should match. Every ``ReWrap`` subclass</span>
+<span class="sd">    has to define this field. It can be anything that can passed to</span>
+<span class="sd">    `re.compile &lt;https://docs.python.org/3/library/re.html#re.compile&gt;`_, e.g.:</span>
+<span class="sd">            </span>
+<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap</span>
+<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">    ...     matchOn = &quot;\w+&quot;</span>
+<span class="sd">    ...     </span>
+<span class="sd">    &gt;&gt;&gt; </span>
 
-<span class="sd">        If the argument is a string, is is compiled to a pattern object at class compile time,</span>
-<span class="sd">        so any error is detected at that point:</span>
-<span class="sd">        </span>
-<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap</span>
-<span class="sd">        &gt;&gt;&gt; class Word(ReWrap):</span>
-<span class="sd">        ...     matchOn = &quot;(\w+]&quot;</span>
-<span class="sd">        ... </span>
-<span class="sd">        Traceback (most recent call last):</span>
-<span class="sd">         ...</span>
-<span class="sd">        sre_constants.error: missing ), unterminated subpattern at position 0</span>
-<span class="sd">        </span>
+<span class="sd">    If the argument is a string, is is compiled to a pattern object at class compile time,</span>
+<span class="sd">    so any error is detected at that point:</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap</span>
+<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">    ...     matchOn = &quot;(\w+]&quot;</span>
+<span class="sd">    ... </span>
+<span class="sd">    Traceback (most recent call last):</span>
+<span class="sd">     ...</span>
+<span class="sd">    sre_constants.error: missing ), unterminated subpattern at position 0</span>
+
+
+<span class="sd">    The string can optionally be followed by match flags</span>
+<span class="sd">    in the manner one would pass them to ``re.compile``:</span>
+
+<span class="sd">    &gt;&gt;&gt; from re import IGNORECASE, MULTILINE    </span>
+<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap,matched</span>
+<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">    ...     matchOn = &quot;^abc&quot;, IGNORECASE | MULTILINE</span>
+<span class="sd">    ...     abc = matched.g0</span>
+<span class="sd">    ...     </span>
+<span class="sd">    &gt;&gt;&gt; m = Word.search(&quot;123\\nABC&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; m.abc</span>
+<span class="sd">    &#39;ABC&#39;</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">mObj</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">            Should not be called directly, but is done through the class</span>
-<span class="sd">            methods.</span>
+<span class="sd">        Should not be called directly, but is done through the class</span>
+<span class="sd">        methods.</span>
 
-<span class="sd">            Fills an instance of this class with the match information of</span>
-<span class="sd">            having matched against the argument string.</span>
-<span class="sd">            </span>
-<span class="sd">            :param string: the string against which this instance matched</span>
-<span class="sd">            :param mObj: the resulting not-``None`` match object</span>
+<span class="sd">        Fills an instance of this class with the match information of</span>
+<span class="sd">        having matched against the argument string.</span>
+<span class="sd">        </span>
+<span class="sd">        :param string: the string against which this instance matched</span>
+<span class="sd">        :param mObj: the resulting not-``None`` match object</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">assert</span> <span class="n">mObj</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fields</span><span class="p">:</span>

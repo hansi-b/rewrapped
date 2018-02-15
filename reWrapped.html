@@ -185,6 +185,19 @@ so any error is detected at that point:</p>
 <span class="gr">sre_constants.error</span>: <span class="n">missing ), unterminated subpattern at position 0</span>
 </pre></div>
 </div>
+<p>The string can optionally be followed by match flags
+in the manner one would pass them to <code class="docutils literal"><span class="pre">re.compile</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">re</span> <span class="k">import</span> <span class="n">IGNORECASE</span><span class="p">,</span> <span class="n">MULTILINE</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span><span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Word</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;^abc&quot;</span><span class="p">,</span> <span class="n">IGNORECASE</span> <span class="o">|</span> <span class="n">MULTILINE</span>
+<span class="gp">... </span>    <span class="n">abc</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g0</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Word</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;123</span><span class="se">\n</span><span class="s2">ABC&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">abc</span>
+<span class="go">&#39;ABC&#39;</span>
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="classmethod">
@@ -707,6 +720,19 @@ so any error is detected at that point:</p>
 <span class="gt">Traceback (most recent call last):</span>
  <span class="c">...</span>
 <span class="gr">sre_constants.error</span>: <span class="n">missing ), unterminated subpattern at position 0</span>
+</pre></div>
+</div>
+<p>The string can optionally be followed by match flags
+in the manner one would pass them to <code class="docutils literal"><span class="pre">re.compile</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">re</span> <span class="k">import</span> <span class="n">IGNORECASE</span><span class="p">,</span> <span class="n">MULTILINE</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span><span class="n">matched</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Word</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;^abc&quot;</span><span class="p">,</span> <span class="n">IGNORECASE</span> <span class="o">|</span> <span class="n">MULTILINE</span>
+<span class="gp">... </span>    <span class="n">abc</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g0</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span> <span class="o">=</span> <span class="n">Word</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;123</span><span class="se">\n</span><span class="s2">ABC&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">m</span><span class="o">.</span><span class="n">abc</span>
+<span class="go">&#39;ABC&#39;</span>
 </pre></div>
 </div>
 </dd></dl>
