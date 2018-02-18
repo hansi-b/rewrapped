@@ -12,46 +12,23 @@ __email__ = "hansi.b.github@moc.liamg"
 __status__ = "Development"
 
 import unittest
-from reWrapped.patterns import ReWrap, MatchField
+
+from reWrapped import matched
 
 
-class TestIncompleteField(unittest.TestCase):
+class TestGroupCall(unittest.TestCase):
 
-    def testMissingCheckMethod(self):
+    def testGroupZero(self):
+        g = matched.group()
+        self.assertIsInstance(g, matched._Group)
+        self.assertEquals(0, g._index)
 
-        class MissingCheckField(MatchField):
-            """
-            Causes a failure when used in a ReWrap class when
-            that class is constructed.
-            """
-            pass
+    def testSingleGroup(self):
+        g = matched.group(1)
+        self.assertIsInstance(g, matched._Group)
+        self.assertEquals(1, g._index)
 
-        with self.assertRaises(NotImplementedError) as errCtxt:
-
-            class SomeNewPattern(ReWrap):
-                matchOn = "Hello check method"
-                aField = MissingCheckField()
-
-        self.assertEqual("MissingCheckField requires method 'check'", str(errCtxt.exception))
-
-    def testMissingFillMethod(self):
-        """
-        Only fails at match time.
-        """
-
-        class MissingFillField(MatchField):
-            
-            def check(self, pattern):
-                pass
-
-        class AnotherNewPattern(ReWrap):
-            matchOn = "Hello fill method"
-            aField = MissingFillField()
-
-        with self.assertRaises(NotImplementedError) as errCtxt:
-            AnotherNewPattern.search("Hello fill method")
-        self.assertEqual("MissingFillField requires method 'fill'", str(errCtxt.exception))
-
- 
-if __name__ == "__main__":
-    unittest.main()
+    def testMultipleGroups(self):
+        g = matched.group(1, 2)
+        self.assertIsInstance(g, matched._GroupTuple)
+        self.assertEquals((1, 2), g._indices)

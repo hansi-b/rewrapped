@@ -15,6 +15,45 @@ import re
 import unittest
 
 from reWrapped import matched, ReWrap
+from reWrapped.patterns import MatchField
+
+
+class TestIncompleteField(unittest.TestCase):
+
+    def testMissingCheckMethod(self):
+
+        class MissingCheckField(MatchField):
+            """
+            Causes a failure when used in a ReWrap class when
+            that class is constructed.
+            """
+            pass
+
+        with self.assertRaises(NotImplementedError) as errCtxt:
+
+            class SomeNewPattern(ReWrap):
+                matchOn = "Hello check method"
+                aField = MissingCheckField()
+
+        self.assertEqual("MissingCheckField requires method 'check'", str(errCtxt.exception))
+
+    def testMissingFillMethod(self):
+        """
+        Only fails at match time.
+        """
+
+        class MissingFillField(MatchField):
+            
+            def check(self, pattern):
+                pass
+
+        class AnotherNewPattern(ReWrap):
+            matchOn = "Hello fill method"
+            aField = MissingFillField()
+
+        with self.assertRaises(NotImplementedError) as errCtxt:
+            AnotherNewPattern.search("Hello fill method")
+        self.assertEqual("MissingFillField requires method 'fill'", str(errCtxt.exception))
 
 
 class TestReClass(unittest.TestCase):
@@ -93,7 +132,7 @@ class TestRepr(unittest.TestCase):
         r = repr(TestRepr.SomeMatchFields.search("first 0.33"))
         self.assertTrue(r.startswith("SomeMatchFields("))
         # cannot check for order here if we want to allow Python < 3.6
-        for vs in "anInt=-1 optFloat=0.33 aToZ=\"first\"".split():
+        for vs in 'anInt=-1 optFloat=0.33 aToZ="first"'.split():
             self.assertTrue(vs in r, msg="Missing '{}' in {}".format(vs, r))
 
 
