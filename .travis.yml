@@ -9,8 +9,7 @@ python:
 
 # command to install dependencies
 install:
-  # contains coverage
-  - pip install pytest-cov
+  - pip install codecov pytest-cov
   - pip install .
 
 # command to run tests
