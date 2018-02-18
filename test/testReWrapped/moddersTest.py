@@ -28,5 +28,5 @@ class TestTupleValueField(unittest.TestCase):
 
         tvf = modders.TupleValueField(g12).asFloats
         
-        matchObject = re.search("(1\.[0-9]+)\+(2\.[0-9]+)", "1.123+2.234")
+        matchObject = re.search("(1\.[0-9]+)\+(2\.[0-9]+)", "1.123+2.2314")
         assert (1.123, 2.2314) == tvf.fill(None, matchObject)
