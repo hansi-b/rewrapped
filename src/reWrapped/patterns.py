@@ -222,6 +222,3 @@ class ReWrap(metaclass=_MetaReClass):
         """
         return list(cls.finditer(string, *args, **kwargs))
 
-
-if __name__ == "__main__":
-    pass

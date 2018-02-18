@@ -351,8 +351,3 @@ def group(*indices):
     if len(indices) == 1:
         return g(indices[0])
     return gTuple(*indices)
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod(verbose=True)

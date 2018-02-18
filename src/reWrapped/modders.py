@@ -142,6 +142,3 @@ class TupleValueField(_ModdableField):
     def _build(self, modder):
         return TupleValueField(self._origin, self._modders + (modder,))
 
-
-if __name__ == '__main__':
-    pass
