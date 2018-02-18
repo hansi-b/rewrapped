@@ -69,3 +69,11 @@ Kudos
 =====
 ... go to https://daler.github.io/sphinxdoc-test/includeme.html and https://gist.github.com/brantfaircloth/791759
 for their detailed accounts on how to get the sphinx documentation into the `gh-pages` branch!
+
+Pulse
+=====
+
+.. image:: https://travis-ci.org/hansi-b/reWrapped.svg?branch=master
+    :target: https://travis-ci.org/hansi-b/reWrapped
+.. image:: https://codecov.io/gh/hansi-b/reWrapped/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/hansi-b/reWrapped
