@@ -1,6 +1,11 @@
 reWrapped
 =========
 
+.. image:: https://travis-ci.org/hansi-b/reWrapped.svg?branch=master
+    :target: https://travis-ci.org/hansi-b/reWrapped
+.. image:: https://codecov.io/gh/hansi-b/reWrapped/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/hansi-b/reWrapped
+    
 For the time being, more documentation is at
 `this project's github pages <https://hansi-b.github.io/reWrapped/>`_.
 
