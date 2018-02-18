@@ -6,9 +6,17 @@ python:
   - "3.6"
   # PyPy versions
   - "pypy3.5"
+
 # command to install dependencies
 install:
-  - pip install . pytest-cov
+  # contains coverage
+  - pip install pytest-cov
+  - pip install .
+
 # command to run tests
 script:
   - PYTHONPATH=src pytest --cov
+
+# report to codecov.io
+after_success:
+  - codecov
