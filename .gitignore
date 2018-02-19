@@ -73,3 +73,7 @@ ENV/
 # Sphinx
 docs/_build
 venv
+.pytest_cache/
+.settings
+.project
+.pydevproject
