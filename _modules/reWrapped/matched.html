@@ -67,6 +67,8 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1"># !/usr/bin/env python3</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Provides predefined :class:`match fields &lt;reWrapped.patterns.MatchField&gt;` for use with :class:`~reWrapped.patterns.ReWrap` classes.</span>
+<span class="sd">The module :mod:`~reWrapped.modders` provides chainable modifiers to do more with these fields.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Hans Bering&quot;</span>
@@ -132,7 +134,7 @@
 
 <span class="n">after</span> <span class="o">=</span> <span class="n">_After</span><span class="p">()</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The part behind the match of a searched string.</span>
+<span class="sd">The part of a searched string *behind* the match.</span>
 
 <span class="sd">Example:</span>
 
@@ -149,7 +151,7 @@
 
 <span class="n">before</span> <span class="o">=</span> <span class="n">_Before</span><span class="p">()</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">The part in front of the match of a searched string.</span>
+<span class="sd">The part of a searched string *in front of* the match.</span>
 
 <span class="sd">Example:</span>
 
@@ -167,7 +169,7 @@
 
 <div class="viewcode-block" id="g"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.matched.g">[docs]</a><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The basic match group as a field on a ReWrap class. In match instances</span>
+<span class="sd">    The basic single match group as a field on a ReWrap class. In match instances</span>
 <span class="sd">    of that class, the field is the content of the respective single capturing</span>
 <span class="sd">    `match group &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_ content.</span>
 <span class="sd">    For multiple groups, use :func:`gTuple` or :func:`group`.</span>
@@ -202,7 +204,7 @@
 
 <div class="viewcode-block" id="gOr"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.matched.gOr">[docs]</a><span class="k">def</span> <span class="nf">gOr</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    A match group like :func:`g`, but with a default value in case the group is not matched. Only</span>
+<span class="sd">    A single match group like :func:`g`, but with a default value in case the group is not matched. Only</span>
 <span class="sd">    makes sense for optional matches.</span>
 
 <span class="sd">    :param idx: the non-negative index of the desired match group</span>

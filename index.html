@@ -71,10 +71,8 @@
             
   <div class="section" id="welcome-to-rewrapped-s-documentation">
 <h1>Welcome to reWrapped’s documentation!<a class="headerlink" href="#welcome-to-rewrapped-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>reWrapped lets you write your regular expressions in a class-like
-syntax with match groups flexibly mapped to named fields without
-having to resort to symbolic group names in your regular expressions
-(unless you are doing really fancy stuff).</p>
+<p>reWrapped lets you write your regular expressions as classes
+with match groups flexibly mapped to named fields.</p>
 <p>To do so,</p>
 <ol class="arabic simple">
 <li>subclass from <a class="reference internal" href="reWrapped.html#reWrapped.patterns.ReWrap" title="reWrapped.patterns.ReWrap"><code class="xref py py-class docutils literal"><span class="pre">ReWrap</span></code></a>,</li>
@@ -89,11 +87,11 @@ having to resort to symbolic group names in your regular expressions
     <span class="n">item</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g2</span>
 </pre></div>
 </div>
-<p>Such a <code class="docutils literal"><span class="pre">ReWrap</span></code> class statically provides the usual bag of search methods
-(<a class="reference internal" href="reWrapped.html#reWrapped.patterns.ReWrap.search" title="reWrapped.patterns.ReWrap.search"><code class="xref py py-func docutils literal"><span class="pre">search</span></code></a>, <a class="reference internal" href="reWrapped.html#reWrapped.patterns.ReWrap.match" title="reWrapped.patterns.ReWrap.match"><code class="xref py py-func docutils literal"><span class="pre">match</span></code></a>, etc.),
-and returns instances of the class which evaluate the match fields from matched results.
-E.g., the <code class="docutils literal"><span class="pre">Inventory</span></code> defined above would map the first match field
-to the integer <code class="docutils literal"><span class="pre">count</span></code>, and the second to the string field <code class="docutils literal"><span class="pre">item</span></code>:</p>
+<p><code class="docutils literal"><span class="pre">ReWrap</span></code> subclasses provide the usual bag of regular expression search methods
+(<a class="reference internal" href="reWrapped.html#reWrapped.patterns.ReWrap.search" title="reWrapped.patterns.ReWrap.search"><code class="xref py py-func docutils literal"><span class="pre">search</span></code></a>, <a class="reference internal" href="reWrapped.html#reWrapped.patterns.ReWrap.match" title="reWrapped.patterns.ReWrap.match"><code class="xref py py-func docutils literal"><span class="pre">match</span></code></a>, etc.) as class methods,
+and return instances of the respective class which evaluate the match fields from matched results.
+E.g., the <code class="docutils literal"><span class="pre">Inventory</span></code> defined above would map the first match group
+as an integer to the field <code class="docutils literal"><span class="pre">count</span></code>, and the second to the string field <code class="docutils literal"><span class="pre">item</span></code>:</p>
 <blockquote>
 <div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">i</span> <span class="o">=</span> <span class="n">Inventory</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s2">&quot;there are 45 oranges left&quot;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">type</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>

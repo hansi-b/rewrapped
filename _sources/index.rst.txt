@@ -6,10 +6,8 @@
 Welcome to reWrapped's documentation!
 =====================================
 
-reWrapped lets you write your regular expressions in a class-like
-syntax with match groups flexibly mapped to named fields without
-having to resort to symbolic group names in your regular expressions
-(unless you are doing really fancy stuff).
+reWrapped lets you write your regular expressions as classes
+with match groups flexibly mapped to named fields.
 
 To do so,
 
@@ -25,11 +23,11 @@ A simple example for a ``ReWrap`` class with two match fields::
         count = matched.g1.asInt
         item = matched.g2
 
-Such a ``ReWrap`` class statically provides the usual bag of search methods
-(:func:`search <reWrapped.patterns.ReWrap.search>`, :func:`match <reWrapped.patterns.ReWrap.match>`, etc.),
-and returns instances of the class which evaluate the match fields from matched results.
-E.g., the ``Inventory`` defined above would map the first match field
-to the integer ``count``, and the second to the string field ``item``:
+``ReWrap`` subclasses provide the usual bag of regular expression search methods
+(:func:`search <reWrapped.patterns.ReWrap.search>`, :func:`match <reWrapped.patterns.ReWrap.match>`, etc.) as class methods,
+and return instances of the respective class which evaluate the match fields from matched results.
+E.g., the ``Inventory`` defined above would map the first match group
+as an integer to the field ``count``, and the second to the string field ``item``:
 
   .. testsetup::
 

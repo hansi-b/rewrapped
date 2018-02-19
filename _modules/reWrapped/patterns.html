@@ -67,6 +67,7 @@
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1"># !/usr/bin/env python3</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Provides the main :class:`~reWrapped.patterns.ReWrap` base class.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Hans Bering&quot;</span>
@@ -82,8 +83,10 @@
 
 <div class="viewcode-block" id="MatchField"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.MatchField">[docs]</a><span class="k">class</span> <span class="nc">MatchField</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The marker class for which fields in ``ReWrap`` classes are initialized.</span>
+<span class="sd">    The marker class for which fields in :class:`~reWrapped.patterns.ReWrap` classes are initialized.</span>
 <span class="sd">    Only defines the required behaviour: being able to check and fill a field.</span>
+<span class="sd">    </span>
+<span class="sd">    See :class:`~reWrapped.matched` for predefined fields.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
 <div class="viewcode-block" id="MatchField.check"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.MatchField.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
@@ -98,7 +101,9 @@
 
 <div class="viewcode-block" id="MatchField.fill"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.MatchField.fill">[docs]</a>    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Evaluate this field with regard to a successful match on the argument string.</span>
+<span class="sd">        Evaluate this field with regard to a match object that was found in the argument string.</span>
+<span class="sd">        </span>
+<span class="sd">        :return: this field&#39;s value (e.g., a match object group or groups)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> requires method &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                                                                    <span class="n">MatchField</span><span class="o">.</span><span class="n">fill</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span></div></div>
