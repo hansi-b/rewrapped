@@ -50,16 +50,16 @@ class TestNumberGroups(unittest.TestCase):
 import datetime
 
 
-class TupleConvert(ReWrap):
+class TupleApply(ReWrap):
     matchOn = "started ([0-9]{4})-([0-9]{2})-([0-9]{2})"
 
-    started = matched.gTuple().asInts.convert(lambda y, m, d:datetime.datetime(y, m, d))
+    started = matched.gTuple().asInts.apply(datetime.datetime)
 
 
 class TestTupleConvert(unittest.TestCase):
 
     def testTuplesConvert(self):
-        res = TupleConvert.search("started 1999-12-14")
+        res = TupleApply.search("started 1999-12-14")
     
         self.assertEqual(datetime.datetime(1999, 12, 14), res.started)
 

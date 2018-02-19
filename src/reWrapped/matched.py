@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python3
 """
+Provides predefined :class:`match fields <reWrapped.patterns.MatchField>` for use with :class:`~reWrapped.patterns.ReWrap` classes.
+The module :mod:`~reWrapped.modders` provides chainable modifiers to do more with these fields.
 """
 
 __author__ = "Hans Bering"
@@ -66,7 +68,7 @@ class _Before(SingleValueField):
 
 after = _After()
 """
-The part behind the match of a searched string.
+The part of a searched string *behind* the match.
 
 Example:
 
@@ -83,7 +85,7 @@ Example:
 
 before = _Before()
 """
-The part in front of the match of a searched string.
+The part of a searched string *in front of* the match.
 
 Example:
 
@@ -101,7 +103,7 @@ Example:
 
 def g(idx: int):
     """
-    The basic match group as a field on a ReWrap class. In match instances
+    The basic single match group as a field on a ReWrap class. In match instances
     of that class, the field is the content of the respective single capturing
     `match group <https://docs.python.org/3/library/re.html#re.match.group>`_ content.
     For multiple groups, use :func:`gTuple` or :func:`group`.
@@ -136,7 +138,7 @@ def g(idx: int):
 
 def gOr(idx: int, defaultValue):
     """
-    A match group like :func:`g`, but with a default value in case the group is not matched. Only
+    A single match group like :func:`g`, but with a default value in case the group is not matched. Only
     makes sense for optional matches.
 
     :param idx: the non-negative index of the desired match group

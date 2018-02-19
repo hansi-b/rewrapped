@@ -50,16 +50,16 @@ class TestSomeGroups(unittest.TestCase):
         self.assertEqual('ddd', res.someDs)
 
 
-class SimpleConvertRe(ReWrap):
+class SimpleApplyRe(ReWrap):
     matchOn = "(\w+)"
 
-    number = matched.g1.convert(lambda v:v + "x")
+    number = matched.g1.apply(lambda v:v + "x")
 
 
 class TestSimpleConvert(unittest.TestCase):
 
     def testSearch(self):
-        res = SimpleConvertRe.search("123 house")
+        res = SimpleApplyRe.search("123 house")
 
         self.assertEqual("123x", res.number)
 
