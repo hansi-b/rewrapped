@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python3
 """
+Provides the main :class:`~reWrapped.patterns.ReWrap` base class.
 """
 
 __author__ = "Hans Bering"
@@ -16,8 +17,10 @@ import re
 
 class MatchField:
     """
-    The marker class for which fields in ``ReWrap`` classes are initialized.
+    The marker class for which fields in :class:`~reWrapped.patterns.ReWrap` classes are initialized.
     Only defines the required behaviour: being able to check and fill a field.
+    
+    See :class:`~reWrapped.matched` for predefined fields.
     """
 
     def check(self, pattern):
@@ -32,7 +35,9 @@ class MatchField:
 
     def fill(self, string, matchObject):
         """
-        Evaluate this field with regard to a successful match on the argument string.
+        Evaluate this field with regard to a match object that was found in the argument string.
+        
+        :return: this field's value (e.g., a match object group or groups)
         """
         raise NotImplementedError("{} requires method '{}'".format(self.__class__.__name__,
                                                                    MatchField.fill.__name__))
