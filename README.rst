@@ -3,9 +3,13 @@ rewrapped
 
 .. image:: https://travis-ci.org/hansi-b/rewrapped.svg?branch=master
     :target: https://travis-ci.org/hansi-b/rewrapped
+
 .. image:: https://codecov.io/gh/hansi-b/rewrapped/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/hansi-b/rewrapped
-    
+
+.. image:: https://badge.fury.io/py/rewrapped.svg
+   :target: https://badge.fury.io/py/rewrapped
+
 For the time being, more documentation is at
 `this project's github pages <https://hansi-b.github.io/rewrapped/>`_.
 
