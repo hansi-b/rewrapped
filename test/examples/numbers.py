@@ -13,7 +13,7 @@ __status__ = "Development"
 
 import unittest
 
-from reWrapped import ReWrap, matched
+from rewrapped import ReWrap, matched
 
 
 class AnInt(ReWrap):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python3
 """
-Provides modifiers for :class:`match fields <reWrapped.patterns.MatchField>` such as type conversions
+Provides modifiers for :class:`match fields <rewrapped.patterns.MatchField>` such as type conversions
 and function applications.
 """
 
@@ -14,7 +14,7 @@ __email__ = "hansi.b.github@moc.liamg"
 __status__ = "Development"
 
 from enum import Enum
-from reWrapped.patterns import MatchField
+from rewrapped.patterns import MatchField
 
 
 class _ModStatus(Enum):
@@ -91,7 +91,7 @@ class SingleValueField(_ModdableField):
         """
             Return the field value as an integer:
             
-                >>> from reWrapped import ReWrap, matched
+                >>> from rewrapped import ReWrap, matched
                 >>> class Inventory(ReWrap):
                 ...     matchOn = "([0-9]+)"
                 ...     count = matched.g1.asInt
@@ -110,7 +110,7 @@ class SingleValueField(_ModdableField):
         """
             Return the field value as a float:
             
-                >>> from reWrapped import ReWrap, matched
+                >>> from rewrapped import ReWrap, matched
                 >>> class Direction(ReWrap):
                 ...     matchOn = "([0-9]+\.[0-9]+)"
                 ...     distance = matched.g1.asFloat
@@ -129,7 +129,7 @@ class SingleValueField(_ModdableField):
         """
             Strip whitespace from the field value:
             
-                >>> from reWrapped import ReWrap, matched
+                >>> from rewrapped import ReWrap, matched
                 >>> class FirstWord(ReWrap):
                 ...     matchOn = "\s*\S+"
                 ...     word = matched.g0.strip
@@ -146,7 +146,7 @@ class SingleValueField(_ModdableField):
             Do not evaluate following field modifiers if the field value is the argument value;
             return that value instead:
             
-                >>> from reWrapped import ReWrap, matched
+                >>> from rewrapped import ReWrap, matched
                 >>> class Quantity(ReWrap):
                 ...     matchOn = "(NA|[0-9]+)"
                 ...     amount = matched.g0.breakOn("NA").asInt
@@ -164,7 +164,7 @@ class SingleValueField(_ModdableField):
             Do not evaluate following field modifiers if the field value is ``None``;
             return ``None`` as the value instead:
             
-                >>> from reWrapped import ReWrap, matched
+                >>> from rewrapped import ReWrap, matched
                 >>> class Counted(ReWrap):
                 ...     matchOn = "the ([0-9]+)?\s*parrots"
                 ...     number = matched.g1.breakOnNone.asInt
@@ -184,7 +184,7 @@ class SingleValueField(_ModdableField):
         """
             Apply the argument function on the field value.
             
-                >>> from reWrapped import ReWrap, matched
+                >>> from rewrapped import ReWrap, matched
                 >>> class Code(ReWrap):
                 ...     matchOn = "letters: ([a-z ]+)"
                 ...     letters = matched.g1.apply(set).apply(sorted)
@@ -222,7 +222,7 @@ class TupleValueField(_ModdableField):
         """
             Return the field values as integers:
 
-                >>> from reWrapped import ReWrap, matched
+                >>> from rewrapped import ReWrap, matched
                 >>> class Inventory(ReWrap):
                 ...     matchOn = "between ([0-9]+) and ([0-9]+)"
                 ...     estimate = matched.gTuple(1,2).asInts
@@ -239,7 +239,7 @@ class TupleValueField(_ModdableField):
         """
             Return the field values as floats:
 
-                >>> from reWrapped import ReWrap, matched
+                >>> from rewrapped import ReWrap, matched
                 >>> class ErrorMargin(ReWrap):
                 ...     matchOn = "between ([0-9]+\.[0-9]+) and ([0-9]+\.[0-9]+)"
                 ...     interval = matched.gTuple(1,2).asFloats
@@ -257,7 +257,7 @@ class TupleValueField(_ModdableField):
             groups, in the field's order:
             
                 >>> import datetime
-                >>> from reWrapped import ReWrap, matched
+                >>> from rewrapped import ReWrap, matched
                 >>> class StartedDate(ReWrap):
                 ...     matchOn = "started ([0-9]{4})-([0-9]{2})-([0-9]{2})"
                 ...     when = matched.gTuple().asInts.apply(datetime.datetime)

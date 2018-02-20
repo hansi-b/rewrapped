@@ -14,8 +14,8 @@ __status__ = "Development"
 import unittest
 import re
 
-from reWrapped import modders
-from reWrapped.patterns import MatchField
+from rewrapped import modders
+from rewrapped.patterns import MatchField
 
 
 class TestTupleValueField(unittest.TestCase):

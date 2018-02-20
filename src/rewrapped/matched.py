@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python3
 """
-Provides predefined :class:`match fields <reWrapped.patterns.MatchField>` for use with :class:`~reWrapped.patterns.ReWrap` classes.
-The module :mod:`~reWrapped.modders` provides chainable modifiers to do more with these fields.
+Provides predefined :class:`match fields <rewrapped.patterns.MatchField>` for use with :class:`~rewrapped.patterns.ReWrap` classes.
+The module :mod:`~rewrapped.modders` provides chainable modifiers to do more with these fields.
 """
 
 __author__ = "Hans Bering"
@@ -13,7 +13,7 @@ __maintainer__ = "Hans Bering"
 __email__ = "hansi.b.github@mgail.moc"
 __status__ = "Development"
 
-from reWrapped.modders import SingleValueField, TupleValueField
+from rewrapped.modders import SingleValueField, TupleValueField
 
 
 class _Group(SingleValueField):
@@ -72,7 +72,7 @@ The part of a searched string *behind* the match.
 
 Example:
 
-    >>> from reWrapped import ReWrap, matched
+    >>> from rewrapped import ReWrap, matched
     >>> class Word(ReWrap):
     ...     matchOn = "(\w)+"
     ...     rest = matched.after
@@ -89,7 +89,7 @@ The part of a searched string *in front of* the match.
 
 Example:
 
-    >>> from reWrapped import ReWrap, matched
+    >>> from rewrapped import ReWrap, matched
     >>> class Word(ReWrap):
     ...     matchOn = "(\w)+"
     ...     inFront = matched.before
@@ -118,7 +118,7 @@ def g(idx: int):
 
     Example::
 
-        >>> from reWrapped import ReWrap, matched
+        >>> from rewrapped import ReWrap, matched
         >>> class TwoWords(ReWrap):
         ...     matchOn = "(\w+)\s+(\w+)"
         ...     firstWord = matched.g(1)
@@ -147,7 +147,7 @@ def gOr(idx: int, defaultValue):
 
     Example:
 
-        >>> from reWrapped import ReWrap, matched
+        >>> from rewrapped import ReWrap, matched
         >>> class OptionalYear(ReWrap):
         ...     matchOn = "([0-9]{2})\.([0-9]{2})\.([0-9]{4})?"
         ...     day = matched.g1.asInt
@@ -165,7 +165,7 @@ def gOr(idx: int, defaultValue):
     not to zero-length groups, which are matched to the empty string. In the following example,
     the default value will apply on a missing `numbers` group:
 
-        >>> from reWrapped import ReWrap, matched
+        >>> from rewrapped import ReWrap, matched
         >>> class OptNumbers(ReWrap):
         ...     matchOn = "([0-9])? ([a-z]+)"
         ...     numbers = matched.gOr(1, -1)
@@ -178,7 +178,7 @@ def gOr(idx: int, defaultValue):
     But if the number group can have a zero length, Python matches it as such, and consequently
     you get the empty string, not the default value:
 
-        >>> from reWrapped import ReWrap, matched
+        >>> from rewrapped import ReWrap, matched
         >>> class SomeNumbers(ReWrap):
         ...     matchOn = "([0-9]*) ([a-z]+)"
         ...     numbers = matched.gOr(1, -1)
@@ -197,7 +197,7 @@ g0 = _Group(0)
 An abbreviation for :func:`g(0) <g>` - the whole match,
 like `matchobject.group() or matchobject.group(0) <https://docs.python.org/3/library/re.html#re.match.group>`_:
 
-    >>> from reWrapped import ReWrap, matched
+    >>> from rewrapped import ReWrap, matched
     >>> class Word(ReWrap):
     ...     matchOn = "(\w)+"
     ...     txt = matched.g0
@@ -292,7 +292,7 @@ def gTuple(*indices):
 
     Example:
 
-        >>> from reWrapped import ReWrap, matched
+        >>> from rewrapped import ReWrap, matched
         >>> class FullName(ReWrap):
         ...     matchOn = "(\w+)\s+(\w+)"
         ...     lastFirst = matched.gTuple(2, 1)
@@ -305,7 +305,7 @@ def gTuple(*indices):
     whereas :func:`group` does the same as `Python's match group method <https://docs.python.org/3/library/re.html#re.match.group>`_
     and returns the match (i.e., as if called as :func:`group(0) <group>`):
     
-        >>> from reWrapped import ReWrap, matched
+        >>> from rewrapped import ReWrap, matched
         >>> class Address(ReWrap):
         ...     matchOn = "([0-9]+)\s+(\w+)\s*(\w*)"
         ...     street = matched.gTuple()
@@ -338,7 +338,7 @@ def group(*indices):
 
     Example:
 
-        >>> from reWrapped import ReWrap, matched
+        >>> from rewrapped import ReWrap, matched
         >>> class FullName(ReWrap):
         ...     matchOn = "(\w+)\s+(\w+)"
         ...     first = matched.group(1)
