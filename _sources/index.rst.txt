@@ -3,35 +3,35 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to reWrapped's documentation!
+Welcome to rewrapped's documentation!
 =====================================
 
-reWrapped lets you write your regular expressions as classes
+rewrapped lets you write your regular expressions as classes
 with match groups flexibly mapped to named fields.
 
 To do so,
 
-#. subclass from :class:`~reWrapped.patterns.ReWrap`,
+#. subclass from :class:`~rewrapped.patterns.ReWrap`,
 #. put the regular expression in the special ``matchOn`` class field, and
-#. add :mod:`match fields <reWrapped.matched>` to refer to match results.
+#. add :mod:`match fields <rewrapped.matched>` to refer to match results.
 
 A simple example for a ``ReWrap`` class with two match fields::
 
-    from reWrapped import ReWrap, matched
+    from rewrapped import ReWrap, matched
     class Inventory(ReWrap):
         matchOn = "([0-9]+)\s+(\S+)"
         count = matched.g1.asInt
         item = matched.g2
 
 ``ReWrap`` subclasses provide the usual bag of regular expression search methods
-(:func:`search <reWrapped.patterns.ReWrap.search>`, :func:`match <reWrapped.patterns.ReWrap.match>`, etc.) as class methods,
+(:func:`search <rewrapped.patterns.ReWrap.search>`, :func:`match <rewrapped.patterns.ReWrap.match>`, etc.) as class methods,
 and return instances of the respective class which evaluate the match fields from matched results.
 E.g., the ``Inventory`` defined above would map the first match group
 as an integer to the field ``count``, and the second to the string field ``item``:
 
   .. testsetup::
 
-    from reWrapped import ReWrap, matched
+    from rewrapped import ReWrap, matched
     class Inventory(ReWrap):
         matchOn = "([0-9]+)\s+(\S+)"
         count = matched.g1.asInt
@@ -52,7 +52,7 @@ as an integer to the field ``count``, and the second to the string field ``item`
    :maxdepth: 4
    :caption: Contents:
 
-   reWrapped
+   rewrapped
 
 
 
@@ -71,7 +71,7 @@ for their detailed accounts on how to get the sphinx documentation into the `gh-
 Pulse
 =====
 
-.. image:: https://travis-ci.org/hansi-b/reWrapped.svg?branch=master
-    :target: https://travis-ci.org/hansi-b/reWrapped
-.. image:: https://codecov.io/gh/hansi-b/reWrapped/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/hansi-b/reWrapped
+.. image:: https://travis-ci.org/hansi-b/rewrapped.svg?branch=master
+    :target: https://travis-ci.org/hansi-b/rewrapped
+.. image:: https://codecov.io/gh/hansi-b/rewrapped/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/hansi-b/rewrapped

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>reWrapped.patterns &#8212; reWrapped  documentation</title>
+    <title>rewrapped.patterns &#8212; rewrapped  documentation</title>
     <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">reWrapped  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">rewrapped  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
@@ -63,11 +63,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for reWrapped.patterns</h1><div class="highlight"><pre>
+  <h1>Source code for rewrapped.patterns</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1"># !/usr/bin/env python3</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Provides the main :class:`~reWrapped.patterns.ReWrap` base class.</span>
+<span class="sd">Provides the main :class:`~rewrapped.patterns.ReWrap` base class.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Hans Bering&quot;</span>
@@ -81,15 +81,15 @@
 <span class="kn">import</span> <span class="nn">re</span>
 
 
-<div class="viewcode-block" id="MatchField"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.MatchField">[docs]</a><span class="k">class</span> <span class="nc">MatchField</span><span class="p">:</span>
+<div class="viewcode-block" id="MatchField"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.MatchField">[docs]</a><span class="k">class</span> <span class="nc">MatchField</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    The marker class for which fields in :class:`~reWrapped.patterns.ReWrap` classes are initialized.</span>
+<span class="sd">    The marker class for which fields in :class:`~rewrapped.patterns.ReWrap` classes are initialized.</span>
 <span class="sd">    Only defines the required behaviour: being able to check and fill a field.</span>
 <span class="sd">    </span>
-<span class="sd">    See :class:`~reWrapped.matched` for predefined fields.</span>
+<span class="sd">    See :class:`~rewrapped.matched` for predefined fields.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MatchField.check"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.MatchField.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+<div class="viewcode-block" id="MatchField.check"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.MatchField.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Does an optional static check of this field against the argument ``Pattern`` object,</span>
 <span class="sd">        if applicable.</span>
@@ -99,7 +99,7 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> requires method &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                                                                    <span class="n">MatchField</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="MatchField.fill"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.MatchField.fill">[docs]</a>    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
+<div class="viewcode-block" id="MatchField.fill"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.MatchField.fill">[docs]</a>    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate this field with regard to a match object that was found in the argument string.</span>
 <span class="sd">        </span>
@@ -143,16 +143,16 @@
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ReWrap"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.ReWrap">[docs]</a><span class="k">class</span> <span class="nc">ReWrap</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_MetaReClass</span><span class="p">):</span>
+<div class="viewcode-block" id="ReWrap"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.ReWrap">[docs]</a><span class="k">class</span> <span class="nc">ReWrap</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_MetaReClass</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The base class from which to inherit your own pattern definition.</span>
 <span class="sd">    </span>
-<span class="sd">    Every such class must have a :attr:`~reWrapped.patterns.ReWrap.matchOn` field (usually a string or</span>
+<span class="sd">    Every such class must have a :attr:`~rewrapped.patterns.ReWrap.matchOn` field (usually a string or</span>
 <span class="sd">    `pattern object &lt;https://docs.python.org/3/library/re.html#regular-expression-objects&gt;`_) </span>
 <span class="sd">    defining what instances of the class are to match.</span>
 <span class="sd">    </span>
 <span class="sd">    In order to be useful, the class also has to contain</span>
-<span class="sd">    :mod:`match fields &lt;reWrapped.matched&gt;` to refer to match contents.</span>
+<span class="sd">    :mod:`match fields &lt;rewrapped.matched&gt;` to refer to match contents.</span>
 <span class="sd">    </span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_pattern</span> <span class="o">=</span> <span class="kc">None</span>
@@ -164,7 +164,7 @@
 <span class="sd">    has to define this field. It can be anything that can passed to</span>
 <span class="sd">    `re.compile &lt;https://docs.python.org/3/library/re.html#re.compile&gt;`_, e.g.:</span>
 <span class="sd">            </span>
-<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap</span>
+<span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap</span>
 <span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
 <span class="sd">    ...     matchOn = &quot;\w+&quot;</span>
 <span class="sd">    ...     </span>
@@ -173,7 +173,7 @@
 <span class="sd">    If the argument is a string, is is compiled to a pattern object at class compile time,</span>
 <span class="sd">    so any error is detected at that point:</span>
 <span class="sd">    </span>
-<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap</span>
+<span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap</span>
 <span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
 <span class="sd">    ...     matchOn = &quot;(\w+]&quot;</span>
 <span class="sd">    ... </span>
@@ -186,7 +186,7 @@
 <span class="sd">    in the manner one would pass them to ``re.compile``:</span>
 
 <span class="sd">    &gt;&gt;&gt; from re import IGNORECASE, MULTILINE    </span>
-<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap,matched</span>
+<span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap,matched</span>
 <span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
 <span class="sd">    ...     matchOn = &quot;^abc&quot;, IGNORECASE | MULTILINE</span>
 <span class="sd">    ...     abc = matched.g0</span>
@@ -229,7 +229,7 @@
         <span class="n">mObj</span> <span class="o">=</span> <span class="n">pFunc</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">mObj</span><span class="p">)</span> <span class="k">if</span> <span class="n">mObj</span> <span class="k">else</span> <span class="kc">None</span>
 
-<div class="viewcode-block" id="ReWrap.search"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.ReWrap.search">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ReWrap.search"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.ReWrap.search">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A wrapper for ``re.regex.search``: Searches for a match in the argument string.</span>
@@ -241,7 +241,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_delegate</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_pattern</span><span class="o">.</span><span class="n">search</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ReWrap.match"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.ReWrap.match">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ReWrap.match"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.ReWrap.match">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A wrapper for ``re.regex.match``: Tries to match the argument string from the beginning.</span>
@@ -254,7 +254,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_delegate</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_pattern</span><span class="o">.</span><span class="n">match</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ReWrap.fullmatch"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.ReWrap.fullmatch">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ReWrap.fullmatch"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.ReWrap.fullmatch">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">fullmatch</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A wrapper for ``re.regex.fullmatch``: Tries to match the argument string completely.</span>
@@ -267,7 +267,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_delegate</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_pattern</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="ReWrap.finditer"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.ReWrap.finditer">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ReWrap.finditer"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.ReWrap.finditer">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">finditer</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A wrapper for ``re.regex.finditer``: Returns an iterator over non-overlapping matches</span>
@@ -281,7 +281,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">cls</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">mObj</span><span class="p">)</span> <span class="k">for</span> <span class="n">mObj</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_pattern</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span></div>
 
-<div class="viewcode-block" id="ReWrap.findall"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.patterns.ReWrap.findall">[docs]</a>    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="ReWrap.findall"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.ReWrap.findall">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">findall</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        A wrapper for ``re.regex.findall``; just wraps a list around this class&#39;s finditer</span>
@@ -309,7 +309,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">reWrapped  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">rewrapped  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>

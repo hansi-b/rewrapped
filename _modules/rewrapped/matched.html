@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>reWrapped.matched &#8212; reWrapped  documentation</title>
+    <title>rewrapped.matched &#8212; rewrapped  documentation</title>
     <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -39,7 +39,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">reWrapped  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">rewrapped  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li> 
       </ul>
     </div>
@@ -63,12 +63,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <h1>Source code for reWrapped.matched</h1><div class="highlight"><pre>
+  <h1>Source code for rewrapped.matched</h1><div class="highlight"><pre>
 <span></span><span class="c1"># -*- coding: utf-8 -*-</span>
 <span class="c1"># !/usr/bin/env python3</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Provides predefined :class:`match fields &lt;reWrapped.patterns.MatchField&gt;` for use with :class:`~reWrapped.patterns.ReWrap` classes.</span>
-<span class="sd">The module :mod:`~reWrapped.modders` provides chainable modifiers to do more with these fields.</span>
+<span class="sd">Provides predefined :class:`match fields &lt;rewrapped.patterns.MatchField&gt;` for use with :class:`~rewrapped.patterns.ReWrap` classes.</span>
+<span class="sd">The module :mod:`~rewrapped.modders` provides chainable modifiers to do more with these fields.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Hans Bering&quot;</span>
@@ -79,7 +79,7 @@
 <span class="n">__email__</span> <span class="o">=</span> <span class="s2">&quot;hansi.b.github@mgail.moc&quot;</span>
 <span class="n">__status__</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
 
-<span class="kn">from</span> <span class="nn">reWrapped.modders</span> <span class="k">import</span> <span class="n">SingleValueField</span><span class="p">,</span> <span class="n">TupleValueField</span>
+<span class="kn">from</span> <span class="nn">rewrapped.modders</span> <span class="k">import</span> <span class="n">SingleValueField</span><span class="p">,</span> <span class="n">TupleValueField</span>
 
 
 <span class="k">class</span> <span class="nc">_Group</span><span class="p">(</span><span class="n">SingleValueField</span><span class="p">):</span>
@@ -138,7 +138,7 @@
 
 <span class="sd">Example:</span>
 
-<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
 <span class="sd">    ...     matchOn = &quot;(\w)+&quot;</span>
 <span class="sd">    ...     rest = matched.after</span>
@@ -155,7 +155,7 @@
 
 <span class="sd">Example:</span>
 
-<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
 <span class="sd">    ...     matchOn = &quot;(\w)+&quot;</span>
 <span class="sd">    ...     inFront = matched.before</span>
@@ -167,7 +167,7 @@
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
 
 
-<div class="viewcode-block" id="g"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.matched.g">[docs]</a><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<div class="viewcode-block" id="g"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.g">[docs]</a><span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The basic single match group as a field on a ReWrap class. In match instances</span>
 <span class="sd">    of that class, the field is the content of the respective single capturing</span>
@@ -184,7 +184,7 @@
 
 <span class="sd">    Example::</span>
 
-<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class TwoWords(ReWrap):</span>
 <span class="sd">        ...     matchOn = &quot;(\w+)\s+(\w+)&quot;</span>
 <span class="sd">        ...     firstWord = matched.g(1)</span>
@@ -202,7 +202,7 @@
     <span class="k">return</span> <span class="n">_Group</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="gOr"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.matched.gOr">[docs]</a><span class="k">def</span> <span class="nf">gOr</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">):</span>
+<div class="viewcode-block" id="gOr"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.gOr">[docs]</a><span class="k">def</span> <span class="nf">gOr</span><span class="p">(</span><span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A single match group like :func:`g`, but with a default value in case the group is not matched. Only</span>
 <span class="sd">    makes sense for optional matches.</span>
@@ -213,7 +213,7 @@
 
 <span class="sd">    Example:</span>
 
-<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class OptionalYear(ReWrap):</span>
 <span class="sd">        ...     matchOn = &quot;([0-9]{2})\.([0-9]{2})\.([0-9]{4})?&quot;</span>
 <span class="sd">        ...     day = matched.g1.asInt</span>
@@ -231,7 +231,7 @@
 <span class="sd">    not to zero-length groups, which are matched to the empty string. In the following example,</span>
 <span class="sd">    the default value will apply on a missing `numbers` group:</span>
 
-<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class OptNumbers(ReWrap):</span>
 <span class="sd">        ...     matchOn = &quot;([0-9])? ([a-z]+)&quot;</span>
 <span class="sd">        ...     numbers = matched.gOr(1, -1)</span>
@@ -244,7 +244,7 @@
 <span class="sd">    But if the number group can have a zero length, Python matches it as such, and consequently</span>
 <span class="sd">    you get the empty string, not the default value:</span>
 
-<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class SomeNumbers(ReWrap):</span>
 <span class="sd">        ...     matchOn = &quot;([0-9]*) ([a-z]+)&quot;</span>
 <span class="sd">        ...     numbers = matched.gOr(1, -1)</span>
@@ -263,7 +263,7 @@
 <span class="sd">An abbreviation for :func:`g(0) &lt;g&gt;` - the whole match,</span>
 <span class="sd">like `matchobject.group() or matchobject.group(0) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_:</span>
 
-<span class="sd">    &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
 <span class="sd">    ...     matchOn = &quot;(\w)+&quot;</span>
 <span class="sd">    ...     txt = matched.g0</span>
@@ -348,7 +348,7 @@
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">matchObject</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indices</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="gTuple"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.matched.gTuple">[docs]</a><span class="k">def</span> <span class="nf">gTuple</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">):</span>
+<div class="viewcode-block" id="gTuple"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.gTuple">[docs]</a><span class="k">def</span> <span class="nf">gTuple</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Multiple match groups with the argument indices.</span>
 
@@ -358,7 +358,7 @@
 
 <span class="sd">    Example:</span>
 
-<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class FullName(ReWrap):</span>
 <span class="sd">        ...     matchOn = &quot;(\w+)\s+(\w+)&quot;</span>
 <span class="sd">        ...     lastFirst = matched.gTuple(2, 1)</span>
@@ -371,7 +371,7 @@
 <span class="sd">    whereas :func:`group` does the same as `Python&#39;s match group method &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">    and returns the match (i.e., as if called as :func:`group(0) &lt;group&gt;`):</span>
 <span class="sd">    </span>
-<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class Address(ReWrap):</span>
 <span class="sd">        ...     matchOn = &quot;([0-9]+)\s+(\w+)\s*(\w*)&quot;</span>
 <span class="sd">        ...     street = matched.gTuple()</span>
@@ -391,7 +391,7 @@
     <span class="k">return</span> <span class="n">_GroupTuple</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="group"><a class="viewcode-back" href="../../reWrapped.html#reWrapped.matched.group">[docs]</a><span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">):</span>
+<div class="viewcode-block" id="group"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.group">[docs]</a><span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    One or more match groups with the argument index or indices. Mirrors</span>
 <span class="sd">    `Python&#39;s match group method &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
@@ -404,7 +404,7 @@
 
 <span class="sd">    Example:</span>
 
-<span class="sd">        &gt;&gt;&gt; from reWrapped import ReWrap, matched</span>
+<span class="sd">        &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
 <span class="sd">        &gt;&gt;&gt; class FullName(ReWrap):</span>
 <span class="sd">        ...     matchOn = &quot;(\w+)\s+(\w+)&quot;</span>
 <span class="sd">        ...     first = matched.group(1)</span>
@@ -435,7 +435,7 @@
         <li class="right" >
           <a href="../../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../../index.html">reWrapped  documentation</a> &#187;</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">rewrapped  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li> 
       </ul>
     </div>

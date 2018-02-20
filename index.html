@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Welcome to reWrapped’s documentation! &#8212; reWrapped  documentation</title>
+    <title>Welcome to rewrapped’s documentation! &#8212; rewrapped  documentation</title>
     <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="reWrapped package" href="reWrapped.html" />
+    <link rel="next" title="rewrapped package" href="rewrapped.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--[if lt IE 9]>
     <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
@@ -41,16 +41,16 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="reWrapped.html" title="reWrapped package"
+          <a href="rewrapped.html" title="rewrapped package"
              accesskey="N">next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">reWrapped  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">rewrapped  documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Next topic</h4>
-  <p class="topless"><a href="reWrapped.html"
-                        title="next chapter">reWrapped package</a></p>
+  <p class="topless"><a href="rewrapped.html"
+                        title="next chapter">rewrapped package</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
@@ -70,17 +70,17 @@
           <div class="body" role="main">
             
   <div class="section" id="welcome-to-rewrapped-s-documentation">
-<h1>Welcome to reWrapped’s documentation!<a class="headerlink" href="#welcome-to-rewrapped-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>reWrapped lets you write your regular expressions as classes
+<h1>Welcome to rewrapped’s documentation!<a class="headerlink" href="#welcome-to-rewrapped-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>rewrapped lets you write your regular expressions as classes
 with match groups flexibly mapped to named fields.</p>
 <p>To do so,</p>
 <ol class="arabic simple">
-<li>subclass from <a class="reference internal" href="reWrapped.html#reWrapped.patterns.ReWrap" title="reWrapped.patterns.ReWrap"><code class="xref py py-class docutils literal"><span class="pre">ReWrap</span></code></a>,</li>
+<li>subclass from <a class="reference internal" href="rewrapped.html#rewrapped.patterns.ReWrap" title="rewrapped.patterns.ReWrap"><code class="xref py py-class docutils literal"><span class="pre">ReWrap</span></code></a>,</li>
 <li>put the regular expression in the special <code class="docutils literal"><span class="pre">matchOn</span></code> class field, and</li>
-<li>add <a class="reference internal" href="reWrapped.html#module-reWrapped.matched" title="reWrapped.matched"><code class="xref py py-mod docutils literal"><span class="pre">match</span> <span class="pre">fields</span></code></a> to refer to match results.</li>
+<li>add <a class="reference internal" href="rewrapped.html#module-rewrapped.matched" title="rewrapped.matched"><code class="xref py py-mod docutils literal"><span class="pre">match</span> <span class="pre">fields</span></code></a> to refer to match results.</li>
 </ol>
 <p>A simple example for a <code class="docutils literal"><span class="pre">ReWrap</span></code> class with two match fields:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">reWrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">rewrapped</span> <span class="k">import</span> <span class="n">ReWrap</span><span class="p">,</span> <span class="n">matched</span>
 <span class="k">class</span> <span class="nc">Inventory</span><span class="p">(</span><span class="n">ReWrap</span><span class="p">):</span>
     <span class="n">matchOn</span> <span class="o">=</span> <span class="s2">&quot;([0-9]+)\s+(\S+)&quot;</span>
     <span class="n">count</span> <span class="o">=</span> <span class="n">matched</span><span class="o">.</span><span class="n">g1</span><span class="o">.</span><span class="n">asInt</span>
@@ -88,7 +88,7 @@ with match groups flexibly mapped to named fields.</p>
 </pre></div>
 </div>
 <p><code class="docutils literal"><span class="pre">ReWrap</span></code> subclasses provide the usual bag of regular expression search methods
-(<a class="reference internal" href="reWrapped.html#reWrapped.patterns.ReWrap.search" title="reWrapped.patterns.ReWrap.search"><code class="xref py py-func docutils literal"><span class="pre">search</span></code></a>, <a class="reference internal" href="reWrapped.html#reWrapped.patterns.ReWrap.match" title="reWrapped.patterns.ReWrap.match"><code class="xref py py-func docutils literal"><span class="pre">match</span></code></a>, etc.) as class methods,
+(<a class="reference internal" href="rewrapped.html#rewrapped.patterns.ReWrap.search" title="rewrapped.patterns.ReWrap.search"><code class="xref py py-func docutils literal"><span class="pre">search</span></code></a>, <a class="reference internal" href="rewrapped.html#rewrapped.patterns.ReWrap.match" title="rewrapped.patterns.ReWrap.match"><code class="xref py py-func docutils literal"><span class="pre">match</span></code></a>, etc.) as class methods,
 and return instances of the respective class which evaluate the match fields from matched results.
 E.g., the <code class="docutils literal"><span class="pre">Inventory</span></code> defined above would map the first match group
 as an integer to the field <code class="docutils literal"><span class="pre">count</span></code>, and the second to the string field <code class="docutils literal"><span class="pre">item</span></code>:</p>
@@ -107,12 +107,12 @@ as an integer to the field <code class="docutils literal"><span class="pre">coun
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="reWrapped.html">reWrapped package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.patterns">reWrapped.patterns module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.matched">reWrapped.matched module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped.modders">reWrapped.modders module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="reWrapped.html#module-reWrapped">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rewrapped.html">rewrapped package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rewrapped.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rewrapped.html#module-rewrapped.patterns">rewrapped.patterns module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rewrapped.html#module-rewrapped.matched">rewrapped.matched module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rewrapped.html#module-rewrapped.modders">rewrapped.modders module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rewrapped.html#module-rewrapped">Module contents</a></li>
 </ul>
 </li>
 </ul>
@@ -133,8 +133,8 @@ for their detailed accounts on how to get the sphinx documentation into the <cit
 </div>
 <div class="section" id="pulse">
 <h1>Pulse<a class="headerlink" href="#pulse" title="Permalink to this headline">¶</a></h1>
-<a class="reference external image-reference" href="https://travis-ci.org/hansi-b/reWrapped"><img alt="https://travis-ci.org/hansi-b/reWrapped.svg?branch=master" src="https://travis-ci.org/hansi-b/reWrapped.svg?branch=master" /></a>
-<a class="reference external image-reference" href="https://codecov.io/gh/hansi-b/reWrapped"><img alt="https://codecov.io/gh/hansi-b/reWrapped/branch/master/graph/badge.svg" src="https://codecov.io/gh/hansi-b/reWrapped/branch/master/graph/badge.svg" /></a>
+<a class="reference external image-reference" href="https://travis-ci.org/hansi-b/rewrapped"><img alt="https://travis-ci.org/hansi-b/rewrapped.svg?branch=master" src="https://travis-ci.org/hansi-b/rewrapped.svg?branch=master" /></a>
+<a class="reference external image-reference" href="https://codecov.io/gh/hansi-b/rewrapped"><img alt="https://codecov.io/gh/hansi-b/rewrapped/branch/master/graph/badge.svg" src="https://codecov.io/gh/hansi-b/rewrapped/branch/master/graph/badge.svg" /></a>
 </div>
 
 
@@ -153,9 +153,9 @@ for their detailed accounts on how to get the sphinx documentation into the <cit
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="reWrapped.html" title="reWrapped package"
+          <a href="rewrapped.html" title="rewrapped package"
              >next</a> |</li>
-        <li class="nav-item nav-item-0"><a href="#">reWrapped  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="#">rewrapped  documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

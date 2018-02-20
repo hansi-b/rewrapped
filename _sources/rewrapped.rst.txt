@@ -1,29 +1,29 @@
-reWrapped package
+rewrapped package
 =================
 
 Submodules
 ----------
 
-reWrapped\.patterns module
+rewrapped\.patterns module
 --------------------------
 
-.. automodule:: reWrapped.patterns
+.. automodule:: rewrapped.patterns
     :members: ReWrap, MatchField
     :undoc-members:
     :show-inheritance:
 
-reWrapped\.matched module
+rewrapped\.matched module
 -------------------------
 
-.. automodule:: reWrapped.matched
+.. automodule:: rewrapped.matched
     :members: group, g, gOr, gTuple, after, before, g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
     :undoc-members:
     :show-inheritance:
 
-reWrapped\.modders module
+rewrapped\.modders module
 -------------------------
 
-.. automodule:: reWrapped.modders
+.. automodule:: rewrapped.modders
     :members:
     :undoc-members:
     :show-inheritance:
@@ -32,7 +32,7 @@ reWrapped\.modders module
 Module contents
 ---------------
 
-.. automodule:: reWrapped
+.. automodule:: rewrapped
     :members:
     :undoc-members:
     :show-inheritance:
