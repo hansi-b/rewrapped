@@ -1,22 +1,22 @@
-reWrapped
+rewrapped
 =========
 
-.. image:: https://travis-ci.org/hansi-b/reWrapped.svg?branch=master
-    :target: https://travis-ci.org/hansi-b/reWrapped
-.. image:: https://codecov.io/gh/hansi-b/reWrapped/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/hansi-b/reWrapped
+.. image:: https://travis-ci.org/hansi-b/rewrapped.svg?branch=master
+    :target: https://travis-ci.org/hansi-b/rewrapped
+.. image:: https://codecov.io/gh/hansi-b/rewrapped/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/hansi-b/rewrapped
     
 For the time being, more documentation is at
-`this project's github pages <https://hansi-b.github.io/reWrapped/>`_.
+`this project's github pages <https://hansi-b.github.io/rewrapped/>`_.
 
-reWrapped lets you write your regular expressions as classes
+rewrapped lets you write your regular expressions as classes
 with match groups flexibly mapped to named fields.
 
 A simple example:
 
 .. code:: python
 
-    from reWrapped import ReWrap, matched
+    from rewrapped import ReWrap, matched
     class Inventory(ReWrap):
         matchOn = "([0-9]+)\s+(\S+)"
         count = matched.g1.asInt

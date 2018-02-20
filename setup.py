@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python3
-"""
 
 __author__ = "Hans Bering"
 __copyright__ = "Copyright 2018"
@@ -10,7 +9,6 @@ __maintainer__ = "Hans Bering"
 __email__ = "hansi.b.github@moc.liamg"
 __status__ = "Development"
 
-"""
 
 import os
 from setuptools import setup
@@ -25,7 +23,7 @@ def read(fname):
 
 
 setup(
-    name="reWrapped",
+    name="rewrapped",
     author="Hans Bering",
     author_email="hansi.b.github@moc.liamg",
     description=("Class wrappers for regular expressions "
@@ -33,7 +31,7 @@ setup(
     license="MIT",
     url="http://...",
     package_dir={'':'src'},
-    packages=("reWrapped",),
+    packages=("rewrapped",),
     long_description=read('README.rst'),
     classifiers=[
         "Development Status :: 3 - Alpha",

@@ -19,7 +19,7 @@
 #
 import os
 import sys
-sys.path.insert(0, '/home/cb/Projects/reWrapped/src')
+sys.path.insert(0, '/home/cb/Projects/rewrapped/src')
 
 # -- General configuration ------------------------------------------------
 
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'reWrapped'
+project = 'rewrapped'
 copyright = '2018, Hans Bering'
 author = 'Hans Bering'
 
@@ -157,8 +157,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'src', 'reWrapped Documentation',
-     author, 'reWrapped', 'One line description of project.',
+    (master_doc, 'src', 'rewrapped Documentation',
+     author, 'rewrapped', 'One line description of project.',
      'Miscellaneous'),
 ]
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # !/usr/bin/env python3
 """
-Provides the main :class:`~reWrapped.patterns.ReWrap` base class.
+Provides the main :class:`~rewrapped.patterns.ReWrap` base class.
 """
 
 __author__ = "Hans Bering"
@@ -17,10 +17,10 @@ import re
 
 class MatchField:
     """
-    The marker class for which fields in :class:`~reWrapped.patterns.ReWrap` classes are initialized.
+    The marker class for which fields in :class:`~rewrapped.patterns.ReWrap` classes are initialized.
     Only defines the required behaviour: being able to check and fill a field.
     
-    See :class:`~reWrapped.matched` for predefined fields.
+    See :class:`~rewrapped.matched` for predefined fields.
     """
 
     def check(self, pattern):
@@ -81,12 +81,12 @@ class ReWrap(metaclass=_MetaReClass):
     """
     The base class from which to inherit your own pattern definition.
     
-    Every such class must have a :attr:`~reWrapped.patterns.ReWrap.matchOn` field (usually a string or
+    Every such class must have a :attr:`~rewrapped.patterns.ReWrap.matchOn` field (usually a string or
     `pattern object <https://docs.python.org/3/library/re.html#regular-expression-objects>`_) 
     defining what instances of the class are to match.
     
     In order to be useful, the class also has to contain
-    :mod:`match fields <reWrapped.matched>` to refer to match contents.
+    :mod:`match fields <rewrapped.matched>` to refer to match contents.
     
     """
     _pattern = None
@@ -98,7 +98,7 @@ class ReWrap(metaclass=_MetaReClass):
     has to define this field. It can be anything that can passed to
     `re.compile <https://docs.python.org/3/library/re.html#re.compile>`_, e.g.:
             
-    >>> from reWrapped import ReWrap
+    >>> from rewrapped import ReWrap
     >>> class Word(ReWrap):
     ...     matchOn = "\w+"
     ...     
@@ -107,7 +107,7 @@ class ReWrap(metaclass=_MetaReClass):
     If the argument is a string, is is compiled to a pattern object at class compile time,
     so any error is detected at that point:
     
-    >>> from reWrapped import ReWrap
+    >>> from rewrapped import ReWrap
     >>> class Word(ReWrap):
     ...     matchOn = "(\w+]"
     ... 
@@ -120,7 +120,7 @@ class ReWrap(metaclass=_MetaReClass):
     in the manner one would pass them to ``re.compile``:
 
     >>> from re import IGNORECASE, MULTILINE    
-    >>> from reWrapped import ReWrap,matched
+    >>> from rewrapped import ReWrap,matched
     >>> class Word(ReWrap):
     ...     matchOn = "^abc", IGNORECASE | MULTILINE
     ...     abc = matched.g0

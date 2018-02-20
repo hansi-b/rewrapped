@@ -13,7 +13,7 @@ __status__ = "Development"
 
 import unittest
 
-from reWrapped import matched
+from rewrapped import matched
 
 
 class TestGroupCall(unittest.TestCase):
