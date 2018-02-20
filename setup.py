@@ -29,7 +29,7 @@ setup(
     description=("Class wrappers for regular expressions "
                  "with proper fields for match groups."),
     license="MIT",
-    url="http://...",
+    url="https://github.com/hansi-b/rewrapped",
     package_dir={'':'src'},
     packages=("rewrapped",),
     long_description=read('README.rst'),
@@ -45,6 +45,6 @@ setup(
     use_scm_version=True,
     python_requires='>=3',
     setup_requires=[
-        "setuptools_scm >= 1.10"
+        "setuptools_scm"
     ],
 )
