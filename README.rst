@@ -13,7 +13,7 @@ rewrapped
 For the time being, more documentation is at
 `this project's github pages <https://hansi-b.github.io/rewrapped/>`_.
 
-rewrapped lets you write your regular expressions as classes
+rewrapped lets you wrap your regular expressions in classes
 with match groups flexibly mapped to named fields.
 
 A simple example:
