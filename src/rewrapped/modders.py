@@ -33,13 +33,20 @@ class _Modder:
             :return: a pair (new value, status)
         """
         return self.valFunc(val), _ModStatus.GoOn
+    
+    def __eq__(self, other):
+        return isinstance(other, _Modder) and self.valFunc == other.valFunc
+
+    def __hash__(self):
+        return hash((self.valFunc,))
 
 
 class _BreakingModder(_Modder):
-    
+
     def __init__(self, breakVal=None):
         self.breakVal = breakVal
     
+    # FIXME this inheritance breaks with the modder contract
     def modit(self, val):
         status = _ModStatus.GoOn if val != self.breakVal else _ModStatus.Break 
         return val, status
@@ -74,13 +81,13 @@ class _ModdableField(MatchField):
         return self._origin == other._origin and self._modders == other._modders
 
     def __hash__(self):
-        return (self._origin, self._modders).__hash__()
+        return hash((self._origin, self._modders))
 
     
 class SingleValueField(_ModdableField):
  
-    def __init__(self, originField=None, modders=None):
-        super(SingleValueField, self).__init__(originField or self, modders)
+    def __init__(self, originField, modders=None):
+        super(SingleValueField, self).__init__(originField, modders)
      
     _asInt = _Modder(int)
     _asFloat = _Modder(float)
@@ -211,8 +218,8 @@ class _MappingModder(_Modder):
 
 class TupleValueField(_ModdableField):
  
-    def __init__(self, originField=None, modders=None):
-        super(TupleValueField, self).__init__(originField or self, modders)
+    def __init__(self, originField, modders=None):
+        super(TupleValueField, self).__init__(originField, modders)
 
     _asInts = _MappingModder(int)
     _asFloats = _MappingModder(float) 

@@ -20,15 +20,12 @@ class TestGroupCall(unittest.TestCase):
 
     def testGroupZero(self):
         g = matched.group()
-        self.assertIsInstance(g, matched._Group)
-        self.assertEquals(0, g._index)
+        self.assertEquals(matched.g(0), g)
 
     def testSingleGroup(self):
         g = matched.group(1)
-        self.assertIsInstance(g, matched._Group)
-        self.assertEquals(1, g._index)
+        self.assertEquals(matched.g(1), g)
 
     def testMultipleGroups(self):
         g = matched.group(1, 2)
-        self.assertIsInstance(g, matched._GroupTuple)
-        self.assertEquals((1, 2), g._indices)
+        self.assertEquals(matched.gTuple(1, 2), g)

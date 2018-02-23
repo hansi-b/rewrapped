@@ -13,10 +13,11 @@ __maintainer__ = "Hans Bering"
 __email__ = "hansi.b.github@mgail.moc"
 __status__ = "Development"
 
+from rewrapped.patterns import MatchField
 from rewrapped.modders import SingleValueField, TupleValueField
 
 
-class _Group(SingleValueField):
+class _Group(MatchField):
 
     def __init__(self, index, defaultValue=None):
         super(_Group, self).__init__()
@@ -42,7 +43,7 @@ class _Group(SingleValueField):
         return hash((self._index, self._defVal))
 
 
-class _After(SingleValueField):
+class _After(MatchField):
 
     def __init__(self):
         super(_After, self).__init__()
@@ -54,7 +55,7 @@ class _After(SingleValueField):
         return string[matchObject.end():]
 
 
-class _Before(SingleValueField):
+class _Before(MatchField):
 
     def __init__(self):
         super(_Before, self).__init__()
@@ -66,7 +67,7 @@ class _Before(SingleValueField):
         return string[:matchObject.start()]
 
 
-after = _After()
+after = SingleValueField(_After())
 """
 The part of a searched string *behind* the match.
 
@@ -83,7 +84,7 @@ Example:
 
 """  # pylint: disable=W0105
 
-before = _Before()
+before = SingleValueField(_Before())
 """
 The part of a searched string *in front of* the match.
 
@@ -133,7 +134,7 @@ def g(idx: int):
         >>> w.allOfIt
         'hello world'
     """
-    return _Group(idx)
+    return SingleValueField(_Group(idx))
 
 
 def gOr(idx: int, defaultValue):
@@ -189,10 +190,10 @@ def gOr(idx: int, defaultValue):
         ('', 'xyz')
 
     """
-    return _Group(idx, defaultValue)
+    return SingleValueField(_Group(idx, defaultValue))
 
 
-g0 = _Group(0)
+g0 = g(0)
 """
 An abbreviation for :func:`g(0) <g>` - the whole match,
 like `matchobject.group() or matchobject.group(0) <https://docs.python.org/3/library/re.html#re.match.group>`_:
@@ -208,55 +209,55 @@ like `matchobject.group() or matchobject.group(0) <https://docs.python.org/3/lib
 
 """  # pylint: disable=W0105
 
-g1 = _Group(1)
+g1 = g(1)
 """
 An abbreviation for :func:`g(1) <g>` - the content of the first capturing group,
 like `matchobject.group(1) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
 
-g2 = _Group(2)
+g2 = g(2)
 """
 An abbreviation for :func:`g(2) <g>` - the content of the second capturing group,
 like `matchobject.group(2) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g3 = _Group(3)
+g3 = g(3)
 """
 An abbreviation for :func:`g(3) <g>` - the content of the third capturing group,
 like `matchobject.group(3) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g4 = _Group(4)
+g4 = g(4)
 """
 An abbreviation for :func:`g(4) <g>` - the content of the fourth capturing group,
 like `matchobject.group(4) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g5 = _Group(5)
+g5 = g(5)
 """
 An abbreviation for :func:`g(5) <g>` - the content of the fifth capturing group,
 like `matchobject.group(5) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g6 = _Group(6)
+g6 = g(6)
 """
 An abbreviation for :func:`g(6) <g>` - the content of the sixth capturing group,
 like `matchobject.group(6) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g7 = _Group(7)
+g7 = g(7)
 """
 An abbreviation for :func:`g(7) <g>` - the content of the seventh capturing group,
 like `matchobject.group(7) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g8 = _Group(8)
+g8 = g(8)
 """
 An abbreviation for :func:`g(8) <g>` - the content of the eigth capturing group,
 like `matchobject.group(8) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g9 = _Group(9)
+g9 = g(9)
 """
 An abbreviation for :func:`g(9) <g>` - the content of the ninth capturing group,
 like `matchobject.group(9) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
 
 
-class _GroupTuple(TupleValueField):
+class _GroupTuple(MatchField):
 
     def __init__(self, *indices):
         super(_GroupTuple, self).__init__()
@@ -280,6 +281,13 @@ class _GroupTuple(TupleValueField):
     def fill(self, _string, matchObject):
         if len(self._indices) == 0: return matchObject.groups()
         return tuple(matchObject.group(i) for i in self._indices)
+
+    def __eq__(self, other):
+        if not isinstance(other, _GroupTuple): return False
+        return self._indices == other._indices
+
+    def __hash__(self):
+        return hash(self._indices)
 
 
 def gTuple(*indices):
@@ -322,7 +330,7 @@ def gTuple(*indices):
         >>> m.line
         '123 pappelallee'
     """
-    return _GroupTuple(*indices)
+    return TupleValueField(_GroupTuple(*indices))
 
 
 def group(*indices):
