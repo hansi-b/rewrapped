@@ -84,11 +84,20 @@ class TestReClass(unittest.TestCase):
 
 class TestFieldsCheck(unittest.TestCase):
 
-    def testInvalidGroup(self):
-        with self.assertRaises(AssertionError):
+    def testMissingMatchOn(self):
+        with self.assertRaisesRegex(AssertionError,
+                                    "ReWrap MissingMatchOn requires field 'matchOn'"):
 
             class MissingMatchOn(ReWrap):
-                match = "my ([a-z]) is 1"
+                match = "my ([a-z]) is x"
+                field = matched.g1
+
+    def testInvalidGroup(self):
+        with self.assertRaisesRegex(AssertionError,
+                                    "Pattern .+ has 1 group\(s\) \(got group index 2\)"):
+
+            class ReInvalidGroup(ReWrap):
+                matchOn = "my ([a-z]) is x"
                 field = matched.g2
 
 

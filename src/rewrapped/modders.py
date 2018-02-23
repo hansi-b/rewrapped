@@ -72,7 +72,7 @@ class _ModdableField(MatchField):
         return val
 
     def check(self, pattern):
-        pass
+        self._origin.check(pattern)
 
     def __eq__(self, other):
         if not isinstance(other, _ModdableField):
