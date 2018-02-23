@@ -99,13 +99,20 @@
 <span class="sd">            :return: a pair (new value, status)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">valFunc</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">_ModStatus</span><span class="o">.</span><span class="n">GoOn</span>
+    
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">_Modder</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">valFunc</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">valFunc</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">valFunc</span><span class="p">,))</span>
 
 
 <span class="k">class</span> <span class="nc">_BreakingModder</span><span class="p">(</span><span class="n">_Modder</span><span class="p">):</span>
-    
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">breakVal</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">breakVal</span> <span class="o">=</span> <span class="n">breakVal</span>
     
+    <span class="c1"># FIXME this inheritance breaks with the modder contract</span>
     <span class="k">def</span> <span class="nf">modit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="n">status</span> <span class="o">=</span> <span class="n">_ModStatus</span><span class="o">.</span><span class="n">GoOn</span> <span class="k">if</span> <span class="n">val</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakVal</span> <span class="k">else</span> <span class="n">_ModStatus</span><span class="o">.</span><span class="n">Break</span> 
         <span class="k">return</span> <span class="n">val</span><span class="p">,</span> <span class="n">status</span>
@@ -140,13 +147,13 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_origin</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_origin</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modders</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_modders</span>
 
     <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_origin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modders</span><span class="p">)</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_origin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modders</span><span class="p">))</span>
 
     
-<div class="viewcode-block" id="SingleValueField"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.modders.SingleValueField">[docs]</a><span class="k">class</span> <span class="nc">SingleValueField</span><span class="p">(</span><span class="n">_ModdableField</span><span class="p">):</span>
+<div class="viewcode-block" id="SingleValueField"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.SingleValueField">[docs]</a><span class="k">class</span> <span class="nc">SingleValueField</span><span class="p">(</span><span class="n">_ModdableField</span><span class="p">):</span>
  
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">originField</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modders</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SingleValueField</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">originField</span> <span class="ow">or</span> <span class="bp">self</span><span class="p">,</span> <span class="n">modders</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">originField</span><span class="p">,</span> <span class="n">modders</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SingleValueField</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">originField</span><span class="p">,</span> <span class="n">modders</span><span class="p">)</span>
      
     <span class="n">_asInt</span> <span class="o">=</span> <span class="n">_Modder</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">_asFloat</span> <span class="o">=</span> <span class="n">_Modder</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
@@ -207,7 +214,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">(</span><span class="n">SingleValueField</span><span class="o">.</span><span class="n">_strip</span><span class="p">)</span>
 
-<div class="viewcode-block" id="SingleValueField.breakOn"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.modders.SingleValueField.breakOn">[docs]</a>    <span class="k">def</span> <span class="nf">breakOn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">breakVal</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="SingleValueField.breakOn"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.SingleValueField.breakOn">[docs]</a>    <span class="k">def</span> <span class="nf">breakOn</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">breakVal</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Do not evaluate following field modifiers if the field value is the argument value;</span>
 <span class="sd">            return that value instead:</span>
@@ -246,7 +253,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakOn</span><span class="p">()</span>
 
-<div class="viewcode-block" id="SingleValueField.apply"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.modders.SingleValueField.apply">[docs]</a>    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valFunc</span><span class="p">):</span>
+<div class="viewcode-block" id="SingleValueField.apply"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.SingleValueField.apply">[docs]</a>    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valFunc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Apply the argument function on the field value.</span>
 <span class="sd">            </span>
@@ -275,10 +282,10 @@
         <span class="nb">super</span><span class="p">(</span><span class="n">_MappingModder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">mapMod</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="TupleValueField"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.modders.TupleValueField">[docs]</a><span class="k">class</span> <span class="nc">TupleValueField</span><span class="p">(</span><span class="n">_ModdableField</span><span class="p">):</span>
+<div class="viewcode-block" id="TupleValueField"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.TupleValueField">[docs]</a><span class="k">class</span> <span class="nc">TupleValueField</span><span class="p">(</span><span class="n">_ModdableField</span><span class="p">):</span>
  
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">originField</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">modders</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">TupleValueField</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">originField</span> <span class="ow">or</span> <span class="bp">self</span><span class="p">,</span> <span class="n">modders</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">originField</span><span class="p">,</span> <span class="n">modders</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">TupleValueField</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">originField</span><span class="p">,</span> <span class="n">modders</span><span class="p">)</span>
 
     <span class="n">_asInts</span> <span class="o">=</span> <span class="n">_MappingModder</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
     <span class="n">_asFloats</span> <span class="o">=</span> <span class="n">_MappingModder</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span> 
@@ -316,7 +323,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build</span><span class="p">(</span><span class="n">TupleValueField</span><span class="o">.</span><span class="n">_asFloats</span><span class="p">)</span>
     
-<div class="viewcode-block" id="TupleValueField.apply"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.modders.TupleValueField.apply">[docs]</a>    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valsFunc</span><span class="p">):</span>
+<div class="viewcode-block" id="TupleValueField.apply"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.TupleValueField.apply">[docs]</a>    <span class="k">def</span> <span class="nf">apply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">valsFunc</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">            Apply the argument function on the field values. The function</span>
 <span class="sd">            will be passed as many value arguments as the field has</span>
