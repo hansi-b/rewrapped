@@ -193,7 +193,7 @@ def gOr(idx: int, defaultValue):
     return SingleValueField(_Group(idx, defaultValue))
 
 
-g0 = g(0)
+g0 = SingleValueField(_Group(0))
 """
 An abbreviation for :func:`g(0) <g>` - the whole match,
 like `matchobject.group() or matchobject.group(0) <https://docs.python.org/3/library/re.html#re.match.group>`_:
@@ -209,48 +209,48 @@ like `matchobject.group() or matchobject.group(0) <https://docs.python.org/3/lib
 
 """  # pylint: disable=W0105
 
-g1 = g(1)
+g1 = SingleValueField(_Group(1))
 """
 An abbreviation for :func:`g(1) <g>` - the content of the first capturing group,
 like `matchobject.group(1) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
 
-g2 = g(2)
+g2 = SingleValueField(_Group(2))
 """
 An abbreviation for :func:`g(2) <g>` - the content of the second capturing group,
 like `matchobject.group(2) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g3 = g(3)
+g3 = SingleValueField(_Group(3))
 """
 An abbreviation for :func:`g(3) <g>` - the content of the third capturing group,
 like `matchobject.group(3) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g4 = g(4)
+g4 = SingleValueField(_Group(4))
 """
 An abbreviation for :func:`g(4) <g>` - the content of the fourth capturing group,
 like `matchobject.group(4) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g5 = g(5)
+g5 = SingleValueField(_Group(5))
 """
 An abbreviation for :func:`g(5) <g>` - the content of the fifth capturing group,
 like `matchobject.group(5) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g6 = g(6)
+g6 = SingleValueField(_Group(6))
 """
 An abbreviation for :func:`g(6) <g>` - the content of the sixth capturing group,
 like `matchobject.group(6) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g7 = g(7)
+g7 = SingleValueField(_Group(7))
 """
 An abbreviation for :func:`g(7) <g>` - the content of the seventh capturing group,
 like `matchobject.group(7) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g8 = g(8)
+g8 = SingleValueField(_Group(8))
 """
 An abbreviation for :func:`g(8) <g>` - the content of the eigth capturing group,
 like `matchobject.group(8) <https://docs.python.org/3/library/re.html#re.match.group>`_
 """  # pylint: disable=W0105
-g9 = g(9)
+g9 = SingleValueField(_Group(9))
 """
 An abbreviation for :func:`g(9) <g>` - the content of the ninth capturing group,
 like `matchobject.group(9) <https://docs.python.org/3/library/re.html#re.match.group>`_
