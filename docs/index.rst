@@ -6,6 +6,13 @@
 Welcome to rewrapped's documentation!
 =====================================
 
+.. image:: https://travis-ci.org/hansi-b/rewrapped.svg?branch=master
+    :target: https://travis-ci.org/hansi-b/rewrapped
+.. image:: https://codecov.io/gh/hansi-b/rewrapped/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/hansi-b/rewrapped
+.. image:: https://badge.fury.io/py/rewrapped.svg
+   :target: https://badge.fury.io/py/rewrapped
+
 rewrapped lets you write your regular expressions as classes
 with match groups flexibly mapped to named fields.
 
@@ -66,12 +73,4 @@ Indices and tables
 Kudos
 =====
 ... go to https://daler.github.io/sphinxdoc-test/includeme.html and https://gist.github.com/brantfaircloth/791759
-for their detailed accounts on how to get the sphinx documentation into the `gh-pages` branch!
-
-Pulse
-=====
-
-.. image:: https://travis-ci.org/hansi-b/rewrapped.svg?branch=master
-    :target: https://travis-ci.org/hansi-b/rewrapped
-.. image:: https://codecov.io/gh/hansi-b/rewrapped/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/hansi-b/rewrapped
+for their detailed accounts on how to get the sphinx documentation into the `gh-pages` branch.
