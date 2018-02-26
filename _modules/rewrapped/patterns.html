@@ -143,6 +143,18 @@
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">fields</span><span class="p">)</span>
 
 
+<span class="k">class</span> <span class="nc">_NoneMatch</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_args</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+
 <div class="viewcode-block" id="ReWrap"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.ReWrap">[docs]</a><span class="k">class</span> <span class="nc">ReWrap</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_MetaReClass</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The base class from which to inherit your own pattern definition.</span>
@@ -196,6 +208,42 @@
 <span class="sd">    &#39;ABC&#39;</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">wrapNone</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A boolean flag indicating whether to wrap a ``None`` no-match result in an instance of the respective ``ReWrap`` subclass.</span>
+<span class="sd">    All groups of that instance will evaluate to ``None``, and :data:`~rewrapped.matched.before` and</span>
+<span class="sd">    :data:`~rewrapped.matched.after` match fields will both yield the</span>
+<span class="sd">    complete searched (and unmatched) string.</span>
+
+<span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap,matched</span>
+<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">    ...     matchOn = &quot;abc&quot;</span>
+<span class="sd">    ...     wrapNone = True</span>
+<span class="sd">    ...     abc = matched.g0</span>
+<span class="sd">    ...     before = matched.before</span>
+<span class="sd">    ...     after = matched.after</span>
+<span class="sd">    ...     </span>
+<span class="sd">    &gt;&gt;&gt; m = Word.search(&quot;nothing here&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; type(m)</span>
+<span class="sd">    &lt;class &#39;Word&#39;&gt;</span>
+<span class="sd">    &gt;&gt;&gt; m.abc is None</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; m.before</span>
+<span class="sd">    &#39;nothing here&#39;</span>
+<span class="sd">    &gt;&gt;&gt; m.after</span>
+<span class="sd">    &#39;nothing here&#39;</span>
+
+
+<span class="sd">    Only affects methods which can return ``None`` results (e.g., :func:`~rewrapped.patterns.ReWrap.search`);</span>
+<span class="sd">    does not affect methods which return collections or iterators (e.g., :func:`~rewrapped.patterns.ReWrap.findall`).</span>
+<span class="sd">    </span>
+<span class="sd">    Defaults to ``False``: Return ``None`` when no match has been found.</span>
+<span class="sd">    </span>
+<span class="sd">    You *can* set this on the ``ReWrap`` baseclass directly if you want it to apply to *all* your</span>
+<span class="sd">    subclasses.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">mObj</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -227,6 +275,8 @@
 <span class="sd">            delegate and perhaps init a result</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mObj</span> <span class="o">=</span> <span class="n">pFunc</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mObj</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">wrapNone</span><span class="p">:</span>
+            <span class="n">mObj</span> <span class="o">=</span> <span class="n">_NoneMatch</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">mObj</span><span class="p">)</span> <span class="k">if</span> <span class="n">mObj</span> <span class="k">else</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="ReWrap.search"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.ReWrap.search">[docs]</a>    <span class="nd">@classmethod</span>

@@ -100,12 +100,6 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">valFunc</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">_ModStatus</span><span class="o">.</span><span class="n">GoOn</span>
     
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">_Modder</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">valFunc</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">valFunc</span>
-
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">valFunc</span><span class="p">,))</span>
-
 
 <span class="k">class</span> <span class="nc">_BreakingModder</span><span class="p">(</span><span class="n">_Modder</span><span class="p">):</span>
 
@@ -116,12 +110,6 @@
     <span class="k">def</span> <span class="nf">modit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
         <span class="n">status</span> <span class="o">=</span> <span class="n">_ModStatus</span><span class="o">.</span><span class="n">GoOn</span> <span class="k">if</span> <span class="n">val</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakVal</span> <span class="k">else</span> <span class="n">_ModStatus</span><span class="o">.</span><span class="n">Break</span> 
         <span class="k">return</span> <span class="n">val</span><span class="p">,</span> <span class="n">status</span>
-    
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">_BreakingModder</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">breakVal</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">breakVal</span>
-
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">breakVal</span><span class="p">,)</span><span class="o">.</span><span class="fm">__hash__</span><span class="p">()</span>
 
 
 <span class="k">class</span> <span class="nc">_ModdableField</span><span class="p">(</span><span class="n">MatchField</span><span class="p">):</span>
@@ -138,16 +126,7 @@
         <span class="k">return</span> <span class="n">val</span>
 
     <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">_ModdableField</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="n">other</span><span class="p">:</span> <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_origin</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_origin</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modders</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_modders</span>
-
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_origin</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modders</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_origin</span><span class="o">.</span><span class="n">check</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
 
     
 <div class="viewcode-block" id="SingleValueField"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.SingleValueField">[docs]</a><span class="k">class</span> <span class="nc">SingleValueField</span><span class="p">(</span><span class="n">_ModdableField</span><span class="p">):</span>

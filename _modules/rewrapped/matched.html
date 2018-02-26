@@ -101,13 +101,6 @@
         <span class="n">v</span> <span class="o">=</span> <span class="n">matchObject</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">v</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_defVal</span>
 
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">_Group</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_index</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_defVal</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_defVal</span>
-
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">hash</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_defVal</span><span class="p">))</span>
-
 
 <span class="k">class</span> <span class="nc">_After</span><span class="p">(</span><span class="n">MatchField</span><span class="p">):</span>
 
@@ -259,7 +252,7 @@
     <span class="k">return</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">defaultValue</span><span class="p">))</span></div>
 
 
-<span class="n">g0</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">g0</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(0) &lt;g&gt;` - the whole match,</span>
 <span class="sd">like `matchobject.group() or matchobject.group(0) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_:</span>
@@ -275,48 +268,48 @@
 
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
 
-<span class="n">g1</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">g1</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(1) &lt;g&gt;` - the content of the first capturing group,</span>
 <span class="sd">like `matchobject.group(1) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
 
-<span class="n">g2</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">g2</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(2) &lt;g&gt;` - the content of the second capturing group,</span>
 <span class="sd">like `matchobject.group(2) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
-<span class="n">g3</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">g3</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(3) &lt;g&gt;` - the content of the third capturing group,</span>
 <span class="sd">like `matchobject.group(3) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
-<span class="n">g4</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">g4</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(4) &lt;g&gt;` - the content of the fourth capturing group,</span>
 <span class="sd">like `matchobject.group(4) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
-<span class="n">g5</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">g5</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(5) &lt;g&gt;` - the content of the fifth capturing group,</span>
 <span class="sd">like `matchobject.group(5) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
-<span class="n">g6</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">g6</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(6) &lt;g&gt;` - the content of the sixth capturing group,</span>
 <span class="sd">like `matchobject.group(6) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
-<span class="n">g7</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">g7</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(7) &lt;g&gt;` - the content of the seventh capturing group,</span>
 <span class="sd">like `matchobject.group(7) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
-<span class="n">g8</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">g8</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(8) &lt;g&gt;` - the content of the eigth capturing group,</span>
 <span class="sd">like `matchobject.group(8) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
-<span class="n">g9</span> <span class="o">=</span> <span class="n">g</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">g9</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Group</span><span class="p">(</span><span class="mi">9</span><span class="p">))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">An abbreviation for :func:`g(9) &lt;g&gt;` - the content of the ninth capturing group,</span>
 <span class="sd">like `matchobject.group(9) &lt;https://docs.python.org/3/library/re.html#re.match.group&gt;`_</span>
@@ -347,13 +340,6 @@
     <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_indices</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">matchObject</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">matchObject</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indices</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">_GroupTuple</span><span class="p">):</span> <span class="k">return</span> <span class="kc">False</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_indices</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_indices</span>
-
-    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_indices</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="gTuple"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.matched.gTuple">[docs]</a><span class="k">def</span> <span class="nf">gTuple</span><span class="p">(</span><span class="o">*</span><span class="n">indices</span><span class="p">):</span>
