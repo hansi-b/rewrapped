@@ -35,13 +35,6 @@ class _Group(MatchField):
         v = matchObject.group(self._index)
         return v if v is not None else self._defVal
 
-    def __eq__(self, other):
-        if not isinstance(other, _Group): return False
-        return self._index == other._index and self._defVal == other._defVal
-
-    def __hash__(self):
-        return hash((self._index, self._defVal))
-
 
 class _After(MatchField):
 
@@ -281,13 +274,6 @@ class _GroupTuple(MatchField):
     def fill(self, _string, matchObject):
         if len(self._indices) == 0: return matchObject.groups()
         return tuple(matchObject.group(i) for i in self._indices)
-
-    def __eq__(self, other):
-        if not isinstance(other, _GroupTuple): return False
-        return self._indices == other._indices
-
-    def __hash__(self):
-        return hash(self._indices)
 
 
 def gTuple(*indices):

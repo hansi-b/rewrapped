@@ -34,12 +34,6 @@ class _Modder:
         """
         return self.valFunc(val), _ModStatus.GoOn
     
-    def __eq__(self, other):
-        return isinstance(other, _Modder) and self.valFunc == other.valFunc
-
-    def __hash__(self):
-        return hash((self.valFunc,))
-
 
 class _BreakingModder(_Modder):
 
@@ -50,12 +44,6 @@ class _BreakingModder(_Modder):
     def modit(self, val):
         status = _ModStatus.GoOn if val != self.breakVal else _ModStatus.Break 
         return val, status
-    
-    def __eq__(self, other):
-        return isinstance(other, _BreakingModder) and self.breakVal == other.breakVal
-
-    def __hash__(self):
-        return tuple(self.breakVal,).__hash__()
 
 
 class _ModdableField(MatchField):
@@ -73,15 +61,6 @@ class _ModdableField(MatchField):
 
     def check(self, pattern):
         self._origin.check(pattern)
-
-    def __eq__(self, other):
-        if not isinstance(other, _ModdableField):
-            return False
-        if self is other: return True
-        return self._origin == other._origin and self._modders == other._modders
-
-    def __hash__(self):
-        return hash((self._origin, self._modders))
 
     
 class SingleValueField(_ModdableField):

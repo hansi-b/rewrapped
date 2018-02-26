@@ -2,6 +2,7 @@
 # !/usr/bin/env python3
 """
 """
+from rewrapped.modders import SingleValueField, TupleValueField
 
 __author__ = "Hans Bering"
 __copyright__ = "Copyright 2018"
@@ -20,12 +21,15 @@ class TestGroupCall(unittest.TestCase):
 
     def testGroupZero(self):
         g = matched.group()
-        self.assertEquals(matched.g(0), g)
+        assert isinstance(g, SingleValueField)
+        assert g._origin._index == 0
 
     def testSingleGroup(self):
         g = matched.group(1)
-        self.assertEquals(matched.g(1), g)
+        assert isinstance(g, SingleValueField)
+        assert g._origin._index == 1
 
     def testMultipleGroups(self):
         g = matched.group(1, 2)
-        self.assertEquals(matched.gTuple(1, 2), g)
+        assert isinstance(g, TupleValueField)
+        assert g._origin._indices == (1,2)

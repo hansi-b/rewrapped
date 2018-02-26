@@ -75,11 +75,8 @@ class TestReClass(unittest.TestCase):
         self.assertEqual(re.compile("([0-9]+) ([abc]+) xy (finally)?"), cls._pattern)
         fields = cls._fields
         self.assertTrue(isinstance(fields, tuple))
-        self.assertEqual({("optFinally", matched.gOr(3, "nope")),
-                          ("no", matched.g1.asInt),
-                          ("allOfIt", matched.g0),
-                          ("theAlphas", matched.g2)},
-                         set(fields))
+        assert len(fields) == 4
+        assert {"optFinally", "no", "allOfIt", "theAlphas"} == set(p[0] for p in fields)
 
 
 class TestFieldsCheck(unittest.TestCase):

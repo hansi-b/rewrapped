@@ -14,7 +14,7 @@ __status__ = "Development"
 import unittest
 import re
 
-from rewrapped.modders import SingleValueField, TupleValueField
+from rewrapped.modders import TupleValueField
 from rewrapped.patterns import MatchField
 
 
@@ -30,23 +30,3 @@ class TestTupleValueField(unittest.TestCase):
         
         matchObject = re.search("(1\.[0-9]+)\+(2\.[0-9]+)", "1.123+2.2314")
         assert (1.123, 2.2314) == tvf.fill(None, matchObject)
-
-class TestEqualities(unittest.TestCase):
-
-    def testSingleValueField(self):
-        
-        assert SingleValueField('A').asInt == SingleValueField('A').asInt
-        assert SingleValueField('A').asInt != SingleValueField('B').asInt
-        assert SingleValueField('A').asInt != SingleValueField('B').asFloat
-
-    def testBreakOn(self):
-        
-        assert SingleValueField('A').breakOn(1) == SingleValueField('A').breakOn(1)
-        assert SingleValueField('A').breakOn(1) != SingleValueField('B').breakOn(1)
-        assert SingleValueField('A').breakOn(1) != SingleValueField('A').breakOn(2)
-
-    def testTupleValueField(self):
-        
-        assert TupleValueField('A').asInts == TupleValueField('A').asInts
-        assert TupleValueField('A').asInts != TupleValueField('B').asInts
-        assert TupleValueField('A').asInts != TupleValueField('B').asFloats
