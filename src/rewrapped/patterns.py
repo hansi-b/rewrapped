@@ -77,6 +77,18 @@ class _MetaReClass(type):
         return tuple(fields)
 
 
+class _NoneMatch:
+
+    def group(self, *_args):
+        return None
+
+    def end(self):
+        return None
+
+    def start(self):
+        return None
+
+
 class ReWrap(metaclass=_MetaReClass):
     """
     The base class from which to inherit your own pattern definition.
@@ -130,6 +142,42 @@ class ReWrap(metaclass=_MetaReClass):
     'ABC'
 
     """
+    
+    wrapNone = False
+    """
+    A boolean flag indicating whether to wrap a ``None`` no-match result in an instance of the respective ``ReWrap`` subclass.
+    All groups of that instance will evaluate to ``None``, and :data:`~rewrapped.matched.before` and
+    :data:`~rewrapped.matched.after` match fields will both yield the
+    complete searched (and unmatched) string.
+
+    >>> from rewrapped import ReWrap,matched
+    >>> class Word(ReWrap):
+    ...     matchOn = "abc"
+    ...     wrapNone = True
+    ...     abc = matched.g0
+    ...     before = matched.before
+    ...     after = matched.after
+    ...     
+    >>> m = Word.search("nothing here")
+    >>> type(m)
+    <class 'Word'>
+    >>> m.abc is None
+    True
+    >>> m.before
+    'nothing here'
+    >>> m.after
+    'nothing here'
+
+
+    Only affects methods which can return ``None`` results (e.g., :func:`~rewrapped.patterns.ReWrap.search`);
+    does not affect methods which return collections or iterators (e.g., :func:`~rewrapped.patterns.ReWrap.findall`).
+    
+    Defaults to ``False``: Return ``None`` when no match has been found.
+    
+    You *can* set this on the ``ReWrap`` baseclass directly if you want it to apply to *all* your
+    subclasses.
+
+    """
 
     def __init__(self, string, mObj):
         """
@@ -161,6 +209,8 @@ class ReWrap(metaclass=_MetaReClass):
             delegate and perhaps init a result
         """
         mObj = pFunc(string, *args, **kwargs)
+        if mObj is None and cls.wrapNone:
+            mObj = _NoneMatch()
         return cls(string, mObj) if mObj else None
 
     @classmethod
