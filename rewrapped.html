@@ -1,12 +1,12 @@
 
-
-<!doctype html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>rewrapped package &#8212; rewrapped  documentation</title>
-    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -21,14 +21,9 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Welcome to rewrapped’s documentation!" href="index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--[if lt IE 9]>
-    <script type="text/javascript" src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
+    <link rel="prev" title="Welcome to rewrapped’s documentation!" href="index.html" /> 
   </head>
   <body>
     <div class="related" role="navigation" aria-label="related navigation">
@@ -45,24 +40,7 @@
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">rewrapped  documentation</a> &#187;</li> 
       </ul>
-    </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to rewrapped’s documentation!</a></p>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
+    </div>  
 
     <div class="document">
       <div class="documentwrapper">
@@ -74,14 +52,12 @@
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-rewrapped.patterns">
-<span id="rewrapped-patterns-module"></span><h2>rewrapped.patterns module<a class="headerlink" href="#module-rewrapped.patterns" title="Permalink to this headline">¶</a></h2>
-<p>Provides the main <a class="reference internal" href="#rewrapped.patterns.ReWrap" title="rewrapped.patterns.ReWrap"><code class="xref py py-class docutils literal"><span class="pre">ReWrap</span></code></a> base class.</p>
+<div class="section" id="rewrapped-patterns-module">
+<h2>rewrapped.patterns module<a class="headerlink" href="#rewrapped-patterns-module" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="rewrapped.patterns.ReWrap">
 <em class="property">class </em><code class="descclassname">rewrapped.patterns.</code><code class="descname">ReWrap</code><span class="sig-paren">(</span><em>string</em>, <em>mObj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rewrapped/patterns.html#ReWrap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rewrapped.patterns.ReWrap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>The base class from which to inherit your own pattern definition.</p>
+<dd><p>The base class from which to inherit your own pattern definition.</p>
 <p>Every such class must have a <a class="reference internal" href="#rewrapped.patterns.ReWrap.matchOn" title="rewrapped.patterns.ReWrap.matchOn"><code class="xref py py-attr docutils literal"><span class="pre">matchOn</span></code></a> field (usually a string or
 <a class="reference external" href="https://docs.python.org/3/library/re.html#regular-expression-objects">pattern object</a>) 
 defining what instances of the class are to match.</p>
@@ -256,39 +232,9 @@ subclasses.</p>
 <dl class="class">
 <dt id="rewrapped.patterns.MatchField">
 <em class="property">class </em><code class="descclassname">rewrapped.patterns.</code><code class="descname">MatchField</code><a class="reference internal" href="_modules/rewrapped/patterns.html#MatchField"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rewrapped.patterns.MatchField" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>The marker class for which fields in <a class="reference internal" href="#rewrapped.patterns.ReWrap" title="rewrapped.patterns.ReWrap"><code class="xref py py-class docutils literal"><span class="pre">ReWrap</span></code></a> classes are initialized.
+<dd><p>The marker class for which fields in <a class="reference internal" href="#rewrapped.patterns.ReWrap" title="rewrapped.patterns.ReWrap"><code class="xref py py-class docutils literal"><span class="pre">ReWrap</span></code></a> classes are initialized.
 Only defines the required behaviour: being able to check and fill a field.</p>
 <p>See <a class="reference internal" href="#module-rewrapped.matched" title="rewrapped.matched"><code class="xref py py-class docutils literal"><span class="pre">matched</span></code></a> for predefined fields.</p>
-<dl class="method">
-<dt id="rewrapped.patterns.MatchField.check">
-<code class="descname">check</code><span class="sig-paren">(</span><em>pattern</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rewrapped/patterns.html#MatchField.check"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rewrapped.patterns.MatchField.check" title="Permalink to this definition">¶</a></dt>
-<dd><p>Does an optional static check of this field against the argument <code class="docutils literal"><span class="pre">Pattern</span></code> object,
-if applicable.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">nothing; raise an Error on failure</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="rewrapped.patterns.MatchField.fill">
-<code class="descname">fill</code><span class="sig-paren">(</span><em>string</em>, <em>matchObject</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/rewrapped/patterns.html#MatchField.fill"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rewrapped.patterns.MatchField.fill" title="Permalink to this definition">¶</a></dt>
-<dd><p>Evaluate this field with regard to a match object that was found in the argument string.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this field’s value (e.g., a match object group or groups)</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -953,6 +899,23 @@ subclasses.</p>
 
 
           </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to rewrapped’s documentation!</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>

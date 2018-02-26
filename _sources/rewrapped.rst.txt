@@ -7,10 +7,10 @@ Submodules
 rewrapped\.patterns module
 --------------------------
 
-.. automodule:: rewrapped.patterns
-    :members: ReWrap, MatchField
-    :undoc-members:
-    :show-inheritance:
+.. autoclass:: rewrapped.patterns.ReWrap
+   :members: matchOn, wrapNone, search, match, fullmatch, findall, finditer
+
+.. autoclass:: rewrapped.patterns.MatchField
 
 rewrapped\.matched module
 -------------------------
