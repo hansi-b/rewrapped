@@ -89,7 +89,7 @@
 <span class="sd">    See :class:`~rewrapped.matched` for predefined fields.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MatchField.check"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.MatchField.check">[docs]</a>    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Does an optional static check of this field against the argument ``Pattern`` object,</span>
 <span class="sd">        if applicable.</span>
@@ -97,16 +97,16 @@
 <span class="sd">        :return: nothing; raise an Error on failure</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> requires method &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-                                                                   <span class="n">MatchField</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span></div>
+                                                                   <span class="n">MatchField</span><span class="o">.</span><span class="n">check</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
 
-<div class="viewcode-block" id="MatchField.fill"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.MatchField.fill">[docs]</a>    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate this field with regard to a match object that was found in the argument string.</span>
 <span class="sd">        </span>
 <span class="sd">        :return: this field&#39;s value (e.g., a match object group or groups)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> requires method &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
-                                                                   <span class="n">MatchField</span><span class="o">.</span><span class="n">fill</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span></div></div>
+                                                                   <span class="n">MatchField</span><span class="o">.</span><span class="n">fill</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span></div>
 
 
 <span class="k">class</span> <span class="nc">_MetaReClass</span><span class="p">(</span><span class="nb">type</span><span class="p">):</span>
@@ -149,10 +149,10 @@
         <span class="k">return</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
     <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
 
 
 <div class="viewcode-block" id="ReWrap"><a class="viewcode-back" href="../../rewrapped.html#rewrapped.patterns.ReWrap">[docs]</a><span class="k">class</span> <span class="nc">ReWrap</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">_MetaReClass</span><span class="p">):</span>
@@ -214,7 +214,7 @@
 <span class="sd">    A boolean flag indicating whether to wrap a ``None`` no-match result in an instance of the respective ``ReWrap`` subclass.</span>
 <span class="sd">    All groups of that instance will evaluate to ``None``, and :data:`~rewrapped.matched.before` and</span>
 <span class="sd">    :data:`~rewrapped.matched.after` match fields will both yield the</span>
-<span class="sd">    complete searched (and unmatched) string.</span>
+<span class="sd">    complete searched (and unmatched) string. The :data:`~rewrapped.matched.start` and :data:`~rewrapped.matched.end` fields return -1.</span>
 
 <span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap,matched</span>
 <span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>

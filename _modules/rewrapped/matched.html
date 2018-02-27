@@ -102,31 +102,56 @@
         <span class="k">return</span> <span class="n">v</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_defVal</span>
 
 
-<span class="k">class</span> <span class="nc">_After</span><span class="p">(</span><span class="n">MatchField</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_Unchecked</span><span class="p">(</span><span class="n">MatchField</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A match field that does not check against the pattern on class construction.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_After</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">string</span><span class="p">[</span><span class="n">matchObject</span><span class="o">.</span><span class="n">end</span><span class="p">():]</span>
-
-
-<span class="k">class</span> <span class="nc">_Before</span><span class="p">(</span><span class="n">MatchField</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">_Before</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fillFunc</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_Unchecked</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fillFunc</span> <span class="o">=</span> <span class="n">fillFunc</span>
 
     <span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">):</span>
         <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">fill</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">string</span><span class="p">[:</span><span class="n">matchObject</span><span class="o">.</span><span class="n">start</span><span class="p">()]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fillFunc</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">matchObject</span><span class="p">)</span>
 
 
-<span class="n">after</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_After</span><span class="p">())</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Unchecked</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_s</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span><span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The `start of the match &lt;https://docs.python.org/3/library/re.html#re.match.start&gt;`_. </span>
+
+<span class="sd">Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
+<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">    ...     matchOn = &quot;([a-z]+)&quot;</span>
+<span class="sd">    ...     start = matched.start</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; m = Word.search(&quot;123 Xabc&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; m.start</span>
+<span class="sd">    5</span>
+
+<span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Unchecked</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_s</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span><span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">()))</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The `end of the match &lt;https://docs.python.org/3/library/re.html#re.match.end&gt;`_. </span>
+
+<span class="sd">Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; from rewrapped import ReWrap, matched</span>
+<span class="sd">    &gt;&gt;&gt; class Word(ReWrap):</span>
+<span class="sd">    ...     matchOn = &quot;([a-z]+)&quot;</span>
+<span class="sd">    ...     end = matched.end</span>
+<span class="sd">    ...</span>
+<span class="sd">    &gt;&gt;&gt; m = Word.search(&quot;123 Xabc&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; m.end</span>
+<span class="sd">    8</span>
+
+<span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
+
+<span class="n">after</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Unchecked</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span><span class="n">s</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">()</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">end</span><span class="p">()</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span><span class="p">:]))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">The part of a searched string *behind* the match.</span>
 
@@ -143,7 +168,7 @@
 
 <span class="sd">&quot;&quot;&quot;</span>  <span class="c1"># pylint: disable=W0105</span>
 
-<span class="n">before</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Before</span><span class="p">())</span>
+<span class="n">before</span> <span class="o">=</span> <span class="n">SingleValueField</span><span class="p">(</span><span class="n">_Unchecked</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">m</span><span class="p">:</span><span class="n">s</span><span class="p">[:</span><span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span><span class="p">]))</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">The part of a searched string *in front of* the match.</span>
 
