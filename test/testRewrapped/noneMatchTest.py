@@ -31,13 +31,14 @@ class TestWrapNoneInSubclass(unittest.TestCase):
 
     def testWrapNoneTrueInOneSubclassButNotAnother(self):
 
-        ReWrap.wrapNone = False # just to make sure
+        ReWrap.wrapNone = False  # just to make sure
 
         gOne = TestWrapNoneInSubclass.OneGroup.search("xyz")
         assert gOne is not None
 
         gAnother = TestWrapNoneInSubclass.AnotherGroup.search("xyz")
         assert gAnother is None
+
 
 class TestWrapNoneThroughBaseClass(unittest.TestCase):
 
@@ -52,4 +53,20 @@ class TestWrapNoneThroughBaseClass(unittest.TestCase):
         gOne = TestWrapNoneThroughBaseClass.FirstGroup.search("xyz")
         assert gOne is not None
 
-        ReWrap.wrapNone = False # just to make sure
+        ReWrap.wrapNone = False  # just to make sure
+
+
+class TestWrapNoneBeforeAndAfter(unittest.TestCase):
+
+    class BandA(ReWrap):
+        matchOn = "(abc)"
+        wrapNone = True
+        before = matched.before
+        after = matched.after
+
+    def testWrapNoneTrueInBaseClass(self):
+
+        mo = TestWrapNoneBeforeAndAfter.BandA.search("xyz 123")
+        assert isinstance(mo, TestWrapNoneBeforeAndAfter.BandA)
+
+        assert "xyz 123" == mo.before == mo.after
