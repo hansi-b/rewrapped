@@ -36,31 +36,56 @@ class _Group(MatchField):
         return v if v is not None else self._defVal
 
 
-class _After(MatchField):
+class _Unchecked(MatchField):
+    """
+    A match field that does not check against the pattern on class construction.
+    """
 
-    def __init__(self):
-        super(_After, self).__init__()
-
-    def check(self, pattern):
-        pass
-
-    def fill(self, string, matchObject):
-        return string[matchObject.end():]
-
-
-class _Before(MatchField):
-
-    def __init__(self):
-        super(_Before, self).__init__()
+    def __init__(self, fillFunc):
+        super(_Unchecked, self).__init__()
+        self.fillFunc = fillFunc
 
     def check(self, pattern):
         pass
 
     def fill(self, string, matchObject):
-        return string[:matchObject.start()]
+        return self.fillFunc(string, matchObject)
 
 
-after = SingleValueField(_After())
+start = SingleValueField(_Unchecked(lambda _s, m:m.start()))
+"""
+The `start of the match <https://docs.python.org/3/library/re.html#re.match.start>`_. 
+
+Example:
+
+    >>> from rewrapped import ReWrap, matched
+    >>> class Word(ReWrap):
+    ...     matchOn = "([a-z]+)"
+    ...     start = matched.start
+    ...
+    >>> m = Word.search("123 Xabc")
+    >>> m.start
+    5
+
+"""  # pylint: disable=W0105
+end = SingleValueField(_Unchecked(lambda _s, m:m.end()))
+"""
+The `end of the match <https://docs.python.org/3/library/re.html#re.match.end>`_. 
+
+Example:
+
+    >>> from rewrapped import ReWrap, matched
+    >>> class Word(ReWrap):
+    ...     matchOn = "([a-z]+)"
+    ...     end = matched.end
+    ...
+    >>> m = Word.search("123 Xabc")
+    >>> m.end
+    8
+
+"""  # pylint: disable=W0105
+
+after = SingleValueField(_Unchecked(lambda s, m:s[m.end() if m.end() > -1 else None:]))
 """
 The part of a searched string *behind* the match.
 
@@ -77,7 +102,7 @@ Example:
 
 """  # pylint: disable=W0105
 
-before = SingleValueField(_Before())
+before = SingleValueField(_Unchecked(lambda s, m:s[:m.start() if m.start() > -1 else None]))
 """
 The part of a searched string *in front of* the match.
 

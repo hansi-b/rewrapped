@@ -16,7 +16,7 @@ rewrapped\.matched module
 -------------------------
 
 .. automodule:: rewrapped.matched
-    :members: group, g, gOr, gTuple, after, before, g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
+    :members: group, g, gOr, gTuple, after, before, start, end, g0, g1, g2, g3, g4, g5, g6, g7, g8, g9
     :undoc-members:
     :show-inheritance:
 

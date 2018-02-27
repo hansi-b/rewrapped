@@ -83,10 +83,10 @@ class _NoneMatch:
         return None
 
     def end(self):
-        return None
+        return -1
 
     def start(self):
-        return None
+        return -1
 
 
 class ReWrap(metaclass=_MetaReClass):
@@ -148,7 +148,7 @@ class ReWrap(metaclass=_MetaReClass):
     A boolean flag indicating whether to wrap a ``None`` no-match result in an instance of the respective ``ReWrap`` subclass.
     All groups of that instance will evaluate to ``None``, and :data:`~rewrapped.matched.before` and
     :data:`~rewrapped.matched.after` match fields will both yield the
-    complete searched (and unmatched) string.
+    complete searched (and unmatched) string. The :data:`~rewrapped.matched.start` and :data:`~rewrapped.matched.end` fields return -1.
 
     >>> from rewrapped import ReWrap,matched
     >>> class Word(ReWrap):

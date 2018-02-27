@@ -61,6 +61,7 @@ class TestWrapNoneBeforeAndAfter(unittest.TestCase):
     class BandA(ReWrap):
         matchOn = "(abc)"
         wrapNone = True
+
         before = matched.before
         after = matched.after
 
