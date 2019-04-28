@@ -16,9 +16,9 @@ match results are flexibly mapped to named instance fields of the proper type.
 
 To do so,
 
-#. subclass from :class:`~rewrapped.patterns.ReWrap`,
+#. subclass from ``rewrapped.patterns.ReWrap``,
 #. put the regular expression in the special ``matchOn`` class field, and
-#. add :mod:`match fields <rewrapped.matched>` to refer to match results.
+#. add match class fields to refer to match results.
 
 A simple example:
 
