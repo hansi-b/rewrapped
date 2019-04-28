@@ -10,24 +10,37 @@ rewrapped
 .. image:: https://badge.fury.io/py/rewrapped.svg
    :target: https://badge.fury.io/py/rewrapped
 
-For the time being, more documentation is at
-`this project's github pages <https://hansi-b.github.io/rewrapped/>`_.
+rewrapped is an exercise in Python metaclass usage. It allows you to wrap your regular expression in a Python class along with named and
+typed fields for match groups. The classes provide static search functionality mostly identical to the ``re`` module, and
+match results are flexibly mapped to named instance fields of the proper type.
 
-rewrapped lets you wrap your regular expressions in classes
-with match groups flexibly mapped to named fields.
+To do so,
+
+#. subclass from :class:`~rewrapped.patterns.ReWrap`,
+#. put the regular expression in the special ``matchOn`` class field, and
+#. add :mod:`match fields <rewrapped.matched>` to refer to match results.
 
 A simple example:
 
 .. code:: python
 
     from rewrapped import ReWrap, matched
+
+    # ReWrap is the required base class
     class Inventory(ReWrap):
+
+        # matchOn is the fixed
+        # regular expression class field
         matchOn = "([0-9]+)\s+(\S+)"
+
+        # the matched module contains transformations
+        # for match groups
         count = matched.g1.asInt
         item = matched.g2
 
-This will yield match results which map the first match field
-to the integer ``count``, and the second to the string field ``item``:
+This defines a class that would map the first match group of a match result
+to the integer ``count``, and the second to the string field ``item``.
+You use it like you would call, e.g., ``re.search``:
 
 .. code:: python
 
@@ -37,3 +50,6 @@ to the integer ``count``, and the second to the string field ``item``:
       >>> i.item
       'oranges'
       >>> 
+
+The whole documentation including examples is at
+`this project's github pages <https://hansi-b.github.io/rewrapped/>`_.
