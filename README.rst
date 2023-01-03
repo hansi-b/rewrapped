@@ -1,3 +1,5 @@
+:heavy_exclamation_mark: This package is no longer maintained.
+
 rewrapped
 =========
 
