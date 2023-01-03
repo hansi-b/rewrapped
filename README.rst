@@ -1,8 +1,6 @@
 rewrapped
 =========
 
-.. image:: https://travis-ci.org/hansi-b/rewrapped.svg?branch=master
-    :target: https://travis-ci.org/hansi-b/rewrapped
 
 .. image:: https://codecov.io/gh/hansi-b/rewrapped/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/hansi-b/rewrapped
