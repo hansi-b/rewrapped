@@ -1,8 +1,6 @@
-:heavy_exclamation_mark: This package is no longer maintained.
-
 rewrapped
 =========
-
+_:warning: This package is no longer maintained. :warning:
 
 .. image:: https://codecov.io/gh/hansi-b/rewrapped/branch/master/graph/badge.svg
    :target: https://codecov.io/gh/hansi-b/rewrapped
